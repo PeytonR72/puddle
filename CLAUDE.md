@@ -115,13 +115,18 @@ Strictness is a build setting, not a preference: `strict` is on, plus
   (decision 5) — the exception to feature-first organisation, and the seam every test
   mocks at. Beside it: `bundles.ts` resolves the WASM and worker assets, `result.ts`
   is the pure narrowing that turns an Arrow table into rows, and `use-duckdb.ts` is
-  the boot status a component renders. `EngineCheck.tsx` is a wiring harness, not a
-  design — it and its one line in `App.tsx` go when the real interface lands.
+  the boot status a component renders.
+- `src/dataset/` is the first feature folder and the shape the rest should follow: pure
+  logic, components, and tests together. The pure modules carry the decisions —
+  `file-kind.ts` accepts or refuses a file, `ingest-sql.ts` builds the `CREATE VIEW`,
+  `ingest-failure.ts` turns a DuckDB error into something worth reading — and
+  `load-dataset.ts` is the only part that talks to the engine.
 - Tests sit beside the code they cover, as `*.test.ts`, and run on Vitest under
   `npm test`. The node environment covers everything so far; whether to add a DOM one
   is an open decision, and hooks and components go untested until it is made.
 - Repo root carries the agent-facing files: this file, `CONTEXT.md` for domain
-  vocabulary, `docs/adr/` for decision records, `docs/agents/` for tooling conventions.
+  vocabulary, `docs/adr/` for decision records, `docs/agents/` for tooling conventions,
+  and `docs/design/tokens.md` for the design vocabulary every component composes from.
 
 ### Commit messages
 
@@ -154,6 +159,8 @@ Single-context layout (`CONTEXT.md` + `docs/adr/` at the repo root). See `docs/a
 ### Project skills
 
 - **`frontend-design`**: design direction for this repo — ground the design in SQL and
-  data, plan tokens before building, spend boldness once. Loads when working on UI.
+  data, plan tokens before building, spend boldness once. Loads when working on UI. The
+  token plan it requires is written: `docs/design/tokens.md`, implemented in
+  `src/index.css`. Extend it there rather than hand-writing a value in a component.
 - **`content-humanizer`**: makes copy read as written rather than generated. Loads when
   writing or editing user-facing text.
