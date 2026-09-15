@@ -16,6 +16,11 @@ v1 has five surfaces to design: the landing page with its preloaded live demo, t
 drop, the schema panel beside the editor, the results table, and the chart below it.
 `CLAUDE.md` holds the scope boundary for each.
 
+**The phone is the primary case.** The definition of done is a stranger on a phone tapping
+one button and reaching a chart. Design and check that width first; desktop is the easier
+case and inherits. A schema panel "beside" the editor is a desktop arrangement — decide
+what it becomes at 380px before building the desktop version.
+
 ## Ground the design in the subject
 
 **Ground** means the visual language comes from the material — SQL, tabular data, local
@@ -41,7 +46,9 @@ values chosen ad hoc and reconciled never.
 The plan names, and gives the reasoning for:
 
 - **Colour**: a neutral ramp, one accent, and the semantic set the notebook genuinely
-  needs (running, succeeded, failed, `NULL`). Say what each is for.
+  needs (running, succeeded, failed, `NULL`). Say what each is for. v1 ships one theme —
+  no dark mode toggle — so commit to it rather than hedging toward a palette that could
+  invert later.
 - **Type**: the families (a monospace carrying real weight here — it is the notebook's
   voice, not just code styling), the scale, and where the scale steps.
 - **Space**: one base unit and the scale built from it. Density is a design decision;
@@ -97,3 +104,7 @@ compete and both read as noise, which is the failure this rule exists to prevent
 - It holds up with real data: a wide result set, a thousand rows, a `NULL`-heavy column,
   a column of long strings, a query that errors, a result that charts badly, and the
   empty state before any file is loaded.
+- The two states the architecture forces are designed, not defaulted: the determinate
+  progress shown while DuckDB boots on first intent, and the read-only query plus expected
+  column list shown when someone opens a share link with no file loaded. Both are a
+  stranger's first screen, so neither is a spinner.

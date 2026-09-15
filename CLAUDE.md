@@ -20,29 +20,68 @@ building past it is out of scope even where the capability is listed.
 | Share link | Encodes query plus expected schema in the URL hash. Never the data. |
 | Landing page | Live demo with a bundled dataset preloaded. |
 
-<!-- PASTE: out-of-scope list -->
+**Out of scope.** Each of these is a decision, not an oversight. They are the v1.1
+backlog, listed as planned work in `README.md`:
 
-**Out of scope**
+- Multiple cells
+- Joins across multiple uploaded files
+- Saved workspaces or history
+- SQL autocomplete
+- Nested schema browser
+- Export to CSV
+- Dark mode toggle
+- Auth of any kind
 
-- _Awaiting the v1 out-of-scope list._
+The table is the boundary. A capability absent from both lists is undecided — ask before
+building it, rather than reading it into a neighbouring row. The scope changes by editing
+this file, not in passing conversation.
 
-<!-- END PASTE -->
+### Definition of done
 
-The table is the boundary. A capability absent from it is undecided — ask before
-building it, rather than reading it into a neighbouring row. The scope changes by
-editing this file, not in passing conversation.
+A stranger lands on the site on a phone, taps one button, sees a real query run against a
+real dataset with a chart, and can copy a share link.
+
+That is the whole bar. It sets two things that are easy to lose: the first run needs no
+file of the reader's own, and the primary path is a phone. Desktop is the easier case,
+so design and test the phone first.
 
 ## Architecture decisions (locked)
-
-<!-- PASTE: the five locked decisions -->
-
-_Awaiting the five locked architecture decisions._
-
-<!-- END PASTE -->
 
 "Locked" means these are settled and not reopened by an implementation that finds them
 inconvenient. When a decision genuinely blocks the work, stop and say so — the fix is
 to change the decision here, with a note in `docs/adr/`, not to route around it in code.
+
+**1. DuckDB loads lazily.** The WASM bundle is several megabytes and does not load with
+the landing page. Initialize it on first user intent — clicking "Try the demo" or dropping
+a file — and show a determinate loading state while it boots. A landing page that hangs
+for five seconds on a phone reads as broken.
+
+**2. Use the non-COI bundle.** DuckDB-WASM's cross-origin-isolated build needs COOP/COEP
+response headers, which break third-party embeds and tax portability. Use the `mvp` or
+`eh` bundle, which runs without `SharedArrayBuffer`. It is slower on huge files and that
+does not matter at v1 scale.
+
+**3. Register the file, do not read it into memory.** Hand DuckDB the `File` object and
+let it read directly:
+
+```ts
+db.registerFileHandle(name, file, DuckDBDataProtocol.BROWSER_FILEREADER, true);
+```
+
+Pulling a 200MB CSV through `FileReader.readAsText` into a JS string is the failure this
+rules out.
+
+**4. Share links encode the query, not the data.** Serialize `{ query, schema, fileName }`,
+compress with `lz-string`, and store it in the URL hash fragment, which is never
+transmitted to a server. On load with a hash present, show the query read-only beside the
+expected column list and prompt: "Load a file with these columns to run this query."
+Encoding the data itself blows past URL length limits and creates a privacy story we do
+not want to defend.
+
+**5. All query execution goes through one module.** `src/duckdb/client.ts` owns the
+worker, the connection lifecycle, and the query API. UI components reach DuckDB through
+it and never import the bindings themselves. This is what makes the inter-annotator
+workbench reuse cheap later.
 
 ## Conventions
 
@@ -71,8 +110,8 @@ of what exists. It firms up — here — when the first application code lands.
 
 - `src/` is application code, organised by feature rather than by file kind. A feature
   folder holds its components, logic, and tests together.
-- DuckDB is reached through one module. Nothing else imports the WASM bindings
-  directly, so the engine stays swappable and mockable.
+- `src/duckdb/client.ts` is the one module that touches DuckDB (decision 5). It is the
+  exception to feature-first organisation, and the seam every test mocks at.
 - Tests sit beside the code they cover, as `*.test.ts`.
 - Repo root carries the agent-facing files: this file, `CONTEXT.md` for domain
   vocabulary, `docs/adr/` for decision records, `docs/agents/` for tooling conventions.
