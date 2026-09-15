@@ -115,7 +115,8 @@ Strictness is a build setting, not a preference: `strict` is on, plus
   (decision 5) — the exception to feature-first organisation, and the seam every test
   mocks at. Beside it: `bundles.ts` resolves the WASM and worker assets, `result.ts`
   is the pure narrowing that turns an Arrow table into rows, and `use-duckdb.ts` is
-  the boot status a component renders.
+  the boot status a component renders. `EngineCheck.tsx` is a wiring harness, not a
+  design — it and its one line in `App.tsx` go when the real interface lands.
 - Tests sit beside the code they cover, as `*.test.ts`, and run on Vitest under
   `npm test`. The node environment covers everything so far; whether to add a DOM one
   is an open decision, and hooks and components go untested until it is made.
