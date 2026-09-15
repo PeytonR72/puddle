@@ -109,14 +109,16 @@ Strictness is a build setting, not a preference: `strict` is on, plus
 
 ### File layout
 
-The app is not scaffolded yet, so this is the target shape rather than a description
-of what exists. It firms up — here — when the first application code lands.
-
 - `src/` is application code, organised by feature rather than by file kind. A feature
   folder holds its components, logic, and tests together.
-- `src/duckdb/client.ts` is the one module that touches DuckDB (decision 5). It is the
-  exception to feature-first organisation, and the seam every test mocks at.
-- Tests sit beside the code they cover, as `*.test.ts`.
+- `src/duckdb/` is the engine. `client.ts` is the one module that touches DuckDB
+  (decision 5) — the exception to feature-first organisation, and the seam every test
+  mocks at. Beside it: `bundles.ts` resolves the WASM and worker assets, `result.ts`
+  is the pure narrowing that turns an Arrow table into rows, and `use-duckdb.ts` is
+  the boot status a component renders.
+- Tests sit beside the code they cover, as `*.test.ts`, and run on Vitest under
+  `npm test`. The node environment covers everything so far; whether to add a DOM one
+  is an open decision, and hooks and components go untested until it is made.
 - Repo root carries the agent-facing files: this file, `CONTEXT.md` for domain
   vocabulary, `docs/adr/` for decision records, `docs/agents/` for tooling conventions.
 
