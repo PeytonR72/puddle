@@ -121,6 +121,12 @@ Strictness is a build setting, not a preference: `strict` is on, plus
   `file-kind.ts` accepts or refuses a file, `ingest-sql.ts` builds the `CREATE VIEW`,
   `ingest-failure.ts` turns a DuckDB error into something worth reading — and
   `load-dataset.ts` is the only part that talks to the engine.
+- `src/query/` is the SQL editor and its run. Same shape: the decisions sit in pure
+  modules — `column-reference-scan.ts` finds the dataset's columns in a block of SQL,
+  `run-state.ts` answers whether Run may fire and why not, `query-failure.ts` turns a
+  DuckDB refusal into a headline — and `use-query-run.ts` is the only part that queries.
+  `duckdb-dialect.ts` and `editor-theme.ts` are what CodeMirror is configured with; no
+  completion source is registered anywhere in the folder, because v1 ships no autocomplete.
 - Tests sit beside the code they cover, as `*.test.ts`, and run on Vitest under
   `npm test`. The node environment covers everything so far; whether to add a DOM one
   is an open decision, and hooks and components go untested until it is made.

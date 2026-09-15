@@ -80,6 +80,22 @@ The accent is rationed to two jobs: **the engine is doing something**, and **foc
 never decorates. If it appears anywhere else, that is a bug in the usage, not a reason to
 add a second accent.
 
+### Syntax highlighting spends no colour at all
+
+The query editor is the obvious place a second palette would arrive — every SQL editor
+paints `SELECT` blue — so it is written down here rather than left to the component.
+
+Highlighting is drawn entirely from the ramp above: keywords, type names and function
+names in `--color-ink-muted`, operators and punctuation in `--color-ink-faint`, comments
+faint and italic, `NULL` faint and italic like the cell that holds it, and literals in
+full `--color-ink`. On top of that, an identifier naming a column of the loaded file is
+set at weight 500.
+
+The effect is an inversion worth keeping: the scaffolding recedes and the columns come
+forward, which is the right way round for a notebook, where the columns are the subject.
+It is also what makes a mistyped column name visible before the query runs — `amont` stays
+plain while `amount` does not. The caret is the only accent in the editor.
+
 ## Type
 
 **System stacks only, no webfont.** This is a design decision with a product reason: a
@@ -109,8 +125,17 @@ density. Base reading size is 13px, not 16px, and that is deliberate.
 | `--text-lead` | `1.125rem` / 18px | The one-line invitation on an empty surface |
 | `--text-display` | `1.75rem` / 28px | Section headline |
 | `--text-hero` | `2.75rem` / 44px | Landing wordmark |
+| `--text-editor-touch` | `1rem` / 16px | The query editor, on a touch device only |
 
-Weights: 400 for everything, 500 to separate a column name from its type, 600 reserved for
+`--text-editor-touch` is the one size that is not a step in the scale, and it exists for
+a mechanical reason rather than a typographic one: iOS zooms the page when a field under
+16px takes focus, which lands the caret off-screen and leaves the layout pinched. 13px is
+right for the editor on a pointer device, so the size changes under
+`@media (pointer: coarse)` and nowhere else. `--row-height` does not change with it, so
+the ruled grid holds at both sizes.
+
+Weights: 400 for everything, 500 where a column name has to separate from what surrounds
+it — its type in the schema panel, the SQL around it in the editor — and 600 reserved for
 the wordmark. Uppercase section labels take `0.08em` tracking at `--text-micro`; nothing
 else is uppercased.
 
@@ -127,6 +152,11 @@ what makes the grid a grid and what makes virtualization honest later.
 
 `--panel-width: 260px` — the schema panel beside the editor. Wide enough for a real column
 name at 13px mono, narrow enough that the editor keeps the width it needs.
+
+`--panel-height-stacked: 40dvh` — what that panel collapses to below `md`, where it sits
+above the editor instead of beside it. A cap rather than a height, so a two-column file
+does not reserve space it has no use for. `dvh` rather than `vh` so an on-screen keyboard
+takes its space out of the schema list and not out of the SQL being typed.
 
 ## Radius, border, elevation
 

@@ -22,7 +22,10 @@ export function SchemaPanel({ dataset, onInsertColumn, onFiles }: SchemaPanelPro
   const notice = schemaNotice(dataset.columns)
 
   return (
-    <aside className="flex h-full min-h-0 w-full flex-col border-rule bg-surface md:w-[var(--panel-width)] md:shrink-0 md:border-r">
+    /* Stacked above the editor on a phone, beside it on a pointer layout. The
+       stacked height is capped so a wide schema cannot push the editor off the
+       screen — the query is what someone came here to write. */
+    <aside className="flex max-h-[var(--panel-height-stacked)] min-h-0 w-full flex-col border-b border-rule bg-surface md:h-full md:max-h-none md:w-[var(--panel-width)] md:shrink-0 md:border-r md:border-b-0">
       <header className="border-b border-rule px-4 py-3">
         <h2 className="truncate text-base text-ink" title={dataset.fileName}>
           {dataset.fileName}
