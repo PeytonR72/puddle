@@ -1,1 +1,94 @@
 @import 'tailwindcss';
+
+/* The vocabulary. docs/design/tokens.md holds the reasoning for every value here;
+   change it there first. A value hand-written in a component is a gap in the plan. */
+@theme {
+  /* Colour — ink on paper, chroma rationed to the accent. One theme, no dark mode (v1). */
+  --color-paper: oklch(0.994 0.001 95);
+  --color-surface: oklch(0.978 0.002 95);
+  --color-ink: oklch(0.22 0.008 265);
+  --color-ink-muted: oklch(0.52 0.008 265);
+  --color-ink-faint: oklch(0.66 0.008 265);
+  --color-rule: oklch(0.9 0.004 265);
+  --color-rule-strong: oklch(0.8 0.004 265);
+  --color-accent: oklch(0.54 0.19 245);
+  --color-accent-soft: oklch(0.95 0.04 245);
+  --color-failed: oklch(0.52 0.2 27);
+  --color-failed-soft: oklch(0.96 0.03 27);
+
+  /* Type — system stacks only. A webfont is a third-party request, and Puddle's
+     claim is that nothing leaves the tab. */
+  --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+
+  --text-micro: 0.6875rem;
+  --text-micro--line-height: 1rem;
+  --text-small: 0.75rem;
+  --text-small--line-height: 1.125rem;
+  --text-base: 0.8125rem;
+  --text-base--line-height: 1.25rem;
+  --text-body: 0.9375rem;
+  --text-body--line-height: 1.5rem;
+  --text-lead: 1.125rem;
+  --text-lead--line-height: 1.75rem;
+  --text-display: 1.75rem;
+  --text-display--line-height: 2.125rem;
+  --text-hero: 2.75rem;
+  --text-hero--line-height: 3rem;
+
+  /* Space — base 4px, tight because result sets want density. */
+  --spacing: 4px;
+
+  /* Radius — square by default, because grid cells are. 2px on controls only. */
+  --radius-control: 2px;
+
+  /* Motion — one curve. Progress is deliberately linear, not eased. */
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+  --duration-fast: 120ms;
+  --duration-surface: 240ms;
+}
+
+/* Not spacing multiples, so they sit outside @theme's scales. */
+:root {
+  --row-height: 28px;
+  --panel-width: 260px;
+}
+
+html {
+  background-color: var(--color-paper);
+}
+
+body {
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: var(--text-base);
+  line-height: var(--text-base--line-height);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Visible on every interactive element, never removed. A ring, not a shadow —
+   there is no elevation token to spend. */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* The empty result grid a dataset is about to fill. Used on the drop surface
+   and behind the editor, so the two read as the same ruled sheet. */
+@utility grid-rules {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    color-mix(in oklch, var(--color-rule) 60%, transparent) 0 1px,
+    transparent 1px var(--row-height)
+  );
+}
