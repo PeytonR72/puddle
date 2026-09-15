@@ -38,12 +38,16 @@ this file, not in passing conversation.
 
 ### Definition of done
 
-A stranger lands on the site on a phone, taps one button, sees a real query run against a
-real dataset with a chart, and can copy a share link.
+A stranger lands on the site in a desktop browser, clicks one button, sees a real query
+run against a real dataset with a chart, and can copy a share link.
 
 That is the whole bar. It sets two things that are easy to lose: the first run needs no
-file of the reader's own, and the primary path is a phone. Desktop is the easier case,
-so design and test the phone first.
+file of the reader's own, and the primary path is a desktop browser. A SQL notebook is a
+keyboard-and-pointer tool with width to spend on layout, so design and test that case
+first.
+
+Phones stay usable — the same path works, nothing overflows, controls take a thumb — but
+mobile is a width Puddle passes, not the one it is designed against.
 
 ## Architecture decisions (locked)
 
@@ -54,7 +58,7 @@ to change the decision here, with a note in `docs/adr/`, not to route around it 
 **1. DuckDB loads lazily.** The WASM bundle is several megabytes and does not load with
 the landing page. Initialize it on first user intent — clicking "Try the demo" or dropping
 a file — and show a determinate loading state while it boots. A landing page that hangs
-for five seconds on a phone reads as broken.
+for five seconds before it can show anything reads as broken.
 
 **2. Use the non-COI bundle.** DuckDB-WASM's cross-origin-isolated build needs COOP/COEP
 response headers, which break third-party embeds and tax portability. Use the `mvp` or

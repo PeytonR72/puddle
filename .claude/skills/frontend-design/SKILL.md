@@ -16,10 +16,12 @@ v1 has five surfaces to design: the landing page with its preloaded live demo, t
 drop, the schema panel beside the editor, the results table, and the chart below it.
 `CLAUDE.md` holds the scope boundary for each.
 
-**The phone is the primary case.** The definition of done is a stranger on a phone tapping
-one button and reaching a chart. Design and check that width first; desktop is the easier
-case and inherits. A schema panel "beside" the editor is a desktop arrangement — decide
-what it becomes at 380px before building the desktop version.
+**The desktop is the primary case.** Design and check the wide layout first; `CLAUDE.md`
+holds the done bar it has to clear. The schema panel beside the editor is the arrangement
+Puddle is built around, not a widescreen bonus.
+
+Phones still have to work. Decide what each wide arrangement collapses to — the panel, the
+results table, the chart — while you design it, rather than discovering it at 380px later.
 
 ## Ground the design in the subject
 
