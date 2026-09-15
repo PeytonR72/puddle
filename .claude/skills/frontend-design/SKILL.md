@@ -12,6 +12,10 @@ Puddle is a SQL notebook that runs entirely in a browser tab. The person using i
 reading result sets, not admiring chrome. Design that earns its place makes data easier
 to read; design that competes with the data is a bug.
 
+v1 has five surfaces to design: the landing page with its preloaded live demo, the file
+drop, the schema panel beside the editor, the results table, and the chart below it.
+`CLAUDE.md` holds the scope boundary for each.
+
 ## Ground the design in the subject
 
 **Ground** means the visual language comes from the material — SQL, tabular data, local
@@ -19,7 +23,7 @@ computation — rather than from whatever a dashboard usually looks like.
 
 Before choosing anything, write down what the subject gives you. For Puddle that well is
 deep: the grid of a result set, monospace as the native voice of query text, the
-run/pending/error states of a cell, the honest ugliness of a `NULL`, row counts and
+idle/running/error states of a query, the honest ugliness of a `NULL`, row counts and
 timings as real typographic material, the fact that nothing leaves the machine.
 
 Each of those is a design move waiting to be made. The grid can be the layout system
@@ -88,6 +92,8 @@ compete and both read as noise, which is the failure this rule exists to prevent
 - The boldness is identifiable in one sentence, and it is the only one on the screen.
 - Every choice traces to the subject or to an explicit decision against the default.
 - Contrast meets WCAG AA, focus states are visible, and the keyboard path through a
-  notebook — write a query, run it, move to the next cell — works without a mouse.
+  app — insert a column from the schema panel, write a query, run it with Cmd/Ctrl+Enter
+  — works without a mouse.
 - It holds up with real data: a wide result set, a thousand rows, a `NULL`-heavy column,
-  a query that errors, and an empty notebook.
+  a column of long strings, a query that errors, a result that charts badly, and the
+  empty state before any file is loaded.

@@ -29,8 +29,8 @@ The same goes for nouns: "query speed", not "query performance characteristics".
 
 ## Sentence case
 
-Sentence case everywhere — buttons, headings, labels, menu items. "Run all cells", not
-"Run All Cells". Capitalise proper nouns and nothing else: SQL, DuckDB, Parquet, CSV.
+Sentence case everywhere — buttons, headings, labels, menu items. "Copy share link", not
+"Copy Share Link". Capitalise proper nouns and nothing else: SQL, DuckDB, Parquet, CSV.
 
 Skip the terminal period on buttons and labels. Keep it in real sentences.
 
@@ -40,7 +40,7 @@ Name who did the thing. Passive voice is how software avoids saying a query fail
 
 - "The query failed" beats "an error was encountered".
 - "Puddle could not read that file" beats "the file could not be processed".
-- "You have not run this cell yet" beats "this cell has not been executed".
+- "You have not run this query yet" beats "this query has not been executed".
 
 Errors say what happened, then what to do:
 
@@ -73,7 +73,7 @@ A button names its effect, so the reader knows the outcome before clicking.
 | Learn more | Read the DuckDB docs |
 | Continue | Save and close |
 
-Destructive actions name the destruction — "Delete all cells", not "Confirm". If a label
+Destructive actions name the destruction — "Replace dataset", not "Confirm". If a label
 needs a tooltip to explain what it does, the label is wrong.
 
 ## Read it back

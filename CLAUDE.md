@@ -1,17 +1,26 @@
 # Puddle
 
 Puddle is a browser-local SQL notebook built on DuckDB-WASM. You open a page, drop in
-a CSV or Parquet file, and write SQL against it in a notebook of cells that run in
-order and show their results inline. Everything — the engine, the data, the notebook
-itself — stays in the browser tab. There is no backend, no accounts, and no API keys.
+a CSV, TSV, or Parquet file, and write SQL against it in a single editor that shows its
+results as a table and a chart. Everything — the engine, the data, the query — stays in
+the browser tab. There is no backend, no accounts, and no API keys.
 
 ## v1 scope
 
-<!-- PASTE: in-scope list -->
+**In scope.** The boundary column is part of the scope, not a suggested starting point:
+building past it is out of scope even where the capability is listed.
 
-**In scope**
+| Capability | Boundary |
+| --- | --- |
+| File ingest | One file per session. CSV, TSV, Parquet. Drag-drop or file picker. |
+| Schema panel | Flat list of columns with inferred types. Click to insert name into editor. |
+| Query editor | Single SQL editor. Run button plus Cmd/Ctrl+Enter. Errors shown inline. |
+| Results table | Virtualized, type-aware formatting, row count and execution time. |
+| Chart | One chart below results. Inferred x/y with manual override. Bar and line. |
+| Share link | Encodes query plus expected schema in the URL hash. Never the data. |
+| Landing page | Live demo with a bundled dataset preloaded. |
 
-- _Awaiting the v1 in-scope list._
+<!-- PASTE: out-of-scope list -->
 
 **Out of scope**
 
@@ -19,9 +28,9 @@ itself — stays in the browser tab. There is no backend, no accounts, and no AP
 
 <!-- END PASTE -->
 
-Until those lists land, treat every feature as undecided and ask before building it.
-Once they land, they are the boundary: work that is out of scope stays out until the
-lists change, and the lists change by editing this file, not in passing conversation.
+The table is the boundary. A capability absent from it is undecided — ask before
+building it, rather than reading it into a neighbouring row. The scope changes by
+editing this file, not in passing conversation.
 
 ## Architecture decisions (locked)
 
@@ -52,8 +61,8 @@ Strictness is a build setting, not a preference: `strict` is on, plus
 - **`any` does not ship.** `unknown` where the shape is genuinely open, a real type
   everywhere else.
 - Prefer `type` aliases; use `interface` when you need declaration merging.
-- Name things after the domain, not the mechanism: a `Cell` runs, a `Notebook` holds
-  cells. Keep that vocabulary aligned with `CONTEXT.md`.
+- Name things after the domain, not the mechanism: a `Query` runs against a `Dataset`
+  and returns a `Result`. Keep that vocabulary aligned with `CONTEXT.md`.
 
 ### File layout
 
