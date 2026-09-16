@@ -75,10 +75,26 @@ admired, and sustained reading wants high contrast and quiet surroundings.
 | `--color-failed` | `oklch(0.52 0.20 27)` | A refused file, a DuckDB error. AA on paper. |
 | `--color-failed-soft` | `oklch(0.96 0.03 27)` | The wash behind a failure message. |
 | `--color-null` | `--color-ink-faint` | `NULL`, set in italic. Absence, not a value. |
+| `--color-mark` | `--color-ink` | **The data drawn as shape.** Bars and lines, in the grid's own ink. |
+| `--color-mark-active` | `--color-accent` | The mark under the pointer. The accent's focus job, in the chart. |
 
 The accent is rationed to two jobs: **the engine is doing something**, and **focus**. It
 never decorates. If it appears anywhere else, that is a bug in the usage, not a reason to
 add a second accent.
+
+The chart is where that rule was tested, because a chart is the one place every other
+tool spends its accent. Puddle does not: **the marks are ink, and the accent marks what
+the pointer is on.** The reasoning is the same one that makes the grid a grid — a chart
+is the result set drawn as shape rather than as digits, so it is the same data in the
+same ink, and colouring it would make it read as a second subject sitting under the
+first. It also leaves the accent free to do the job it already had, which is what turns
+hovering a bar into an answer rather than a highlight.
+
+Measured, ink marks sit at 16.9:1 against paper and the accent at 4.8:1, so a hovered
+mark separates from its neighbours by 3.6:1 — comfortably past the 3:1 a mark needs.
+Axis ticks are `--color-ink-muted` rather than `--color-ink-faint`: they are how the
+plot is read, which makes them load-bearing text, and faint clears AA only for labels
+that are not.
 
 ### Syntax highlighting spends no colour at all
 
@@ -169,6 +185,15 @@ above the editor instead of beside it. A cap rather than a height, so a two-colu
 does not reserve space it has no use for. `dvh` rather than `vh` so an on-screen keyboard
 takes its space out of the schema list and not out of the SQL being typed.
 
+`--chart-height: 200px`, and `272px` from `md` up — the band the chart takes at the foot
+of the working column. **Its plot is measured in result rows**: five of them on a phone
+and eight once there is width, plus the row of controls above. Measuring a chart in rows
+is the same move as everything else here — it keeps the plot on the grid's rhythm instead
+of introducing a second one. Fixed rather than fitted, for the reason the editor's split
+is: a panel that resizes itself around each result moves everything above it every time a
+query runs. What the chart takes comes out of the grid above it, which is why the phone
+gets the smaller number.
+
 ## Radius, border, elevation
 
 - `--radius-none: 0` — **the default.** Panels, rows, the drop surface, the editor frame.
@@ -179,6 +204,30 @@ takes its space out of the schema list and not out of the SQL being typed.
   is the table rule doing the work borders and shadows usually do.
 - **Elevation: none.** No `box-shadow` token exists, so none can be spent by reflex. The
   focus ring is a ring, not a shadow.
+
+## Chart marks
+
+The chart is drawn into SVG, and an SVG attribute cannot take a CSS length that has not
+been resolved, so these lengths exist twice — here, and as numbers in `src/chart/marks.ts`.
+The pair moves together, the way `--row-height` and `src/results/metrics.ts` do. Colours
+are not copied: SVG resolves `var(--color-mark)` perfectly well.
+
+| Mark | Spec | Why |
+| --- | --- | --- |
+| Bar | `--color-mark`, **24px cap**, 4px radius on the reading end only | A bar that fills its slot makes a solid block. Capped, the leftover is the gap, and the gap is what separates one bar from the next. |
+| Line | `--color-mark`, **2px**, round join | Thin enough to read as a line, thick enough to follow across a gap left by a `NULL`. |
+| Active mark | `--color-mark-active`, 2px `--color-paper` ring on the dot | The ring keeps an 8px dot legible where the line runs under it. |
+| Gridlines | `--color-rule`, horizontal only, **solid hairline** | The same rule the table draws its rows with. Never dashed: a dashed grid reads as a projection or a threshold when it is neither. |
+| Axis line | `--color-rule-strong` on x, none on y | One baseline. The y values are already carried by the gridlines. |
+| Axis ticks | `--color-ink-muted` at `--text-micro` | Load-bearing text, so not `--color-ink-faint`. |
+
+**Nothing in the chart animates.** Not the bars growing on a run, not the line drawing
+itself. The rule from Motion below holds here without an exception: layout does not
+animate, and a chart that replays its entrance every time a query runs is decoration
+charged to the reader's attention.
+
+A single series takes **no legend** — there is one colour on the plot, and the two selects
+above it already name both axes. A box with one swatch in it would restate them.
 
 ## Motion
 

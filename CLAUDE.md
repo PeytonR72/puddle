@@ -134,6 +134,13 @@ Strictness is a build setting, not a preference: `strict` is on, plus
   `results-notice.ts` answers which kind of "no rows" a reader is looking at.
   `ResultsTable.tsx` is the virtualized grid and `metrics.ts` mirrors the two CSS lengths
   it has to do arithmetic with.
+- `src/chart/` is the same answer as a shape. Pure modules again: `chart-axes.ts` picks
+  the two columns and keeps a reader's choice across a re-run, `chart-series.ts` turns
+  rows into points and caps how many are drawn, `axis-scale.ts` chooses round ticks over
+  the ones an even division would give, `axis-label.ts` rules what a tick may say and how
+  much gutter it needs, and `chart-notice.ts` answers which kind of "no chart" this is.
+  `ResultChart.tsx` is the Recharts render, `ChartPanel.tsx` owns the two selects and the
+  bar/line toggle, and `marks.ts` mirrors the lengths that have to reach SVG as numbers.
 - Tests sit beside the code they cover, as `*.test.ts`, and run on Vitest under
   `npm test`. The node environment covers everything so far; whether to add a DOM one
   is an open decision, and hooks and components go untested until it is made.

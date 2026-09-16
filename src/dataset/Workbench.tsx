@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
+import { ChartPanel } from '../chart/ChartPanel'
 import { seedQuery } from '../query/default-query'
 import type { QueryEditorHandle } from '../query/QueryEditor'
 import { QueryPanel } from '../query/QueryPanel'
@@ -12,7 +13,7 @@ import { useFileDrop } from './use-file-drop'
 
 /**
  * The whole application, for now: a file goes in on the left and a query comes
- * out on the right.
+ * out on the right — as SQL, then as rows, then as shape.
  *
  * The drop target is this element rather than the panel inside it, so a file
  * dropped anywhere lands — including on top of a dataset that is already
@@ -85,9 +86,15 @@ export function Workbench() {
                 />
               </div>
 
+              {/* The grid takes what is left after the editor and the chart,
+                  which are both fixed. The rows are the elastic part on
+                  purpose: they are the only thing here that can usefully take
+                  more space when a window is taller. */}
               <div className="min-h-0 flex-1">
                 <ResultsPanel run={run} />
               </div>
+
+              <ChartPanel run={run} />
             </div>
 
             {isDraggingOver ? (

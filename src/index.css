@@ -19,6 +19,14 @@
      like one. Faint, and set in italic where it is used. */
   --color-null: var(--color-ink-faint);
 
+  /* The data drawn as shape instead of as digits. The same ink as the grid it
+     sits under, because it is the same result set — a chart in its own colour
+     would read as a second subject. */
+  --color-mark: var(--color-ink);
+  /* The mark under the pointer. This is the accent doing its focus job, not a
+     third one: the chart never colours anything the reader is not touching. */
+  --color-mark-active: var(--color-accent);
+
   /* Type — system stacks only. A webfont is a third-party request, and Puddle's
      claim is that nothing leaves the tab. */
   --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
@@ -73,6 +81,19 @@
      so an on-screen keyboard takes its space out of the panel and not out of
      the SQL being typed. */
   --panel-height-stacked: 40dvh;
+  /* The chart band under the results grid. Its plot is measured in result rows,
+     so the chart keeps the rhythm of the grid it summarises: five rows of plot
+     on a phone, with the controls above them. */
+  --chart-height: 200px;
+}
+
+/* Eight rows once there is width for them. The chart is the last thing on the
+   working column, so what it takes comes out of the grid above it — on a phone
+   that grid is already short, and the rows are what someone came to read. */
+@media (min-width: 48rem) {
+  :root {
+    --chart-height: 272px;
+  }
 }
 
 html {
