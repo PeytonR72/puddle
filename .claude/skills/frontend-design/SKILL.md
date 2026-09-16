@@ -23,6 +23,23 @@ Puddle is built around, not a widescreen bonus.
 Phones still have to work. Decide what each wide arrangement collapses to — the panel, the
 results table, the chart — while you design it, rather than discovering it at 380px later.
 
+## Two readers
+
+One reader is querying a CSV. The other is an employer, reading Puddle as evidence of how
+its author works. This is portfolio work and it gets judged as such, so the second reader
+is a real constraint, not a flourish on top of the first.
+
+They want the same thing more often than not. What reads as senior is never ornament — it
+is one opinion held consistently across every surface, and the states nobody asks for done
+properly: focus rings, empty states, the error a bad query produces, a `NULL` that reads as
+absence rather than a gap. Slop in those is what reads as junior, and no amount of polish
+elsewhere covers for it.
+
+So **clean means executed without slop, not timid.** A safe screen is not a neat one; it is
+a screen with nothing to say, and a reviewer reads an absent opinion faster than a wrong
+one. Spend the boldness budget below — hedging it is the expensive mistake here, not the
+risky one.
+
 ## Ground the design in the subject
 
 **Ground** means the visual language comes from the material — SQL, tabular data, local
@@ -110,3 +127,6 @@ compete and both read as noise, which is the failure this rule exists to prevent
   progress shown while DuckDB boots on first intent, and the read-only query plus expected
   column list shown when someone opens a share link with no file loaded. Both are a
   stranger's first screen, so neither is a spinner.
+- Nothing on the screen is slop: no misaligned edge, no inconsistent spacing step, no
+  state that was left to the browser's default. A reviewer finds these before they find
+  the good decisions.
