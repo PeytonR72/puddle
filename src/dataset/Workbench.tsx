@@ -101,11 +101,21 @@ export function Workbench() {
    */
   const demoRequested = useRef(false)
   const autoRanDemo = useRef<Dataset | null>(null)
+  /**
+   * The query the demo should land on. A reader who activated a reading on the
+   * specimen sheet asked for that week, not for the default — running the
+   * default instead would answer a question they did not put.
+   */
+  const demoQuery = useRef<string>(DEFAULT_QUERY)
 
-  const tryDemo = useCallback((): void => {
-    demoRequested.current = true
-    openDemo()
-  }, [openDemo])
+  const tryDemo = useCallback(
+    (query?: string): void => {
+      demoRequested.current = true
+      demoQuery.current = query ?? DEFAULT_QUERY
+      openDemo()
+    },
+    [openDemo],
+  )
 
   useEffect(() => {
     if (!demoRequested.current || dataset === null || autoRanDemo.current === dataset) {
@@ -114,7 +124,8 @@ export function Workbench() {
 
     autoRanDemo.current = dataset
     demoRequested.current = false
-    start(DEFAULT_QUERY)
+    setQuery(demoQuery.current)
+    start(demoQuery.current)
   }, [dataset, start])
 
   /**

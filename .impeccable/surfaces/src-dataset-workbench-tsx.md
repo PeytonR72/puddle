@@ -67,3 +67,30 @@ review, the verdict, DESIGN.md, and every shipping raster carrying its provenanc
 - Self-hosted face not yet chosen; the mockup used system stacks as placeholder.
 - The roll ran degraded both rounds (challenger service proxy-blocked): no catalog
   challengers, no quality-bar boards, so no challenger raises are recorded here.
+
+## Cited deviations from the contract
+
+Recorded after the first finish review returned `fix`. Both are departures from
+the FIRST VIEWPORT and OWN-WORLD blocks above, kept deliberately.
+
+**Annotation slips are not built.** The contract specifies "annotation slips
+stacking prior queries" in the right column. On the first viewport no query has
+run, so there are no prior determinations to stack — three plausible-looking
+slips would be invented evidence, which PRODUCT.md's Evidence on Hand rules out
+absolutely. The column carries a `Collection` block instead: span, week count,
+specimen count and the reduction applied, every field derived from the specimen
+data rather than asserted beside it. If annotations are wanted later they belong
+to the loaded workbench, where real prior runs exist to record.
+
+**The collection meta is set below the wordmark, not right-aligned opposite it.**
+At the widths this sheet is read at, a right-aligned meta block leaves a gap
+across the top of the sheet that no other element resolves. Left-aligned under
+the wordmark it reads as the sheet's own subtitle, which is where a collection
+prints it.
+
+**`--font-mono` stays a system stack.** OWN-WORLD puts mono on every measured
+value, and the review asked for it to be self-hosted like the sans. It is not,
+because the user pinned the results grid's system — "keep the grid's density,
+type and behaviour" — and `--font-mono` is that grid's type. Self-hosting it
+would restyle the one surface this redesign was scoped out of. Revisit only if
+that pin is lifted.

@@ -26,7 +26,7 @@ type DropZoneProps = {
    * second option, it is a red herring (locked decision 1's second trigger
    * is for a session with nothing else pulling on it).
    */
-  onTryDemo?: () => void
+  onTryDemo?: (query?: string) => void
 }
 
 export function DropZone({ state, progress, isDraggingOver, onFiles, onDismissFailure, onTryDemo }: DropZoneProps) {
@@ -65,7 +65,7 @@ function Invitation({
   onTryDemo,
 }: {
   onFiles: (files: readonly File[]) => void
-  onTryDemo: (() => void) | undefined
+  onTryDemo: ((query?: string) => void) | undefined
 }) {
   if (onTryDemo === undefined) {
     return (
@@ -88,7 +88,7 @@ function Invitation({
       <div className="flex flex-wrap items-center justify-center gap-3">
         <button
           type="button"
-          onClick={onTryDemo}
+          onClick={() => onTryDemo()}
           className="inline-flex items-center rounded-control border border-ink bg-ink px-3 py-1.5 font-mono text-base text-paper transition-colors duration-[var(--duration-fast)] ease-out hover:border-ink-muted hover:bg-ink-muted focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-accent"
         >
           Try the demo
