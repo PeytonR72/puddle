@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import { ChartPanel } from '../chart/ChartPanel'
 import { seedQuery } from '../query/default-query'
@@ -6,7 +6,14 @@ import type { QueryEditorHandle } from '../query/QueryEditor'
 import { QueryPanel } from '../query/QueryPanel'
 import { useQueryRun } from '../query/use-query-run'
 import { ResultsPanel } from '../results/ResultsPanel'
+import { CopyLinkButton } from '../share/CopyLinkButton'
+import { MatchNotice } from '../share/MatchNotice'
+import { matchNotice, matchSchema } from '../share/schema-match'
+import { SharedSchemaPanel } from '../share/SharedSchemaPanel'
+import { sharedQueryFor } from '../share/shared-query'
+import { useSharedQuery } from '../share/use-shared-query'
 import { DropZone } from './DropZone'
+import type { Dataset } from './load-dataset'
 import { SchemaPanel } from './SchemaPanel'
 import { useDataset } from './use-dataset'
 import { useFileDrop } from './use-file-drop'
@@ -26,18 +33,30 @@ import { useFileDrop } from './use-file-drop'
  * The run lives here for a different reason: the editor and the results are two
  * views of one query, and putting it in either of them would make the other ask
  * for it back.
+ *
+ * A share link arrives as a third source of query text, and the only one that
+ * exists before the first render — so it seeds the editor rather than being
+ * written into it later.
  */
 export function Workbench() {
+  const shared = useSharedQuery()
   const { state, progress, open, dismissFailure } = useDataset()
   const { isDraggingOver, dropHandlers } = useFileDrop(open)
   const { run, elapsedMs, start, clear } = useQueryRun()
-  const [query, setQuery] = useState('')
+  const [query, setQuery] = useState(shared?.query ?? '')
   const editor = useRef<QueryEditorHandle | null>(null)
 
   const dataset = state.status === 'ready' ? state.dataset : null
 
+  // Whether the file that just loaded is the shape the link was written
+  // against. `null` for an ordinary session, which has nothing to compare to.
+  const match = useMemo(
+    () => (shared === null || dataset === null ? null : matchSchema(shared.schema, dataset.columns)),
+    [shared, dataset],
+  )
+
   // A dataset arriving fills an empty editor with something that runs. It never
-  // overwrites a query — see seedQuery.
+  // overwrites a query — see seedQuery, which is what keeps a shared one.
   useEffect(() => {
     if (dataset !== null) {
       setQuery(seedQuery)
@@ -50,15 +69,63 @@ export function Workbench() {
     clear()
   }, [dataset, clear])
 
+  /**
+   * A shared query runs itself once the file it needs is loaded.
+   *
+   * Somebody who opened this link came for an answer, and asking them to press
+   * Run on a query they did not write — against a file they were just told to
+   * find — is a step with no decision in it. Only on an exact match: a file
+   * missing columns might fail, and a failure nobody asked for reads as the
+   * link being broken.
+   */
+  const autoRan = useRef<Dataset | null>(null)
+
+  useEffect(() => {
+    if (shared === null || dataset === null || match?.status !== 'matched') {
+      return
+    }
+
+    if (autoRan.current === dataset) {
+      return
+    }
+
+    autoRan.current = dataset
+    start(shared.query)
+  }, [shared, dataset, match, start])
+
+  /**
+   * What a link copied right now would carry: the SQL in the editor, not the
+   * SQL that last ran. Sharing what is on screen is the only version that can
+   * be checked before the button is pressed.
+   */
+  const sharePayload = useMemo(
+    () =>
+      dataset === null || run.status !== 'succeeded'
+        ? null
+        : sharedQueryFor({ query, fileName: dataset.fileName, columns: dataset.columns }),
+    [dataset, run.status, query],
+  )
+
   const insertColumn = useCallback((reference: string): void => {
     editor.current?.insertAtCursor(reference)
   }, [])
 
+  const notice = match === null || dataset === null ? null : matchNotice(match, dataset.fileName)
+
   return (
     <div className="flex h-dvh flex-col bg-paper" {...dropHandlers}>
-      <header className="flex shrink-0 items-baseline gap-3 border-b border-rule px-4 py-2">
-        <span className="text-base font-semibold text-ink">puddle</span>
-        <span className="font-sans text-micro text-ink-faint">SQL in the browser tab</span>
+      <header className="flex shrink-0 items-center justify-between gap-3 border-b border-rule px-4 py-2">
+        <div className="flex min-w-0 items-baseline gap-3">
+          <span className="text-base font-semibold text-ink">puddle</span>
+          <span className="truncate font-sans text-micro text-ink-faint">
+            SQL in the browser tab
+          </span>
+        </div>
+
+        {/* Only once there is a dataset. Before that the control has nothing to
+            describe, and a stranger's first screen is not the place for a
+            button that cannot be pressed. */}
+        {dataset === null ? null : <CopyLinkButton shared={sharePayload} />}
       </header>
 
       <main className="relative flex min-h-0 flex-1 flex-col md:flex-row">
@@ -74,6 +141,8 @@ export function Workbench() {
                 column and take the page's horizontal scrollbar with it, instead
                 of scrolling inside the grid where the sticky header can follow. */}
             <div className="flex min-h-0 min-w-0 flex-1 flex-col">
+              {notice === null ? null : <MatchNotice notice={notice} />}
+
               <div className="min-h-0 shrink-0 basis-[var(--editor-height-split)]">
                 <QueryPanel
                   ref={editor}
@@ -105,7 +174,7 @@ export function Workbench() {
               </div>
             ) : null}
           </>
-        ) : (
+        ) : shared === null ? (
           <div className="min-h-0 flex-1 overflow-auto p-4">
             <DropZone
               state={state}
@@ -115,6 +184,38 @@ export function Workbench() {
               onDismissFailure={dismissFailure}
             />
           </div>
+        ) : (
+          /* A share link with no file yet: the query read-only beside the
+             columns it expects (locked decision 4). The drop surface takes the
+             results' place rather than the whole screen, which says where the
+             answer is going to land without hiding the question. */
+          <>
+            <SharedSchemaPanel shared={shared} />
+
+            <div className="flex min-h-0 min-w-0 flex-1 flex-col">
+              <div className="min-h-0 shrink-0 basis-[var(--editor-height-split)]">
+                <QueryPanel
+                  ref={editor}
+                  dataset={null}
+                  value={query}
+                  onChange={setQuery}
+                  run={run}
+                  elapsedMs={elapsedMs}
+                  onRun={start}
+                />
+              </div>
+
+              <div className="min-h-0 flex-1 overflow-auto p-4">
+                <DropZone
+                  state={state}
+                  progress={progress}
+                  isDraggingOver={isDraggingOver}
+                  onFiles={open}
+                  onDismissFailure={dismissFailure}
+                />
+              </div>
+            </div>
+          </>
         )}
       </main>
     </div>

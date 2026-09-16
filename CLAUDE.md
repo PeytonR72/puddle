@@ -141,6 +141,12 @@ Strictness is a build setting, not a preference: `strict` is on, plus
   much gutter it needs, and `chart-notice.ts` answers which kind of "no chart" this is.
   `ResultChart.tsx` is the Recharts render, `ChartPanel.tsx` owns the two selects and the
   bar/line toggle, and `marks.ts` mirrors the lengths that have to reach SVG as numbers.
+- `src/share/` is the link, and the same shape again. `shared-query.ts` holds the payload
+  and the parser that refuses a truncated one, `share-link.ts` is the `lz-string` hash
+  codec and the URL it goes into, and `schema-match.ts` answers whether the file just
+  loaded is the shape the link expects and names what is missing when it is not.
+  `use-shared-query.ts` reads the hash once, at mount. Nothing in the folder touches the
+  engine: a link describes a dataset and never carries one.
 - Tests sit beside the code they cover, as `*.test.ts`, and run on Vitest under
   `npm test`. The node environment covers everything so far; whether to add a DOM one
   is an open decision, and hooks and components go untested until it is made.
