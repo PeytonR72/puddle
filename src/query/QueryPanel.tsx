@@ -1,12 +1,10 @@
 import { forwardRef, useId, useMemo } from 'react'
 
-import { pluralize } from '../dataset/format'
 import type { Dataset } from '../dataset/load-dataset'
 import { formatDuration } from './duration'
 import { QueryEditor, type QueryEditorHandle } from './QueryEditor'
 import { runBlockedReason, type QueryRun } from './run-state'
 import { runShortcutLabel } from './run-shortcut'
-import { useQueryRun } from './use-query-run'
 
 /**
  * The editor, the Run control, and whatever DuckDB last said about the query.
@@ -26,13 +24,19 @@ type QueryPanelProps = {
   dataset: Dataset | null
   value: string
   onChange: (value: string) => void
+  /**
+   * The run lives above this panel, because the results panel below renders the
+   * same run. One run, two views of it.
+   */
+  run: QueryRun
+  elapsedMs: number
+  onRun: (sql: string) => void
 }
 
 export const QueryPanel = forwardRef<QueryEditorHandle, QueryPanelProps>(function QueryPanel(
-  { dataset, value, onChange },
+  { dataset, value, onChange, run, elapsedMs, onRun },
   ref,
 ) {
-  const { run, elapsedMs, start } = useQueryRun()
   const reasonId = useId()
 
   // A new array every render would reconfigure the editor every render.
@@ -47,7 +51,7 @@ export const QueryPanel = forwardRef<QueryEditorHandle, QueryPanelProps>(functio
 
   const runQuery = (sql: string): void => {
     if (runBlockedReason({ hasDataset: dataset !== null, isRunning, query: sql }) === null) {
-      start(sql)
+      onRun(sql)
     }
   }
 
@@ -127,10 +131,13 @@ type StatusInput = {
 
 /**
  * The one line under the editor. It answers whichever question is live: how
- * long this is taking, why Run will not work, or what the last query cost.
+ * long this is taking, or why Run will not work.
  *
- * A failed query is not reported here — the message above it says considerably
- * more than a word in this line could.
+ * Neither outcome is reported here. A failure's message says considerably more
+ * than a word in this line could, and it is directly above; what a successful
+ * query cost is measured in the results footer, beside the rows it counts.
+ * Saying either twice on one screen makes the screen look like it is describing
+ * two different things.
  */
 function statusText({ run, elapsedMs, blockedReason }: StatusInput): string {
   if (run.status === 'running') {
@@ -139,10 +146,6 @@ function statusText({ run, elapsedMs, blockedReason }: StatusInput): string {
 
   if (blockedReason !== null) {
     return blockedReason
-  }
-
-  if (run.status === 'succeeded') {
-    return `${pluralize(run.result.rowCount, 'row', 'rows')} in ${formatDuration(run.result.durationMs)}`
   }
 
   return ''

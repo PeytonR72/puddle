@@ -147,8 +147,19 @@ the small ones.
 `--space-1: 4px` · `--space-2: 8px` · `--space-3: 12px` · `--space-4: 16px` ·
 `--space-6: 24px` · `--space-8: 32px` · `--space-12: 48px` · `--space-16: 64px`
 
-`--row-height: 28px` — one schema row, and later one result row. A fixed row height is
-what makes the grid a grid and what makes virtualization honest later.
+`--row-height: 28px` — one schema row, and one result row. A fixed row height is what
+makes the grid a grid and what makes virtualization honest. The results table needs this
+one as a number rather than as a length, because a virtualizer places rows by arithmetic
+before anything is laid out; `src/results/metrics.ts` is that copy, and the two move
+together.
+
+`--head-height: 44px` — the results grid's sticky header. Taller than a row because it
+carries two lines, a column's name over its type, and because the edge between the header
+and the data is the one boundary in the grid worth feeling.
+
+`--editor-height-split: 34%` — how much of the working column the SQL keeps once its
+answer is under it. Fixed rather than fitted: a panel that resizes itself around each
+result moves the caret every time a query runs.
 
 `--panel-width: 260px` — the schema panel beside the editor. Wide enough for a real column
 name at 13px mono, narrow enough that the editor keeps the width it needs.

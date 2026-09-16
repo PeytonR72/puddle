@@ -15,6 +15,8 @@ export type QueryRunHandle = {
   /** Milliseconds since the running query started. Zero when nothing is running. */
   elapsedMs: number
   start: (sql: string) => void
+  /** Back to idle. A result outlives the dataset it came from otherwise. */
+  clear: () => void
 }
 
 /**
@@ -75,5 +77,12 @@ export function useQueryRun(): QueryRunHandle {
     })()
   }, [])
 
-  return { run, elapsedMs, start }
+  const clear = useCallback((): void => {
+    // Same token bump as a new run: a query already in flight must not land on
+    // top of the cleared state and put the old dataset's rows back on screen.
+    latest.current += 1
+    setRun({ status: 'idle' })
+  }, [])
+
+  return { run, elapsedMs, start, clear }
 }

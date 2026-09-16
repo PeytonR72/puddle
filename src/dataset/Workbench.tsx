@@ -3,6 +3,8 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { seedQuery } from '../query/default-query'
 import type { QueryEditorHandle } from '../query/QueryEditor'
 import { QueryPanel } from '../query/QueryPanel'
+import { useQueryRun } from '../query/use-query-run'
+import { ResultsPanel } from '../results/ResultsPanel'
 import { DropZone } from './DropZone'
 import { SchemaPanel } from './SchemaPanel'
 import { useDataset } from './use-dataset'
@@ -19,10 +21,15 @@ import { useFileDrop } from './use-file-drop'
  * The query text lives here rather than inside the editor so that it survives
  * a replacement file: the panel unmounts while the new file is read, and SQL
  * somebody wrote should not go with it.
+ *
+ * The run lives here for a different reason: the editor and the results are two
+ * views of one query, and putting it in either of them would make the other ask
+ * for it back.
  */
 export function Workbench() {
   const { state, progress, open, dismissFailure } = useDataset()
   const { isDraggingOver, dropHandlers } = useFileDrop(open)
+  const { run, elapsedMs, start, clear } = useQueryRun()
   const [query, setQuery] = useState('')
   const editor = useRef<QueryEditorHandle | null>(null)
 
@@ -35,6 +42,12 @@ export function Workbench() {
       setQuery(seedQuery)
     }
   }, [dataset])
+
+  // Rows from the file that was just replaced are not a stale view of the data,
+  // they are a view of data that is no longer loaded. They go.
+  useEffect(() => {
+    clear()
+  }, [dataset, clear])
 
   const insertColumn = useCallback((reference: string): void => {
     editor.current?.insertAtCursor(reference)
@@ -51,8 +64,30 @@ export function Workbench() {
         {state.status === 'ready' ? (
           <>
             <SchemaPanel dataset={state.dataset} onInsertColumn={insertColumn} onFiles={open} />
-            <div className="min-h-0 flex-1">
-              <QueryPanel ref={editor} dataset={state.dataset} value={query} onChange={setQuery} />
+
+            {/* The SQL above its answer. The editor keeps a fixed share of the
+                height so that running a query never moves it — the caret stays
+                where it was left, whatever the result turns out to be. */}
+            {/* `min-w-0` is load-bearing: a flex item sizes to its content by
+                default, so a result wider than the window would stretch this
+                column and take the page's horizontal scrollbar with it, instead
+                of scrolling inside the grid where the sticky header can follow. */}
+            <div className="flex min-h-0 min-w-0 flex-1 flex-col">
+              <div className="min-h-0 shrink-0 basis-[var(--editor-height-split)]">
+                <QueryPanel
+                  ref={editor}
+                  dataset={state.dataset}
+                  value={query}
+                  onChange={setQuery}
+                  run={run}
+                  elapsedMs={elapsedMs}
+                  onRun={start}
+                />
+              </div>
+
+              <div className="min-h-0 flex-1">
+                <ResultsPanel run={run} />
+              </div>
             </div>
 
             {isDraggingOver ? (

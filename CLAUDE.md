@@ -127,6 +127,13 @@ Strictness is a build setting, not a preference: `strict` is on, plus
   DuckDB refusal into a headline — and `use-query-run.ts` is the only part that queries.
   `duckdb-dialect.ts` and `editor-theme.ts` are what CodeMirror is configured with; no
   completion source is registered anywhere in the folder, because v1 ships no autocomplete.
+- `src/results/` is where the answer lands. The decisions are pure again:
+  `cell-format.ts` turns one value into one cell and rules that `NULL` is never blank,
+  `column-width.ts` estimates the widths a two-axis virtualizer needs before layout,
+  `type-name.ts` translates Arrow's spelling of a type back into SQL's, and
+  `results-notice.ts` answers which kind of "no rows" a reader is looking at.
+  `ResultsTable.tsx` is the virtualized grid and `metrics.ts` mirrors the two CSS lengths
+  it has to do arithmetic with.
 - Tests sit beside the code they cover, as `*.test.ts`, and run on Vitest under
   `npm test`. The node environment covers everything so far; whether to add a DOM one
   is an open decision, and hooks and components go untested until it is made.

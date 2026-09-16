@@ -15,6 +15,9 @@
   --color-accent-soft: oklch(0.95 0.04 245);
   --color-failed: oklch(0.52 0.2 27);
   --color-failed-soft: oklch(0.96 0.03 27);
+  /* NULL, in a result cell. Absence, not a value — and never styled to look
+     like one. Faint, and set in italic where it is used. */
+  --color-null: var(--color-ink-faint);
 
   /* Type — system stacks only. A webfont is a third-party request, and Puddle's
      claim is that nothing leaves the tab. */
@@ -56,6 +59,15 @@
 /* Not spacing multiples, so they sit outside @theme's scales. */
 :root {
   --row-height: 28px;
+  /* A result column's header: its name over its type, on two lines. Taller than
+     a row because it carries two, and because the boundary between the header
+     and the data wants to be felt as well as seen. */
+  --head-height: 44px;
+  /* How much of the working column the SQL keeps once its answer is on screen.
+     A third: enough for a query worth reading and the error it might produce,
+     with the larger share going to what it returned. Fixed rather than fitted,
+     so running a query never moves the caret. */
+  --editor-height-split: 34%;
   --panel-width: 260px;
   /* What the schema panel collapses to when it stacks above the editor. dvh,
      so an on-screen keyboard takes its space out of the panel and not out of
