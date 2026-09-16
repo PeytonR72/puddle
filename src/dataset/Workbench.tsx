@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import { ChartPanel } from '../chart/ChartPanel'
-import { seedQuery } from '../query/default-query'
+import { DEFAULT_QUERY, seedQuery } from '../query/default-query'
 import type { QueryEditorHandle } from '../query/QueryEditor'
 import { QueryPanel } from '../query/QueryPanel'
 import { useQueryRun } from '../query/use-query-run'
@@ -40,7 +40,7 @@ import { useFileDrop } from './use-file-drop'
  */
 export function Workbench() {
   const shared = useSharedQuery()
-  const { state, progress, open, dismissFailure } = useDataset()
+  const { state, progress, open, openDemo, dismissFailure } = useDataset()
   const { isDraggingOver, dropHandlers } = useFileDrop(open)
   const { run, elapsedMs, start, clear } = useQueryRun()
   const [query, setQuery] = useState(shared?.query ?? '')
@@ -92,6 +92,30 @@ export function Workbench() {
     autoRan.current = dataset
     start(shared.query)
   }, [shared, dataset, match, start])
+
+  /**
+   * The demo runs itself for the same reason a matched share link does: the
+   * whole point of the button was to skip typing SQL, so a reader who presses
+   * it and lands on an editor waiting for Run has been handed a second task
+   * they did not ask for.
+   */
+  const demoRequested = useRef(false)
+  const autoRanDemo = useRef<Dataset | null>(null)
+
+  const tryDemo = useCallback((): void => {
+    demoRequested.current = true
+    openDemo()
+  }, [openDemo])
+
+  useEffect(() => {
+    if (!demoRequested.current || dataset === null || autoRanDemo.current === dataset) {
+      return
+    }
+
+    autoRanDemo.current = dataset
+    demoRequested.current = false
+    start(DEFAULT_QUERY)
+  }, [dataset, start])
 
   /**
    * What a link copied right now would carry: the SQL in the editor, not the
@@ -182,6 +206,7 @@ export function Workbench() {
               isDraggingOver={isDraggingOver}
               onFiles={open}
               onDismissFailure={dismissFailure}
+              onTryDemo={tryDemo}
             />
           </div>
         ) : (

@@ -1,8 +1,10 @@
 import { useCallback, useRef, useState } from 'react'
 
 import type { EngineProgress } from '../duckdb/client'
-import { useDuckDB } from '../duckdb/use-duckdb'
+import { useDuckDB, type DuckDBHandle } from '../duckdb/use-duckdb'
+import { DEMO_FILE_NAME, demoFetchFailure } from './demo-dataset'
 import { acceptFile, selectSingleFile } from './file-kind'
+import type { FileKind } from './file-kind'
 import {
   classifyIngestFailure,
   emptyFileFailure,
@@ -11,6 +13,7 @@ import {
   type IngestFailure,
 } from './ingest-failure'
 import { loadDataset, type Dataset } from './load-dataset'
+import { loadDemoFile } from './load-demo-file'
 
 /**
  * Where a load has got to.
@@ -34,7 +37,46 @@ export type DatasetHandle = {
   progress: EngineProgress | null
   /** Everything a drop or a picker hands over. One of them becomes the dataset. */
   open: (files: readonly File[]) => void
+  /** The other way in: Puddle's own bundled file, fetched rather than dropped. */
+  openDemo: () => void
   dismissFailure: () => void
+}
+
+/**
+ * Boot the engine and read a file that has already been chosen, shared by
+ * `open` and `openDemo` once each has settled on a `File` and its kind — the
+ * only difference between a drop and the demo is how that pair is arrived at.
+ */
+async function bootAndRead(
+  file: File,
+  kind: FileKind,
+  engine: DuckDBHandle,
+  isStale: () => boolean,
+  fail: (failure: IngestFailure) => void,
+  setState: (state: DatasetState) => void,
+): Promise<void> {
+  // The hook reports its own boot failure; read the resolved status rather
+  // than `engine.status`, which is a render behind.
+  if ((await engine.start()) !== 'ready') {
+    fail(engineStartFailure(messageOf(engine.error ?? 'DuckDB did not reach a ready state.')))
+    return
+  }
+
+  if (isStale()) {
+    return
+  }
+
+  setState({ status: 'reading', fileName: file.name })
+
+  try {
+    const dataset = await loadDataset(file, kind)
+
+    if (!isStale()) {
+      setState({ status: 'ready', dataset })
+    }
+  } catch (cause) {
+    fail(classifyIngestFailure(cause, { fileName: file.name, kind }))
+  }
 }
 
 export function useDataset(): DatasetHandle {
@@ -83,38 +125,50 @@ export function useDataset(): DatasetHandle {
       }
 
       setState({ status: 'starting', fileName: file.name })
-
-      void (async () => {
-        // The hook reports its own boot failure; read the resolved status
-        // rather than `engine.status`, which is a render behind.
-        if ((await engine.start()) !== 'ready') {
-          fail(engineStartFailure(messageOf(engine.error ?? 'DuckDB did not reach a ready state.')))
-          return
-        }
-
-        if (isStale()) {
-          return
-        }
-
-        setState({ status: 'reading', fileName: file.name })
-
-        try {
-          const dataset = await loadDataset(file, acceptance.kind)
-
-          if (!isStale()) {
-            setState({ status: 'ready', dataset })
-          }
-        } catch (cause) {
-          fail(classifyIngestFailure(cause, { fileName: file.name, kind: acceptance.kind }))
-        }
-      })()
+      void bootAndRead(file, acceptance.kind, engine, isStale, fail, setState)
     },
     [engine],
   )
+
+  /**
+   * The demo fetch has its own failure mode — Puddle's own bundled file not
+   * coming back — that `open` never sees, so it is checked before the file
+   * joins the shared boot-and-read path rather than folded into it.
+   */
+  const openDemo = useCallback((): void => {
+    latest.current += 1
+    const token = latest.current
+    const isStale = (): boolean => latest.current !== token
+
+    const fail = (failure: IngestFailure): void => {
+      if (!isStale()) {
+        setState({ status: 'failed', failure })
+      }
+    }
+
+    setState({ status: 'starting', fileName: DEMO_FILE_NAME })
+
+    void (async () => {
+      let file: File
+
+      try {
+        file = await loadDemoFile()
+      } catch (cause) {
+        fail(demoFetchFailure(messageOf(cause)))
+        return
+      }
+
+      if (isStale()) {
+        return
+      }
+
+      await bootAndRead(file, 'csv', engine, isStale, fail, setState)
+    })()
+  }, [engine])
 
   const dismissFailure = useCallback((): void => {
     setState((current) => (current.status === 'failed' ? { status: 'empty' } : current))
   }, [])
 
-  return { state, progress: engine.progress, open, dismissFailure }
+  return { state, progress: engine.progress, open, openDemo, dismissFailure }
 }

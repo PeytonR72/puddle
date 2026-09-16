@@ -18,16 +18,24 @@ type DropZoneProps = {
   isDraggingOver: boolean
   onFiles: (files: readonly File[]) => void
   onDismissFailure: () => void
+  /**
+   * The other way in, alongside a stranger's own file. `undefined` where a
+   * demo would be a wrong answer — a share link is already asking for a
+   * specific file, and offering a dataset that will not match it is not a
+   * second option, it is a red herring (locked decision 1's second trigger
+   * is for a session with nothing else pulling on it).
+   */
+  onTryDemo?: () => void
 }
 
-export function DropZone({ state, progress, isDraggingOver, onFiles, onDismissFailure }: DropZoneProps) {
+export function DropZone({ state, progress, isDraggingOver, onFiles, onDismissFailure, onTryDemo }: DropZoneProps) {
   return (
     <div
       className={`grid-rules flex min-h-full flex-col items-center justify-center border px-6 py-16 text-center transition-colors duration-[var(--duration-surface)] ease-out ${
         isDraggingOver ? 'border-accent bg-accent-soft' : 'border-rule bg-paper'
       }`}
     >
-      {state.status === 'empty' ? <Invitation onFiles={onFiles} /> : null}
+      {state.status === 'empty' ? <Invitation onFiles={onFiles} onTryDemo={onTryDemo} /> : null}
       {state.status === 'starting' ? <Starting fileName={state.fileName} progress={progress} /> : null}
       {state.status === 'reading' ? <Reading fileName={state.fileName} /> : null}
       {state.status === 'failed' ? (
@@ -37,15 +45,48 @@ export function DropZone({ state, progress, isDraggingOver, onFiles, onDismissFa
   )
 }
 
-function Invitation({ onFiles }: { onFiles: (files: readonly File[]) => void }) {
+function Invitation({
+  onFiles,
+  onTryDemo,
+}: {
+  onFiles: (files: readonly File[]) => void
+  onTryDemo: (() => void) | undefined
+}) {
+  if (onTryDemo === undefined) {
+    return (
+      <div className="flex max-w-md flex-col items-center gap-6">
+        <p className="text-lead text-ink">Drop a CSV, TSV, or Parquet file here</p>
+
+        <FileButton onFiles={onFiles}>Choose a file</FileButton>
+
+        <p className="font-sans text-small text-ink-muted">
+          Nothing is uploaded. DuckDB runs in this tab and reads the file off your disk.
+        </p>
+      </div>
+    )
+  }
+
   return (
     <div className="flex max-w-md flex-col items-center gap-6">
-      <p className="text-lead text-ink">Drop a CSV, TSV, or Parquet file here</p>
+      <p className="text-lead text-ink">SQL against your own file, running in this tab</p>
 
-      <FileButton onFiles={onFiles}>Choose a file</FileButton>
+      <div className="flex flex-wrap items-center justify-center gap-3">
+        <button
+          type="button"
+          onClick={onTryDemo}
+          className="inline-flex items-center rounded-control border border-ink bg-ink px-3 py-1.5 font-mono text-base text-paper transition-colors duration-[var(--duration-fast)] ease-out hover:border-ink-muted hover:bg-ink-muted focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-accent"
+        >
+          Try the demo
+        </button>
+
+        <FileButton onFiles={onFiles} variant="quiet">
+          Choose a file
+        </FileButton>
+      </div>
 
       <p className="font-sans text-small text-ink-muted">
-        Nothing is uploaded. DuckDB runs in this tab and reads the file off your disk.
+        Or drop a CSV, TSV, or Parquet file anywhere on this page. Nothing is uploaded — DuckDB reads it
+        off your disk.
       </p>
     </div>
   )
