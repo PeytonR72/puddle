@@ -1,4 +1,5 @@
 import type { EngineProgress } from '../duckdb/client'
+import { SpecimenSheet } from '../landing/SpecimenSheet'
 import { FileButton } from './FileButton'
 import { formatBytes } from './format'
 import type { IngestFailure } from './ingest-failure'
@@ -29,10 +30,24 @@ type DropZoneProps = {
 }
 
 export function DropZone({ state, progress, isDraggingOver, onFiles, onDismissFailure, onTryDemo }: DropZoneProps) {
+  // The specimen sheet is the whole surface, not a panel inside one, so it gets
+  // the sheet's own padding rather than the centred column the other states use.
+  if (state.status === 'empty' && onTryDemo !== undefined) {
+    return (
+      <div
+        className={`flex min-h-full flex-col border px-7 py-8 shadow-[0_1px_0_var(--color-rule),0_14px_34px_-12px_rgb(0_0_0/0.22)] transition-colors duration-[var(--duration-surface)] ease-out sm:px-10 sm:py-10 ${
+          isDraggingOver ? 'border-stamp bg-stamp-soft' : 'border-rule bg-sheet'
+        }`}
+      >
+        <SpecimenSheet onTryDemo={onTryDemo} onFiles={onFiles} />
+      </div>
+    )
+  }
+
   return (
     <div
       className={`grid-rules flex min-h-full flex-col items-center justify-center border px-6 py-16 text-center transition-colors duration-[var(--duration-surface)] ease-out ${
-        isDraggingOver ? 'border-accent bg-accent-soft' : 'border-rule bg-paper'
+        isDraggingOver ? 'border-stamp bg-stamp-soft' : 'border-rule bg-sheet'
       }`}
     >
       {state.status === 'empty' ? <Invitation onFiles={onFiles} onTryDemo={onTryDemo} /> : null}

@@ -52,6 +52,48 @@ Everything else on the screen goes quiet to pay for it: one accent, no shadows, 
 gradients, no icons that a word would do better, and prose kept to the few places where a
 human sentence genuinely beats a machine one.
 
+## The specimen sheet: the first viewport's world
+
+The screen a stranger meets is a herbarium specimen sheet, chosen from a direction round
+and recorded in `.impeccable/surfaces/src-dataset-workbench-tsx.md`. The dataset arrives
+mounted, determined, and labelled — because a determination label is what provenance
+honestly looks like, and provenance is the whole of Puddle's claim. Its tokens extend the
+grid's world rather than replacing it; the results grid keeps the system above unchanged.
+
+| Token | Value | Why |
+| --- | --- | --- |
+| `--color-mount` | `oklch(0.872 0.003 120)` | The darker ground the sheet rests on. Without it the sheet is a page background, not an object. |
+| `--color-sheet` | `oklch(0.963 0.003 120)` | Archival stock: cool, never cream. This is a working herbarium, not an antique map. |
+| `--color-sheet-inset` | `oklch(0.938 0.004 120)` | The determination label, set a step down from the sheet it is pasted to. |
+| `--color-specimen` | `oklch(0.36 0.036 140)` | Herbarium green. The ink of the subject, spent on every trace — not an accent to be rationed. |
+| `--color-specimen-faint` | `oklch(0.63 0.016 140)` | Specimen labels and ranges. Tinted from the same hue rather than greyed, per the craft floor. |
+| `--color-stamp` | `oklch(0.44 0.204 305)` | Aniline violet, the ink a collection actually stamps an accession with. The one saturated mark on the sheet. |
+| `--color-stamp-soft` | `oklch(0.95 0.03 305)` | Its wash: the drag-over state and the stamp's own hover. |
+| `--duration-survey` | `900ms` | One specimen laying itself down. |
+
+**The stamp is the boldness, and it is spent once.** `EXAMINE` is the only saturated thing
+above the fold and the only rotated thing on the page. Everything else on the sheet is
+ink, hairline, and space. A second violet element would halve it.
+
+**Why violet and not the accent blue.** The accent belongs to the working surface — focus,
+the running query, the mark under the pointer. The stamp belongs to the sheet. Giving them
+one colour would say they are the same kind of thing, and a reader would learn nothing from
+either.
+
+## Type: the display voice
+
+`--font-display` / `--font-sans` are **Archivo Variable**, self-hosted from npm and served
+same-origin. A webfont from a CDN would contradict the one sentence the product is built
+on, and the craft floor is explicit that the closest installed font is a failure rather
+than a fallback — so the face ships with the app (~35 kB, latin subset).
+
+Archivo is a grotesque cut for print and forms, which is the register a determination label
+is actually set in. It is deliberately none of the faces that turn up by default in
+generated interfaces.
+
+`--font-mono` is unchanged and still carries every measured value. It belongs to the
+results grid, whose system is pinned.
+
 ## Colour
 
 One theme. v1 ships no dark mode toggle (`CLAUDE.md`), so these are committed to rather

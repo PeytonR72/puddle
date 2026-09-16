@@ -1,4 +1,7 @@
 @import 'tailwindcss';
+/* Self-hosted, same-origin. The privacy claim is a fact about the network panel,
+   so the display face ships with the app rather than arriving from a CDN. */
+@import '@fontsource-variable/archivo/index.css';
 
 /* The vocabulary. docs/design/tokens.md holds the reasoning for every value here;
    change it there first. A value hand-written in a component is a gap in the plan. */
@@ -27,10 +30,30 @@
      third one: the chart never colours anything the reader is not touching. */
   --color-mark-active: var(--color-accent);
 
-  /* Type — system stacks only. A webfont is a third-party request, and Puddle's
-     claim is that nothing leaves the tab. */
+  /* The sheet. A specimen is mounted on cool archival stock and the mount around
+     it is darker than the sheet — that contrast is what makes it read as an
+     object rather than a page background. Never cream or parchment: this is a
+     working herbarium, not an antique. */
+  --color-mount: oklch(0.872 0.003 120);
+  --color-sheet: oklch(0.963 0.003 120);
+  --color-sheet-inset: oklch(0.938 0.004 120);
+
+  /* Herbarium green carries every specimen trace and its baseline. It is the
+     ink of the subject, not an accent to be spent. */
+  --color-specimen: oklch(0.36 0.036 140);
+  --color-specimen-faint: oklch(0.63 0.016 140);
+
+  /* The accession stamp, in the aniline violet a collection actually stamps
+     with. The one saturated mark on the sheet, spent once. */
+  --color-stamp: oklch(0.44 0.204 305);
+  --color-stamp-soft: oklch(0.95 0.03 305);
+
+  /* Type — the display voice is self-hosted Archivo, a grotesque cut for print
+     and forms, which is the register a determination label is set in. The mono
+     is unchanged: it belongs to the results grid, whose system is pinned. */
   --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
-  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  --font-sans: 'Archivo Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Archivo Variable', ui-sans-serif, system-ui, -apple-system, sans-serif;
 
   --text-micro: 0.6875rem;
   --text-micro--line-height: 1rem;
@@ -62,6 +85,9 @@
   --ease-out: cubic-bezier(0.2, 0, 0, 1);
   --duration-fast: 120ms;
   --duration-surface: 240ms;
+  /* One specimen laying itself down. Long enough to read as a survey being
+     made, short enough that a stranger is not waiting on it. */
+  --duration-survey: 900ms;
 }
 
 /* Not spacing multiples, so they sit outside @theme's scales. */
@@ -115,6 +141,27 @@ body {
   outline-offset: 1px;
 }
 
+/* The surfaces the browser draws, which ship with defaults belonging to no
+   design system. A sheet whose selection is system-blue is a sheet nobody
+   finished. */
+::selection {
+  background-color: var(--color-stamp-soft);
+  color: var(--color-ink);
+}
+
+:root {
+  accent-color: var(--color-stamp);
+  caret-color: var(--color-stamp);
+  scrollbar-color: var(--color-rule-strong) transparent;
+  scrollbar-width: thin;
+}
+
+/* Every measured value in this product is a number read against other numbers,
+   so the figures line up by default rather than per-component. */
+body {
+  font-variant-numeric: tabular-nums;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -122,6 +169,36 @@ body {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* The sheet's one authored moment: each specimen draws itself left to right, in
+   survey order, the way a plotter lays a trace down. Linear rather than eased,
+   for the same reason the boot bar is — an eased trace misreports its own
+   progress. The path is complete by default and the animation removes ink from
+   it, so a specimen is never missing when motion does not run. */
+/* Revealed by a clip rather than a stroke dash: CSS dash lengths resolve in user
+   units and ignore pathLength, so a dasharray of 1 becomes one pixel and the
+   trace ships as four hundred dots. The clip is scale-independent, and the trace
+   is fully painted underneath it — so a specimen is never missing when the
+   animation does not run. Each is staggered by its own inline delay, so the
+   sheet fills top to bottom rather than four traces racing. */
+.specimen-draw {
+  animation: specimen-draw var(--duration-survey) linear backwards;
+}
+
+@keyframes specimen-draw {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .specimen-draw {
+    animation: none;
   }
 }
 

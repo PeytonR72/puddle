@@ -136,21 +136,36 @@ export function Workbench() {
 
   const notice = match === null || dataset === null ? null : matchNotice(match, dataset.fileName)
 
-  return (
-    <div className="flex h-dvh flex-col bg-paper" {...dropHandlers}>
-      <header className="flex shrink-0 items-center justify-between gap-3 border-b border-rule px-4 py-2">
-        <div className="flex min-w-0 items-baseline gap-3">
-          <span className="text-base font-semibold text-ink">puddle</span>
-          <span className="truncate font-sans text-micro text-ink-faint">
-            SQL in the browser tab
-          </span>
-        </div>
+  /**
+   * The specimen sheet carries the wordmark itself, at the size a sheet prints
+   * its collection's name. Running the app header above it would put a second
+   * `puddle` on the same screen — so on the first viewport the sheet is the
+   * page, and the working chrome arrives with the dataset it describes.
+   */
+  const showingSheet = state.status === 'empty' && shared === null
 
-        {/* Only once there is a dataset. Before that the control has nothing to
-            describe, and a stranger's first screen is not the place for a
-            button that cannot be pressed. */}
-        {dataset === null ? null : <CopyLinkButton shared={sharePayload} />}
-      </header>
+  return (
+    <div
+      className={`flex h-dvh flex-col ${showingSheet ? 'bg-mount' : 'bg-paper'}`}
+      {...dropHandlers}
+    >
+      {showingSheet ? null : (
+        <header className="flex shrink-0 items-center justify-between gap-3 border-b border-rule px-4 py-2">
+          <div className="flex min-w-0 items-baseline gap-3">
+            <span className="font-display text-body leading-none font-bold tracking-[-0.02em] text-ink">
+              puddle
+            </span>
+            <span className="truncate font-sans text-micro tracking-[0.12em] text-ink-faint uppercase">
+              {dataset === null ? 'SQL in the browser tab' : dataset.fileName}
+            </span>
+          </div>
+
+          {/* Only once there is a dataset. Before that the control has nothing to
+              describe, and a stranger's first screen is not the place for a
+              button that cannot be pressed. */}
+          {dataset === null ? null : <CopyLinkButton shared={sharePayload} />}
+        </header>
+      )}
 
       <main className="relative flex min-h-0 flex-1 flex-col md:flex-row">
         {state.status === 'ready' ? (
@@ -199,7 +214,10 @@ export function Workbench() {
             ) : null}
           </>
         ) : shared === null ? (
-          <div className="min-h-0 flex-1 overflow-auto p-4">
+          /* The sheet sits on its mount with real space around it and a lift
+             that has an offset and a blur, so it reads as an object resting on
+             a darker ground rather than as a page with a border. */
+          <div className="min-h-0 flex-1 overflow-auto p-5 sm:p-8">
             <DropZone
               state={state}
               progress={progress}
