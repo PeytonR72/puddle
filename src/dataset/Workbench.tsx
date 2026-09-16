@@ -1,28 +1,43 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
+import { seedQuery } from '../query/default-query'
+import type { QueryEditorHandle } from '../query/QueryEditor'
+import { QueryPanel } from '../query/QueryPanel'
 import { DropZone } from './DropZone'
-import { EditorPlaceholder } from './EditorPlaceholder'
 import { SchemaPanel } from './SchemaPanel'
 import { useDataset } from './use-dataset'
 import { useFileDrop } from './use-file-drop'
 
 /**
- * The whole application, for now: a file goes in on the left and a query will
- * come out on the right.
+ * The whole application, for now: a file goes in on the left and a query comes
+ * out on the right.
  *
  * The drop target is this element rather than the panel inside it, so a file
  * dropped anywhere lands — including on top of a dataset that is already
  * loaded, which replaces it (one file per session, per the v1 scope table).
+ *
+ * The query text lives here rather than inside the editor so that it survives
+ * a replacement file: the panel unmounts while the new file is read, and SQL
+ * somebody wrote should not go with it.
  */
 export function Workbench() {
   const { state, progress, open, dismissFailure } = useDataset()
   const { isDraggingOver, dropHandlers } = useFileDrop(open)
-  const [draft, setDraft] = useState('')
+  const [query, setQuery] = useState('')
+  const editor = useRef<QueryEditorHandle | null>(null)
+
+  const dataset = state.status === 'ready' ? state.dataset : null
+
+  // A dataset arriving fills an empty editor with something that runs. It never
+  // overwrites a query — see seedQuery.
+  useEffect(() => {
+    if (dataset !== null) {
+      setQuery(seedQuery)
+    }
+  }, [dataset])
 
   const insertColumn = useCallback((reference: string): void => {
-    // Appended rather than inserted at a cursor, because there is no cursor
-    // yet. The editor owns this when it lands.
-    setDraft((current) => (current === '' || /\s$/.test(current) ? current + reference : `${current} ${reference}`))
+    editor.current?.insertAtCursor(reference)
   }, [])
 
   return (
@@ -37,7 +52,7 @@ export function Workbench() {
           <>
             <SchemaPanel dataset={state.dataset} onInsertColumn={insertColumn} onFiles={open} />
             <div className="min-h-0 flex-1">
-              <EditorPlaceholder draft={draft} onClear={() => setDraft('')} />
+              <QueryPanel ref={editor} dataset={state.dataset} value={query} onChange={setQuery} />
             </div>
 
             {isDraggingOver ? (

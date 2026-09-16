@@ -36,6 +36,11 @@
   --text-hero: 2.75rem;
   --text-hero--line-height: 3rem;
 
+  /* The query editor on a touch device. Below 16px, iOS zooms the page when a
+     field takes focus, which is what "the editor fights the keyboard" means in
+     practice. The row height does not change with it, so the grid holds. */
+  --text-editor-touch: 1rem;
+
   /* Space — base 4px, tight because result sets want density. */
   --spacing: 4px;
 
@@ -52,6 +57,10 @@
 :root {
   --row-height: 28px;
   --panel-width: 260px;
+  /* What the schema panel collapses to when it stacks above the editor. dvh,
+     so an on-screen keyboard takes its space out of the panel and not out of
+     the SQL being typed. */
+  --panel-height-stacked: 40dvh;
 }
 
 html {
