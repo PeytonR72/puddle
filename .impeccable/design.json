@@ -1,0 +1,304 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-16T00:00:00.000Z",
+  "title": "Design System: Puddle",
+  "extensions": {
+    "colorMeta": {
+      "mount": {
+        "role": "neutral",
+        "displayName": "Mount Grey",
+        "canonical": "oklch(0.872 0.003 120)",
+        "tonalRamp": ["oklch(0.15 0.003 120)", "oklch(0.26 0.003 120)", "oklch(0.37 0.003 120)", "oklch(0.48 0.003 120)", "oklch(0.59 0.003 120)", "oklch(0.70 0.003 120)", "oklch(0.82 0.003 120)", "oklch(0.95 0.003 120)"]
+      },
+      "sheet": {
+        "role": "neutral",
+        "displayName": "Archival Stock",
+        "canonical": "oklch(0.963 0.003 120)",
+        "tonalRamp": ["oklch(0.15 0.003 120)", "oklch(0.26 0.003 120)", "oklch(0.37 0.003 120)", "oklch(0.48 0.003 120)", "oklch(0.59 0.003 120)", "oklch(0.70 0.003 120)", "oklch(0.82 0.003 120)", "oklch(0.95 0.003 120)"]
+      },
+      "sheet-inset": {
+        "role": "neutral",
+        "displayName": "Inset Stock",
+        "canonical": "oklch(0.938 0.004 120)",
+        "tonalRamp": ["oklch(0.15 0.004 120)", "oklch(0.26 0.004 120)", "oklch(0.37 0.004 120)", "oklch(0.48 0.004 120)", "oklch(0.59 0.004 120)", "oklch(0.70 0.004 120)", "oklch(0.82 0.004 120)", "oklch(0.95 0.004 120)"]
+      },
+      "specimen": {
+        "role": "tertiary",
+        "displayName": "Herbarium Green",
+        "canonical": "oklch(0.36 0.036 140)",
+        "tonalRamp": ["oklch(0.15 0.036 140)", "oklch(0.26 0.036 140)", "oklch(0.37 0.036 140)", "oklch(0.48 0.036 140)", "oklch(0.59 0.036 140)", "oklch(0.70 0.036 140)", "oklch(0.82 0.036 140)", "oklch(0.95 0.036 140)"]
+      },
+      "specimen-faint": {
+        "role": "tertiary",
+        "displayName": "Green-Grey Label",
+        "canonical": "oklch(0.52 0.02 140)",
+        "tonalRamp": ["oklch(0.15 0.02 140)", "oklch(0.26 0.02 140)", "oklch(0.37 0.02 140)", "oklch(0.48 0.02 140)", "oklch(0.59 0.02 140)", "oklch(0.70 0.02 140)", "oklch(0.82 0.02 140)", "oklch(0.95 0.02 140)"]
+      },
+      "stamp": {
+        "role": "primary",
+        "displayName": "Aniline Violet",
+        "canonical": "oklch(0.44 0.204 305)",
+        "tonalRamp": ["oklch(0.15 0.204 305)", "oklch(0.26 0.204 305)", "oklch(0.37 0.204 305)", "oklch(0.48 0.204 305)", "oklch(0.59 0.204 305)", "oklch(0.70 0.204 305)", "oklch(0.82 0.15 305)", "oklch(0.95 0.06 305)"]
+      },
+      "stamp-soft": {
+        "role": "primary",
+        "displayName": "Violet Wash",
+        "canonical": "oklch(0.95 0.03 305)",
+        "tonalRamp": ["oklch(0.15 0.03 305)", "oklch(0.26 0.03 305)", "oklch(0.37 0.03 305)", "oklch(0.48 0.03 305)", "oklch(0.59 0.03 305)", "oklch(0.70 0.03 305)", "oklch(0.82 0.03 305)", "oklch(0.95 0.03 305)"]
+      },
+      "accent": {
+        "role": "secondary",
+        "displayName": "Azure",
+        "canonical": "oklch(0.54 0.19 245)",
+        "tonalRamp": ["oklch(0.15 0.19 245)", "oklch(0.26 0.19 245)", "oklch(0.37 0.19 245)", "oklch(0.48 0.19 245)", "oklch(0.59 0.19 245)", "oklch(0.70 0.15 245)", "oklch(0.82 0.10 245)", "oklch(0.95 0.04 245)"]
+      },
+      "accent-soft": {
+        "role": "secondary",
+        "displayName": "Azure Wash",
+        "canonical": "oklch(0.95 0.04 245)",
+        "tonalRamp": ["oklch(0.15 0.04 245)", "oklch(0.26 0.04 245)", "oklch(0.37 0.04 245)", "oklch(0.48 0.04 245)", "oklch(0.59 0.04 245)", "oklch(0.70 0.04 245)", "oklch(0.82 0.04 245)", "oklch(0.95 0.04 245)"]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "oklch(0.994 0.001 95)",
+        "tonalRamp": ["oklch(0.15 0.001 95)", "oklch(0.26 0.001 95)", "oklch(0.37 0.001 95)", "oklch(0.48 0.001 95)", "oklch(0.59 0.001 95)", "oklch(0.70 0.001 95)", "oklch(0.82 0.001 95)", "oklch(0.95 0.001 95)"]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Recessed Surface",
+        "canonical": "oklch(0.978 0.002 95)",
+        "tonalRamp": ["oklch(0.15 0.002 95)", "oklch(0.26 0.002 95)", "oklch(0.37 0.002 95)", "oklch(0.48 0.002 95)", "oklch(0.59 0.002 95)", "oklch(0.70 0.002 95)", "oklch(0.82 0.002 95)", "oklch(0.95 0.002 95)"]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "oklch(0.22 0.008 265)",
+        "tonalRamp": ["oklch(0.15 0.008 265)", "oklch(0.26 0.008 265)", "oklch(0.37 0.008 265)", "oklch(0.48 0.008 265)", "oklch(0.59 0.008 265)", "oklch(0.70 0.008 265)", "oklch(0.82 0.008 265)", "oklch(0.95 0.008 265)"]
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "Ink Muted",
+        "canonical": "oklch(0.52 0.008 265)",
+        "tonalRamp": ["oklch(0.15 0.008 265)", "oklch(0.26 0.008 265)", "oklch(0.37 0.008 265)", "oklch(0.48 0.008 265)", "oklch(0.59 0.008 265)", "oklch(0.70 0.008 265)", "oklch(0.82 0.008 265)", "oklch(0.95 0.008 265)"]
+      },
+      "ink-faint": {
+        "role": "neutral",
+        "displayName": "Ink Faint",
+        "canonical": "oklch(0.66 0.008 265)",
+        "tonalRamp": ["oklch(0.15 0.008 265)", "oklch(0.26 0.008 265)", "oklch(0.37 0.008 265)", "oklch(0.48 0.008 265)", "oklch(0.59 0.008 265)", "oklch(0.70 0.008 265)", "oklch(0.82 0.008 265)", "oklch(0.95 0.008 265)"]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Hairline Rule",
+        "canonical": "oklch(0.9 0.004 265)",
+        "tonalRamp": ["oklch(0.15 0.004 265)", "oklch(0.26 0.004 265)", "oklch(0.37 0.004 265)", "oklch(0.48 0.004 265)", "oklch(0.59 0.004 265)", "oklch(0.70 0.004 265)", "oklch(0.82 0.004 265)", "oklch(0.95 0.004 265)"]
+      },
+      "rule-strong": {
+        "role": "neutral",
+        "displayName": "Strong Rule",
+        "canonical": "oklch(0.8 0.004 265)",
+        "tonalRamp": ["oklch(0.15 0.004 265)", "oklch(0.26 0.004 265)", "oklch(0.37 0.004 265)", "oklch(0.48 0.004 265)", "oklch(0.59 0.004 265)", "oklch(0.70 0.004 265)", "oklch(0.82 0.004 265)", "oklch(0.95 0.004 265)"]
+      },
+      "failed": {
+        "role": "neutral",
+        "displayName": "Refusal Red",
+        "canonical": "oklch(0.52 0.2 27)",
+        "tonalRamp": ["oklch(0.15 0.2 27)", "oklch(0.26 0.2 27)", "oklch(0.37 0.2 27)", "oklch(0.48 0.2 27)", "oklch(0.59 0.2 27)", "oklch(0.70 0.16 27)", "oklch(0.82 0.10 27)", "oklch(0.95 0.04 27)"]
+      },
+      "failed-soft": {
+        "role": "neutral",
+        "displayName": "Refusal Wash",
+        "canonical": "oklch(0.96 0.03 27)",
+        "tonalRamp": ["oklch(0.15 0.03 27)", "oklch(0.26 0.03 27)", "oklch(0.37 0.03 27)", "oklch(0.48 0.03 27)", "oklch(0.59 0.03 27)", "oklch(0.70 0.03 27)", "oklch(0.82 0.03 27)", "oklch(0.95 0.03 27)"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Wordmark",
+        "purpose": "The lowercase `puddle` at the head of the specimen sheet. The only large type in the build, and it appears once per screen."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Available for a working-surface heading; unused on the first viewport."
+      },
+      "title": {
+        "displayName": "Stamp Face",
+        "purpose": "EXAMINE on the accession stamp: the one place the condensed-caps label voice is set large."
+      },
+      "body": {
+        "displayName": "Body Mono",
+        "purpose": "The working surface's running voice and every number the reader is meant to compare. Tabular figures are set globally on body."
+      },
+      "label": {
+        "displayName": "Condensed Caps Label",
+        "purpose": "Every named field on the sheet. Archivo at width 84, uppercase, tracked 0.06em to 0.2em by importance."
+      },
+      "mono-micro": {
+        "displayName": "Label Value",
+        "purpose": "The value column inside a determination or collection block, and the mounted fragment of first rows."
+      }
+    },
+    "shadows": [
+      {
+        "name": "sheet-lift",
+        "value": "0 1px 0 var(--color-rule), 0 14px 34px -12px rgb(0 0 0 / 0.22)",
+        "purpose": "The sheet's lift off its darker mount, and the only shadow in the build. One instance per screen; nothing else leaves the ground."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.2, 0, 0, 1)",
+        "purpose": "The house curve, and the only one. Used on every colour and transform transition."
+      },
+      {
+        "name": "duration-fast",
+        "value": "120ms",
+        "purpose": "Control state: a button's fill, the stamp straightening from -4deg to 0deg on hover."
+      },
+      {
+        "name": "duration-surface",
+        "value": "240ms",
+        "purpose": "A whole surface changing state: the sheet going violet under a dragged file."
+      },
+      {
+        "name": "duration-survey",
+        "value": "900ms",
+        "purpose": "One specimen laying itself down. Linear rather than eased, matching the boot bar: an eased trace misreports its own progress. Revealed by a clip-path inset, not a stroke dash, so the trace is fully painted underneath and never missing when the animation does not run."
+      },
+      {
+        "name": "survey-stagger",
+        "value": "140ms per specimen",
+        "purpose": "Inline animation-delay by index, so the sheet fills top to bottom rather than four traces racing."
+      },
+      {
+        "name": "reading-settle",
+        "value": "350ms",
+        "purpose": "How long a reader must stop before the settled reading is announced. Stepping 72 weeks with the arrow keys would otherwise talk over itself for the whole traverse."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "prefers-reduced-motion: reduce -> animation: none; all durations 0.01ms",
+        "purpose": "The traces are present complete. Motion is the one authored moment, so removing it removes nothing the reader needs."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Accession Stamp",
+      "kind": "button",
+      "refersTo": "stamp-accession",
+      "description": "The primary action and the collection's mark: a rotated violet-framed stamp reading EXAMINE. One per screen, and the only rotated and only saturated element on the sheet.",
+      "html": "<button class=\"ds-stamp\" type=\"button\"><span class=\"ds-stamp-face\">Examine</span><span class=\"ds-stamp-note\">Runs here &middot; no upload</span></button>",
+      "css": ".ds-stamp { display: block; text-align: left; transform: rotate(-4deg); border: 2px solid var(--color-stamp); background: var(--color-sheet); padding: 12px 24px; border-radius: 0; cursor: pointer; transition: transform 120ms cubic-bezier(0.2,0,0,1), background-color 120ms cubic-bezier(0.2,0,0,1); } .ds-stamp-face { display: block; font-family: var(--font-sans, 'Archivo Variable', system-ui, sans-serif); font-variation-settings: 'wdth' 84; text-transform: uppercase; font-size: 1.125rem; line-height: 1; font-weight: 700; letter-spacing: 0.14em; color: var(--color-stamp); } .ds-stamp-note { display: block; margin-top: 4px; font-family: var(--font-sans, 'Archivo Variable', system-ui, sans-serif); font-variation-settings: 'wdth' 84; text-transform: uppercase; font-size: 0.6875rem; letter-spacing: 0.1em; color: var(--color-stamp); } .ds-stamp:hover { transform: rotate(0deg); background: var(--color-stamp-soft); } .ds-stamp:focus-visible { transform: rotate(0deg); outline: 2px solid var(--color-accent); outline-offset: 1px; }"
+    },
+    {
+      "name": "Quiet File Button",
+      "kind": "button",
+      "refersTo": "button-file-quiet",
+      "description": "The secondary way in, used on the sheet so it never competes with the stamp. A styled label in front of a real, focusable file input.",
+      "html": "<button class=\"ds-btn-quiet\" type=\"button\">Choose a file</button>",
+      "css": ".ds-btn-quiet { display: inline-flex; align-items: center; border: 1px solid var(--color-rule-strong); background: var(--color-paper); color: var(--color-ink); padding: 6px 12px; border-radius: 2px; font-family: var(--font-mono, ui-monospace, Menlo, monospace); font-size: 0.8125rem; line-height: 1.25rem; cursor: pointer; transition: background-color 120ms cubic-bezier(0.2,0,0,1), border-color 120ms cubic-bezier(0.2,0,0,1); } .ds-btn-quiet:hover { border-color: var(--color-ink-muted); background: var(--color-surface); } .ds-btn-quiet:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 1px; }"
+    },
+    {
+      "name": "Primary File Button",
+      "kind": "button",
+      "refersTo": "button-file-primary",
+      "description": "The ink-filled control on the working surface, where the violet stamp does not reach.",
+      "html": "<button class=\"ds-btn-primary\" type=\"button\">Choose another file</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; border: 1px solid var(--color-ink); background: var(--color-ink); color: var(--color-paper); padding: 6px 12px; border-radius: 2px; font-family: var(--font-mono, ui-monospace, Menlo, monospace); font-size: 0.8125rem; line-height: 1.25rem; cursor: pointer; transition: background-color 120ms cubic-bezier(0.2,0,0,1), border-color 120ms cubic-bezier(0.2,0,0,1); } .ds-btn-primary:hover { border-color: var(--color-ink-muted); background: var(--color-ink-muted); } .ds-btn-primary:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 1px; }"
+    },
+    {
+      "name": "Determination Label",
+      "kind": "card",
+      "refersTo": "label-determination",
+      "description": "Live instrumentation on inset stock: an ink-framed definition list with its heading ruled off, a condensed-caps label column against a monospace value column. At rest it describes the sheet; under the pointer it describes one week.",
+      "html": "<dl class=\"ds-determination\"><dd class=\"ds-determination-head\">Determination</dd><div class=\"ds-determination-grid\"><span class=\"ds-field-label\">Dataset</span><span class=\"ds-field-value\">coffee-shop-sales.csv</span><span class=\"ds-field-label\">Source</span><span class=\"ds-field-value\">synthetic, bundled</span><span class=\"ds-field-label\">Rows</span><span class=\"ds-field-value\">2,000</span><span class=\"ds-field-label\">Engine</span><span class=\"ds-field-value\">DuckDB-WASM, in page</span><span class=\"ds-field-label\">Transmitted</span><span class=\"ds-field-value\">nothing</span></div></dl>",
+      "css": ".ds-determination { border: 1px solid var(--color-ink); background: var(--color-sheet-inset); padding: 12px 16px; border-radius: 0; margin: 0; } .ds-determination-head { margin: 0 0 12px; padding-bottom: 8px; border-bottom: 1px solid var(--color-ink); font-family: var(--font-sans, 'Archivo Variable', system-ui, sans-serif); font-variation-settings: 'wdth' 84; text-transform: uppercase; font-size: 0.6875rem; letter-spacing: 0.2em; color: var(--color-ink); } .ds-determination-grid { display: grid; grid-template-columns: 5.5rem 1fr; column-gap: 12px; row-gap: 6px; font-size: 0.6875rem; line-height: 1rem; font-variant-numeric: tabular-nums; } .ds-field-label { font-family: var(--font-sans, 'Archivo Variable', system-ui, sans-serif); font-variation-settings: 'wdth' 84; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-specimen-faint); } .ds-field-value { font-family: var(--font-mono, ui-monospace, Menlo, monospace); overflow-wrap: break-word; color: var(--color-ink); }"
+    },
+    {
+      "name": "Collection Block",
+      "kind": "card",
+      "refersTo": "block-collection",
+      "description": "The same frame one step quieter, on sheet stock with a grey rule instead of ink. Every field is derived from the specimen data rather than asserted beside it. Two of these blocks is the limit; a third reads as a card stack.",
+      "html": "<dl class=\"ds-collection\"><dd class=\"ds-collection-head\">Collection</dd><div class=\"ds-collection-grid\"><span class=\"ds-field-label\">Span</span><span class=\"ds-field-value\">2024-01-01 &ndash; 2025-05-12</span><span class=\"ds-field-label\">Weeks</span><span class=\"ds-field-value\">72</span><span class=\"ds-field-label\">Specimens</span><span class=\"ds-field-value\">4</span><span class=\"ds-field-label\">Reduced</span><span class=\"ds-field-value\">daily rows to weekly means</span></div></dl>",
+      "css": ".ds-collection { border: 1px solid var(--color-rule-strong); background: var(--color-sheet); padding: 12px 16px; border-radius: 0; margin: 0; } .ds-collection-head { margin: 0 0 12px; padding-bottom: 8px; border-bottom: 1px solid var(--color-rule-strong); font-family: var(--font-sans, 'Archivo Variable', system-ui, sans-serif); font-variation-settings: 'wdth' 84; text-transform: uppercase; font-size: 0.6875rem; letter-spacing: 0.2em; color: var(--color-ink); } .ds-collection-grid { display: grid; grid-template-columns: 5.5rem 1fr; column-gap: 12px; row-gap: 6px; font-size: 0.6875rem; line-height: 1rem; font-variant-numeric: tabular-nums; } .ds-field-label { font-family: var(--font-sans, 'Archivo Variable', system-ui, sans-serif); font-variation-settings: 'wdth' 84; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-specimen-faint); } .ds-field-value { font-family: var(--font-mono, ui-monospace, Menlo, monospace); overflow-wrap: break-word; color: var(--color-ink); }"
+    },
+    {
+      "name": "Specimen Trace",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "One category pressed as a weekly-mean trace: condensed-caps name, a herbarium-green stroke on a hairline baseline, and its own range over its own mean in monospace. The whole field is a button; the pointer reads as it moves and the keyboard steps a week at a time.",
+      "html": "<div class=\"ds-specimen\"><span class=\"ds-specimen-name\">Coffee</span><button class=\"ds-specimen-field\" type=\"button\" aria-label=\"Examine Coffee: step through 72 weekly readings\"><svg viewBox=\"0 -14 100 114\" preserveAspectRatio=\"none\" class=\"ds-specimen-svg\" role=\"img\" aria-label=\"Coffee: weekly mean revenue from 180 to 259 dollars, mean 221\"><path d=\"M0,86 L14,74 L28,62 L42,55 L56,40 L70,31 L84,18 L100,12\" fill=\"none\" stroke=\"var(--color-specimen)\" stroke-width=\"1.4\" vector-effect=\"non-scaling-stroke\"/><line class=\"ds-specimen-read\" x1=\"56\" y1=\"0\" x2=\"56\" y2=\"100\" stroke=\"var(--color-stamp)\" stroke-width=\"1\" vector-effect=\"non-scaling-stroke\"/></svg><span class=\"ds-specimen-baseline\"></span></button><span class=\"ds-specimen-range\">180&ndash;259<span class=\"ds-specimen-mean\">221</span></span></div>",
+      "css": ".ds-specimen { display: flex; align-items: flex-end; gap: 12px; } .ds-specimen-name { width: 5rem; flex-shrink: 0; padding-bottom: 4px; text-align: right; font-family: var(--font-sans, 'Archivo Variable', system-ui, sans-serif); font-variation-settings: 'wdth' 84; text-transform: uppercase; font-size: 0.6875rem; letter-spacing: 0.14em; color: var(--color-specimen-faint); } .ds-specimen-field { position: relative; flex: 1 1 0; min-width: 0; background: none; border: 0; padding: 0; text-align: left; cursor: crosshair; } .ds-specimen-svg { display: block; height: 4.25rem; width: 100%; } .ds-specimen-read { opacity: 0; } .ds-specimen-field:hover .ds-specimen-read, .ds-specimen-field:focus-visible .ds-specimen-read { opacity: 1; } .ds-specimen-baseline { display: block; height: 1px; width: 100%; background: var(--color-rule); } .ds-specimen-field:focus-visible { outline: 2px solid var(--color-stamp); outline-offset: 2px; } .ds-specimen-range { width: 4rem; flex-shrink: 0; padding-bottom: 4px; text-align: right; font-family: var(--font-mono, ui-monospace, Menlo, monospace); font-size: 0.6875rem; line-height: 1.3; font-variant-numeric: tabular-nums; color: var(--color-specimen-faint); } .ds-specimen-mean { display: block; font-size: 0.8125rem; color: var(--color-specimen); }"
+    },
+    {
+      "name": "Mounted Fragment",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "The dataset's actual first rows as a monospace block in herbarium green, held by a single left hairline standing in for a mounting strip. Evidence, so the rows are real.",
+      "html": "<div class=\"ds-fragment\"><p class=\"ds-fragment-label\">Mounted fragment &middot; first rows</p><pre class=\"ds-fragment-rows\">2024-01-01  Coffee     186.06\n2024-01-01  Tea         71.03\n2024-01-01  Pastry      97.68\n2024-01-01  Sandwich   121.00</pre></div>",
+      "css": ".ds-fragment-label { margin: 0; font-family: var(--font-sans, 'Archivo Variable', system-ui, sans-serif); font-variation-settings: 'wdth' 84; text-transform: uppercase; font-size: 0.6875rem; letter-spacing: 0.18em; color: var(--color-specimen-faint); } .ds-fragment-rows { margin: 8px 0 0; overflow-x: auto; border-left: 1px solid var(--color-specimen-faint); padding-left: 16px; font-family: var(--font-mono, ui-monospace, Menlo, monospace); font-size: 0.6875rem; line-height: 1.7; font-variant-numeric: tabular-nums; color: var(--color-specimen); }"
+    },
+    {
+      "name": "Application Header",
+      "kind": "nav",
+      "refersTo": "app-header",
+      "description": "The working surface's only chrome: a 1px-ruled bar with the wordmark at body size beside the loaded file name in condensed caps. Suppressed entirely while the specimen sheet is showing, so there is never a second `puddle` on screen.",
+      "html": "<header class=\"ds-header\"><span class=\"ds-header-mark\">puddle</span><span class=\"ds-header-file\">coffee-shop-sales.csv</span></header>",
+      "css": ".ds-header { display: flex; align-items: baseline; gap: 12px; border-bottom: 1px solid var(--color-rule); background: var(--color-paper); padding: 8px 16px; } .ds-header-mark { font-family: var(--font-sans, 'Archivo Variable', system-ui, sans-serif); font-size: 0.9375rem; line-height: 1; font-weight: 700; letter-spacing: -0.02em; color: var(--color-ink); } .ds-header-file { font-family: var(--font-sans, 'Archivo Variable', system-ui, sans-serif); text-transform: uppercase; font-size: 0.6875rem; letter-spacing: 0.12em; color: var(--color-ink-faint); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Herbarium Specimen Sheet",
+    "overview": "Puddle's first screen is a sheet of cool archival stock resting on a darker grey mount. The bundled dataset arrives already mounted, determined, and labelled: four categories pressed as weekly-mean traces on hairline baselines, a bordered determination label naming what was examined and what was transmitted, and one aniline-violet accession stamp reading EXAMINE — which is both the collection's mark and the only button on the page. The world exists to make a claim checkable rather than asserted: a herbarium is the one document type whose whole job is provenance, and provenance is Puddle's entire pitch.\n\nThe system is flat, ruled, and close-set. Structure comes from hairlines and alignment because that is the only structure a result set actually has; nothing is a card, nothing is a gradient, and the one shadow in the build is the lift of the sheet off its mount — the world's own material, not an elevation vocabulary. Density is tight (4px base) and type is small: 11–13px carries almost everything, with the wordmark at 44px as the single large thing on the page. Every label is condensed caps; every measured value is mono with tabular figures.\n\nThe world is deliberately not the developer-tool landing page it replaces — no hero headline, no glassy code block, no gradient bloom — and deliberately not cream, parchment or lamplight. This is a working herbarium, not an antique. The rest of the app (schema panel, editor, results grid, chart) keeps the incumbent ink-on-paper grid system, whose density, type and behaviour are pinned; the sheet's tokens extend that vocabulary rather than replacing it.",
+    "keyCharacteristics": [
+      "Cool archival sheet on a darker mount; never cream, parchment, or lamplight",
+      "Hairlines and alignment as the only structural device — no cards, no panels-as-boxes",
+      "Herbarium green for the subject, one aniline violet spent exactly once",
+      "Condensed caps for every label, monospace with tabular figures for every measured value",
+      "Square corners everywhere except 2px on controls; one rotated element per screen",
+      "One authored motion: the specimen draws itself once, linear, then nothing moves"
+    ],
+    "rules": [
+      { "name": "The One Stamp Rule", "body": "The violet is spent once per screen. EXAMINE is the only saturated element and the only rotated element on the sheet; a second violet mark halves the first. Audit test: count the saturated marks above the fold. More than one is a bug.", "section": "colors" },
+      { "name": "The Two Inks Rule", "body": "Green belongs to the specimen, azure belongs to the working surface. Neither crosses. Colouring a focus ring violet or a trace azure tells the reader the two worlds are the same kind of thing, and they learn nothing from either.", "section": "colors" },
+      { "name": "The Tinted Grey Rule", "body": "A faint text colour is a tint of its own family's hue, never a neutral grey dropped in. specimen-faint is green; ink-faint is cool.", "section": "colors" },
+      { "name": "The Condensed Caps Rule", "body": "A label is set in the label-caps voice: Archivo at width 84, uppercase, tracked 0.06em or wider. A herbarium sets its labels narrow because a determination has to fit a small printed slip, and that proportion is most of what makes the lettering read as a collection's rather than an app's.", "section": "typography" },
+      { "name": "The Measured Value Rule", "body": "Anything measured — a date, a mean, a range, a row count, a millisecond timing — is monospace with tabular figures, which is set on body so figures align by default rather than per component. A number in the sans face is a mistake.", "section": "typography" },
+      { "name": "The One Wordmark Rule", "body": "puddle appears once per screen, lowercase, never restyled. The application header is suppressed entirely while the sheet is showing, because the sheet already carries the wordmark at the size a collection prints its own name.", "section": "typography" },
+      { "name": "The Action-First Stack Rule", "body": "When the sheet's two columns collapse, the determination and its stamp move to the top. A phone that buries the one button under four traces fails the bar the product is measured against.", "section": "layout" },
+      { "name": "The One Lift Rule", "body": "The sheet is the only element that leaves the ground. Depth elsewhere is a tonal step or a hairline. A shadow on a second element turns a mounted specimen into a dashboard of floating cards.", "section": "elevation" },
+      { "name": "The Square Corner Rule", "body": "Corners are square unless the element is a control, in which case 2px. There is no third radius.", "section": "shapes" },
+      { "name": "The Hairline Rule", "body": "Structure is 1px. When a boundary needs to win, change its colour (rule → rule-strong → ink), not its weight. The two exceptions are the stamp's 2px frame and a failure notice's 2px left border.", "section": "shapes" }
+    ],
+    "dos": [
+      "Do put every label in the condensed-caps voice (label-caps: Archivo at 'wdth' 84, uppercase, tracked 0.06em or wider) and every measured value in monospace with tabular figures.",
+      "Do build structure from 1px hairlines and alignment, and escalate a boundary by colour (rule → rule-strong → ink) rather than by weight.",
+      "Do spend the aniline violet exactly once per screen, on the single primary action.",
+      "Do keep the specimen green for the subject and the azure for the working surface.",
+      "Do derive every field on a label from the data it describes, so the block cannot drift from the traces above it.",
+      "Do keep corners square, with 2px reserved for controls.",
+      "Do let the mount show on all four edges of the sheet at every width.",
+      "Do ship the display face from the same origin as the app, and check that a new surface adds no third-party request.",
+      "Do make the keyboard path complete on any surface that responds to a pointer — stepping, jumping to the ends, and activating."
+    ],
+    "donts": [
+      "Don't put a shadow on anything but the sheet's lift off its mount. The determination label, the stamp, and every panel are flat.",
+      "Don't rotate a second element. The stamp's -4° is the screen's only tilt.",
+      "Don't use cream, parchment, sepia, or a warm lamplight ground. The sheet is cool archival stock.",
+      "Don't introduce a glyph icon set. Nothing in this build uses one; a word, a rule, or a plotted trace does the work, and the favicon is the dataset's own trace rather than a drawn mark.",
+      "Don't add a third bordered definition-list block beside the determination and the collection. Two read as a sheet's labels; three read as a stack of cards, which this system refuses.",
+      "Don't invent evidence to fill a slot. A block with nothing real to say is cut, not populated with plausible-looking examples.",
+      "Don't ease the survey animation or animate anything else on the sheet. The trace draws itself linearly, once, and then the page is still.",
+      "Don't show the application header and the sheet on the same screen; one puddle per viewport.",
+      "Don't hand-write a colour, length, or duration in a component. Extend src/index.css and record the reasoning in docs/design/tokens.md."
+    ]
+  }
+}

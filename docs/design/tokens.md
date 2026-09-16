@@ -35,8 +35,10 @@ Puddle builds the opposite of both, for a reason that comes from the material:
 - **Rules, not cards.** A result set has no cards in it. Structure comes from hairlines
   and alignment — the same device the data already uses. Cards would be a second,
   competing structure laid over the first.
-- **No z-axis.** Zero shadows anywhere. A table is flat. Elevation would imply a stacking
-  that does not exist.
+- **No z-axis on the working surface.** A table is flat. Elevation there would imply a
+  stacking that does not exist. The specimen sheet is the one exception and it earns it by
+  being a different claim: a sheet is an object resting on a mount, and the lift is what
+  says so. See *The one lift* below.
 - **The drop surface is the whole working area**, not a widget inside it. Before a file is
   loaded, ingest *is* the application, so it gets the full frame rather than a polite
   rectangle in the middle of one.
@@ -66,7 +68,7 @@ grid's world rather than replacing it; the results grid keeps the system above u
 | `--color-sheet` | `oklch(0.963 0.003 120)` | Archival stock: cool, never cream. This is a working herbarium, not an antique map. |
 | `--color-sheet-inset` | `oklch(0.938 0.004 120)` | The determination label, set a step down from the sheet it is pasted to. |
 | `--color-specimen` | `oklch(0.36 0.036 140)` | Herbarium green. The ink of the subject, spent on every trace — not an accent to be rationed. |
-| `--color-specimen-faint` | `oklch(0.63 0.016 140)` | Specimen labels and ranges. Tinted from the same hue rather than greyed, per the craft floor. |
+| `--color-specimen-faint` | `oklch(0.52 0.02 140)` | Specimen labels and ranges. Tinted from the same hue rather than greyed, per the craft floor. Lightness set by measurement, not by eye: at `0.63` it read 3.12:1 on the sheet and failed WCAG AA for text. `0.52` measures 4.91:1 on `--color-sheet` and 4.56:1 on `--color-sheet-inset`. |
 | `--color-stamp` | `oklch(0.44 0.204 305)` | Aniline violet, the ink a collection actually stamps an accession with. The one saturated mark on the sheet. |
 | `--color-stamp-soft` | `oklch(0.95 0.03 305)` | Its wash: the drag-over state and the stamp's own hover. |
 | `--duration-survey` | `900ms` | One specimen laying itself down. |
@@ -244,8 +246,13 @@ gets the smaller number.
   Nothing in Puddle gets 8px.
 - `--border-hairline: 1px` — the single structural weight, drawn in `--color-rule`. This
   is the table rule doing the work borders and shadows usually do.
-- **Elevation: none.** No `box-shadow` token exists, so none can be spent by reflex. The
-  focus ring is a ring, not a shadow.
+- **Elevation: one lift, and only on the sheet.** No `box-shadow` token exists, so none
+  can be spent by reflex on a panel or a row — the working surface stays flat. The
+  specimen sheet carries the single exception, written inline where it is used:
+  `0 1px 0 var(--color-rule), 0 14px 34px -12px rgb(0 0 0 / 0.22)`. The contact line and
+  the wide, offset blur are what make it read as a sheet on a mount rather than a page
+  with a border. A second lift anywhere would spend what this one buys.
+  The focus ring is a ring, not a shadow.
 
 ## Chart marks
 
