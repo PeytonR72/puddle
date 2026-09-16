@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 import { FileButton } from '../dataset/FileButton'
 import { plotSpecimen, weekAt, weekStartDate } from './specimen-geometry'
@@ -35,6 +35,7 @@ type SpecimenSheetProps = {
 
 export function SpecimenSheet({ onTryDemo, onFiles }: SpecimenSheetProps) {
   const [reading, setReading] = useState<Reading | null>(null)
+  const announcement = useSettledReading(reading)
 
   const examineReading = useCallback(
     (taken: Reading) => {
@@ -45,6 +46,14 @@ export function SpecimenSheet({ onTryDemo, onFiles }: SpecimenSheetProps) {
 
   return (
     <div className="flex flex-1 flex-col">
+      {/* The determination block itself is not a live region. Stepping a
+          specimen with the arrow keys moves through 72 weeks, and announcing
+          all four fields per keypress would read the whole block 72 times. Only
+          the settled reading is announced, once the reader stops moving. */}
+      <p className="sr-only" aria-live="polite">
+        {announcement}
+      </p>
+
       <header>
         <h1 className="font-display text-hero leading-none font-bold tracking-[-0.03em] text-ink">
           puddle
@@ -92,6 +101,12 @@ export function SpecimenSheet({ onTryDemo, onFiles }: SpecimenSheetProps) {
                 and handing it straight to onClick would send a MouseEvent as
                 the SQL to run. */}
             <AccessionStamp onClick={() => onTryDemo()} />
+            {/* CSV and TSV only, though the gate in file-kind.ts also accepts
+                .parquet: ADR 0001 records that this DuckDB build ships no
+                Parquet reader, so naming it here would send a stranger's
+                first file down the one path that cannot work. The refusal
+                copy still names all three, because someone who dropped a
+                .parquet deserves the real reason. */}
             <p className="font-sans text-micro leading-[1.5] text-ink-muted">
               Or drop a CSV or TSV anywhere on this page to examine your own.
             </p>
@@ -111,6 +126,42 @@ export function SpecimenSheet({ onTryDemo, onFiles }: SpecimenSheetProps) {
       </footer>
     </div>
   )
+}
+
+/**
+ * The reading a screen reader is told about: the current one, but only once it
+ * has stopped changing.
+ *
+ * Arrow-stepping a specimen fires a reading per keypress, and a live region
+ * that tracks every one of them talks over itself for the length of the
+ * traverse. Waiting for a pause means one announcement per place the reader
+ * actually stops, which is what they asked for by stopping.
+ */
+const SETTLE_MS = 350
+
+function useSettledReading(reading: Reading | null): string {
+  const [settled, setSettled] = useState('')
+
+  useEffect(() => {
+    if (reading === null) {
+      setSettled('')
+      return
+    }
+
+    const specimen = SPECIMEN_SERIES.find((s) => s.category === reading.category)
+    const value = specimen?.weeks[reading.week]
+    if (specimen === undefined || value === undefined) return
+
+    const timer = setTimeout(() => {
+      setSettled(
+        `${specimen.category}, week of ${weekStartDate(FIRST_DATE, reading.week)}, mean ${value.toFixed(2)} dollars.`,
+      )
+    }, SETTLE_MS)
+
+    return () => clearTimeout(timer)
+  }, [reading])
+
+  return settled
 }
 
 function SpecimenTrace({
@@ -260,7 +311,7 @@ function Determination({ reading }: { reading: Reading | null }) {
   const value = specimen?.weeks[reading?.week ?? 0]
 
   return (
-    <dl className="border border-ink bg-sheet-inset px-4 py-3" aria-live="polite">
+    <dl className="border border-ink bg-sheet-inset px-4 py-3">
       <dt className="sr-only">Determination</dt>
       <dd className="mb-3 border-b border-ink pb-2 label-caps text-micro tracking-[0.2em] text-ink">
         Determination

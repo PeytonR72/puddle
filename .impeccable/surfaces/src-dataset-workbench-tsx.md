@@ -94,3 +94,13 @@ because the user pinned the results grid's system — "keep the grid's density,
 type and behaviour" — and `--font-mono` is that grid's type. Self-hosting it
 would restyle the one surface this redesign was scoped out of. Revisit only if
 that pin is lifted.
+
+**The tab icon carries a lighter violet than `--color-stamp`.** The shell had no
+favicon at all, so the browser fell back to a blank page icon and every load
+logged a 404 for `/favicon.ico`. The mark is a specimen trace plotted from the
+demo dataset's own weekly means — eight samples of Coffee across seventy-two
+weeks — with the reading point on it, so the icon is the sheet's signature rather
+than a drawn swoosh. It sits on `--color-specimen` rather than `--color-sheet`
+because a near-white square dissolves into a light tab strip, and `--color-stamp`
+goes muddy on that dark ground. The lighter violet is that token's job done at
+16px; nothing else in the build uses it.
