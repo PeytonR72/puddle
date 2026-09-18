@@ -2,6 +2,8 @@
 
 A SQL notebook that runs entirely in a browser tab.
 
+**[puddle-neon.vercel.app](https://puddle-neon.vercel.app)**
+
 Drop in a CSV and write SQL against it. DuckDB is compiled to WebAssembly and runs in the
 page, so the file is read off your disk by the tab you are looking at. There is no
 backend, no account, and no API key — open the page on a plane and it still works.
@@ -11,8 +13,9 @@ query run without a request.
 
 ## Try it
 
-Open the page and press **Try the demo**. It loads a bundled 2,000-row dataset, runs a
-query against it, and draws the result. No file of your own, no sign-up.
+Open [puddle-neon.vercel.app](https://puddle-neon.vercel.app) and press **Try the demo**.
+It loads a bundled 2,000-row dataset, runs a query against it, and draws the result. No
+file of your own, no sign-up.
 
 Or run it locally:
 
