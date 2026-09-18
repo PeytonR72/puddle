@@ -1,7 +1,7 @@
 /**
  * The keyboard shortcut for Run, written the way this machine writes it.
  *
- * Both Cmd+Enter and Ctrl+Enter run the query everywhere — the binding is not
+ * Both Cmd+Enter and Ctrl+Enter run the query everywhere: the binding is not
  * platform-dependent, only the label is. Showing a Mac reader `Ctrl+↵` would be
  * true and still wrong: it is not the key they will reach for.
  */

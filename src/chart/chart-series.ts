@@ -70,7 +70,7 @@ function toPoint(row: Row, x: Column, axes: ChartAxes): ChartPoint {
  *
  * A `BIGINT` past 2^53 loses its last digits on the way through `Number`, which
  * is a real loss and not one a chart can show: the difference is far under a
- * pixel. The grid above prints the exact value, so nothing is hidden — this is
+ * pixel. The grid above prints the exact value, so nothing is hidden: this is
  * the picture, not the record.
  */
 function toPlottable(value: ResultValue): number | null {

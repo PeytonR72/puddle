@@ -9,7 +9,7 @@ import { schemaNotice } from './schema-notice'
  *
  * A schema is a small result set, so it is drawn like one: fixed row height,
  * hairline between rows, name and type on one baseline. DuckDB's own type names
- * are shown verbatim — `BIGINT`, not "number" — because that is the vocabulary
+ * are shown verbatim (`BIGINT`, not "number") because that is the vocabulary
  * the query the reader is about to write will be checked against.
  */
 type SchemaPanelProps = {
@@ -24,7 +24,7 @@ export function SchemaPanel({ dataset, onInsertColumn, onFiles }: SchemaPanelPro
   return (
     /* Stacked above the editor on a phone, beside it on a pointer layout. The
        stacked height is capped so a wide schema cannot push the editor off the
-       screen — the query is what someone came here to write. */
+       screen: the query is what someone came here to write. */
     <aside className="flex max-h-[var(--panel-height-stacked)] min-h-0 w-full flex-col border-b border-rule bg-surface md:h-full md:max-h-none md:w-[var(--panel-width)] md:shrink-0 md:border-r md:border-b-0">
       <header className="border-b border-rule px-4 py-3">
         <h2 className="truncate text-base text-ink" title={dataset.fileName}>
@@ -36,7 +36,7 @@ export function SchemaPanel({ dataset, onInsertColumn, onFiles }: SchemaPanelPro
         </p>
       </header>
 
-      {/* The file loaded, so this is not a failure — but it is the shape a
+      {/* The file loaded, so this is not a failure, but it is the shape a
           mis-read CSV takes, and only the reader can tell the two apart. */}
       {notice === null ? null : (
         <div className="border-b border-rule border-l-2 border-l-rule-strong bg-paper px-4 py-2">
@@ -63,7 +63,7 @@ export function SchemaPanel({ dataset, onInsertColumn, onFiles }: SchemaPanelPro
               <button
                 type="button"
                 onClick={() => onInsertColumn(columnReference(column.name))}
-                title={`${column.name} — ${column.type}`}
+                title={`${column.name}: ${column.type}`}
                 className="flex h-[var(--row-height)] w-full items-center gap-3 px-4 text-left hover:bg-paper"
               >
                 <span className="min-w-0 flex-1 truncate text-base font-medium text-ink">

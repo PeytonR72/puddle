@@ -17,7 +17,7 @@ import { ResultChart, type ChartMode } from './ResultChart'
  * The same result, one panel further down, drawn as shape.
  *
  * Two pieces of state live here and they are deliberately different in kind.
- * The **chart type** is a preference and survives every run — somebody who
+ * The **chart type** is a preference and survives every run: somebody who
  * switched to a line was telling us how they read this data, not how they read
  * this one result. The **axis choice** is a claim about columns, so it is held
  * as a column name and position and re-resolved against every new result
@@ -104,7 +104,7 @@ export function ChartPanel({ run }: ChartPanelProps) {
       ) : null}
 
       {notice === null ? null : (
-        /* The ruled sheet the plot would have been drawn on, showing through —
+        /* The ruled sheet the plot would have been drawn on, showing through:
            the same surface the empty grid and the drop target use. */
         <div className="grid-rules min-h-0 flex-1 overflow-auto px-4 py-6">
           <p
@@ -135,7 +135,7 @@ type AxisSelectProps = {
  * Kept on screen with nothing to offer rather than hidden until a result
  * arrives: a control that appears and disappears moves everything beside it
  * twice per query, and the panel is 200px tall. Disabled says the same thing
- * without the movement — the same reason Run stays visible with its reason
+ * without the movement: the same reason Run stays visible with its reason
  * attached rather than vanishing.
  *
  * Live means *this axis is being drawn*, which is why a result with no number
@@ -153,12 +153,12 @@ function AxisSelect({ edge, choices, selected, onChoose }: AxisSelectProps) {
         value={selected === null ? '' : String(selected.index)}
         disabled={isEmpty}
         onChange={(event) => onChoose(event.target.value)}
-        /* 44px on a touch layout, 32px once there is a pointer — the Run
+        /* 44px on a touch layout, 32px once there is a pointer: the Run
            button's measurements, because a thumb does not care which panel a
            control is in. */
         className="h-11 max-w-40 rounded-control border border-rule bg-paper px-2 font-mono text-base text-ink disabled:cursor-not-allowed disabled:border-rule disabled:text-ink-faint md:h-8"
       >
-        {isEmpty ? <option value="">—</option> : null}
+        {isEmpty ? <option value="">–</option> : null}
         {isEmpty
           ? null
           : choices.map((choice) => (

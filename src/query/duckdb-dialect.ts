@@ -4,8 +4,8 @@
  * `@codemirror/lang-sql` ships Postgres, MySQL, SQLite and friends, but no
  * DuckDB, and the differences are ones a reader would notice: `#` is not a
  * comment, `::` is the cast operator, double quotes are identifiers rather than
- * strings, and the syntax people actually come to DuckDB for — `QUALIFY`,
- * `PIVOT`, `EXCLUDE`, `USING SAMPLE` — is not in any of the bundled lists.
+ * strings, and the syntax people actually come to DuckDB for (`QUALIFY`,
+ * `PIVOT`, `EXCLUDE`, `USING SAMPLE`) is not in any of the bundled lists.
  *
  * Only the language is exported, not `sql()`'s full `LanguageSupport`. That is
  * the difference between highlighting and autocomplete: the dialect's keywords
@@ -33,7 +33,7 @@ const KEYWORDS = [
 ].join(' ')
 
 /**
- * The types worth knowing by name. DuckDB's aliases are here too — a reader who
+ * The types worth knowing by name. DuckDB's aliases are here too: a reader who
  * writes `INT8` rather than `BIGINT` is writing the same type and should see it
  * treated the same way.
  */
@@ -46,7 +46,7 @@ const TYPES = [
 ].join(' ')
 
 /**
- * The functions a first query reaches for. Not DuckDB's full catalogue — that
+ * The functions a first query reaches for. Not DuckDB's full catalogue: that
  * is thousands of names and would mark most of a query as built-in, which tells
  * a reader nothing.
  */

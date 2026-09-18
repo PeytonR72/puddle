@@ -5,13 +5,13 @@
  * This is what lets the editor mark a real column differently from any other
  * word in the query. It is deliberately a scanner over the text rather than a
  * walk of CodeMirror's syntax tree: the thing that has to be got right is
- * *where a name does not count* — inside a string, inside a comment — and that
+ * *where a name does not count* (inside a string, inside a comment) and that
  * is a handful of rules this module can state, test, and own on its own.
  *
  * It scans the whole document rather than the visible lines. A Puddle query is
  * a screen or two of SQL (one editor, per the v1 scope table), so the saving
- * from windowing would be invisible and the cost — a block comment that opens
- * above the viewport and changes what the visible lines mean — would not be.
+ * from windowing would be invisible and the cost (a block comment that opens
+ * above the viewport and changes what the visible lines mean) would not be.
  */
 
 /** A half-open range into the SQL, in the same units CodeMirror uses. */
@@ -21,7 +21,7 @@ export type ColumnReferenceRange = {
 }
 
 /**
- * DuckDB matches identifiers case-insensitively, quoted ones included — unlike
+ * DuckDB matches identifiers case-insensitively, quoted ones included, unlike
  * Postgres, where `"Total"` and `total` are two different columns. Lower-casing
  * both sides here is what makes `select TOTAL from data` mark the column a file
  * spells `Total`.
@@ -67,7 +67,7 @@ export function findColumnReferences(
     }
 
     // `$$text$$`. DuckDB's dollar-quoted strings, which can hold anything at
-    // all — including something that looks exactly like a column name.
+    // all: including something that looks exactly like a column name.
     if (char === '$' && sql[at + 1] === '$') {
       at = skipDollarQuoted(sql, at)
       continue
@@ -138,7 +138,7 @@ function skipDollarQuoted(sql: string, at: number): number {
 
 /**
  * Past the closing quote. The quote character doubled is an escaped quote and
- * not the end — `'it''s'` is one string, `"say ""hi"""` is one identifier.
+ * not the end: `'it''s'` is one string, `"say ""hi"""` is one identifier.
  */
 function skipQuoted(sql: string, at: number, quote: string): number {
   let end = at + 1

@@ -48,7 +48,7 @@ describe('formatCell', () => {
     expect(formatCell(false, 'boolean').text).toBe('false')
   })
 
-  // A DATE arrives as epoch milliseconds, not a Date — see src/duckdb/result.ts.
+  // A DATE arrives as epoch milliseconds, not a Date: see src/duckdb/result.ts.
   it('reads a date as the day it was, in UTC', () => {
     expect(formatCell(Date.UTC(2026, 8, 15), 'date').text).toBe('2026-09-15')
   })

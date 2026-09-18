@@ -10,15 +10,15 @@ import { sqlTypeName } from './type-name'
 /**
  * The result, as the ruled grid the whole interface is built out of.
  *
- * Virtualized on both axes against one scroll container. Rows are the reason —
- * a hundred thousand of them is a normal answer to a normal query, and a
- * hundred thousand DOM rows is a locked tab — but columns get the same treatment
+ * Virtualized on both axes against one scroll container. Rows are the reason
+ * (a hundred thousand of them is a normal answer to a normal query, and a
+ * hundred thousand DOM rows is a locked tab) but columns get the same treatment
  * because `SELECT *` on a wide CSV is just as easy to type.
  *
  * Every cell is placed by arithmetic rather than by layout: the browser is never
  * asked to measure anything, which is what keeps a scroll frame cheap. The cost
  * is that column widths are estimated up front (`column-width.ts`), and the
- * cells that outgrow their column say so — they truncate, and offer the whole
+ * cells that outgrow their column say so: they truncate, and offer the whole
  * value on hover or on a tap.
  */
 export type CellAddress = {
@@ -92,7 +92,7 @@ export function ResultsTable({ result, selected, onSelect }: ResultsTableProps) 
     >
       {/* Wider than the viewport when the columns are; never narrower, so the
           rules carry to the right edge instead of stopping mid-screen. Every
-          row is a child of this one element — the header included — so the
+          row is a child of this one element (the header included) so the
           grid reads as a table rather than as rows inside anonymous divs. */}
       <div
         role="rowgroup"
@@ -190,7 +190,7 @@ type HeadCellProps = {
  * A column name over its type.
  *
  * The type is shown rather than hidden behind a tooltip, because `BIGINT` beside
- * `order_id` is the vocabulary the next query gets checked against — it is
+ * `order_id` is the vocabulary the next query gets checked against: it is
  * content, not chrome (docs/design/tokens.md).
  */
 function HeadCell({ column, position, align, left, width }: HeadCellProps) {
@@ -200,7 +200,7 @@ function HeadCell({ column, position, align, left, width }: HeadCellProps) {
     <div
       role="columnheader"
       aria-colindex={position + 1}
-      title={`${column.name} — ${type}`}
+      title={`${column.name}: ${type}`}
       className={`absolute top-0 flex h-full flex-col justify-center gap-0.5 border-r border-rule px-3 ${
         align === 'right' ? 'items-end' : 'items-start'
       }`}

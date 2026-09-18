@@ -2,7 +2,7 @@
  * The statement that turns a registered file into something SQL can select from.
  *
  * The view is always called `data`, whatever the file is called, so that a query
- * written against one dataset is portable to another — which is what makes a
+ * written against one dataset is portable to another, which is what makes a
  * share link (locked decision 4) worth anything.
  */
 import type { FileKind } from './file-kind'
@@ -13,7 +13,7 @@ export const DATASET_VIEW = 'data'
 /**
  * A file name reaching SQL is a string literal, not an identifier, so it takes
  * single-quote doubling rather than `client.ts`'s `quoteIdentifier`. Names with
- * a quote in them are real — `we'ird".csv` registers fine — and unescaped they
+ * a quote in them are real (`we'ird".csv` registers fine) and unescaped they
  * would end the literal early.
  */
 export function quoteStringLiteral(value: string): string {
@@ -43,7 +43,7 @@ function readerFor(kind: FileKind, fileName: string): string {
 }
 
 /**
- * `CREATE OR REPLACE`, because the scope table allows one file per session — a
+ * `CREATE OR REPLACE`, because the scope table allows one file per session: a
  * second drop replaces the first rather than erroring on a name that is taken.
  */
 export function createViewSql(kind: FileKind, fileName: string): string {

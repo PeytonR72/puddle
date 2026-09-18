@@ -10,7 +10,7 @@ import type { FileKind } from './file-kind'
 import { countRowsSql, createViewSql, DATASET_VIEW } from './ingest-sql'
 
 /**
- * A loaded file, as the rest of the app sees it. The file itself is not here —
+ * A loaded file, as the rest of the app sees it. The file itself is not here:
  * DuckDB holds the handle and reads it on demand (locked decision 3), so
  * nothing above this line has a reason to keep the bytes.
  */
@@ -23,7 +23,7 @@ export type Dataset = {
 
 /**
  * `count(*)` comes back as a DuckDB `BIGINT`, which the client hands over as a
- * `bigint` on purpose — it does not narrow integers that might not survive the
+ * `bigint` on purpose: it does not narrow integers that might not survive the
  * trip. A row count is safe to narrow here: a file with more rows than
  * `Number.MAX_SAFE_INTEGER` is not one a browser tab is reading.
  */

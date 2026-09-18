@@ -31,7 +31,7 @@ export const NULL_TEXT = 'NULL'
  *
  * Numbers only. Digits carry their magnitude in their length, so a right edge
  * makes a column of them comparable at a glance; nothing else on this screen
- * gains anything from being pushed away from the reading edge — a right-aligned
+ * gains anything from being pushed away from the reading edge: a right-aligned
  * column of timestamps is just harder to scan.
  */
 export function columnAlign(kind: ColumnKind): CellAlign {
@@ -142,7 +142,7 @@ export function groupDigits(text: string): string {
  * Not the reader's timezone, and this is the important part: DuckDB's `DATE` and
  * `TIMESTAMP` have no zone in them. They are the wall-clock values the file
  * held. Rendering them locally would move every one of them by the reader's
- * offset — a date in the file becoming the day before it on screen — which is
+ * offset (a date in the file becoming the day before it on screen), which is
  * the kind of bug people only catch months later.
  */
 function formatEpochMs(ms: number, kind: ColumnKind): string {
@@ -173,7 +173,7 @@ const MICROS_PER_MINUTE = 60_000_000n
 const MICROS_PER_SECOND = 1_000_000n
 
 /**
- * A `TIME` is microseconds since midnight, not a moment — there is no date in
+ * A `TIME` is microseconds since midnight, not a moment: there is no date in
  * it to make a `Date` out of, so the arithmetic is done in `bigint` and the
  * value never passes through a float.
  */

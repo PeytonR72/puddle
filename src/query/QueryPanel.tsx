@@ -11,7 +11,7 @@ import { runShortcutLabel } from './run-shortcut'
  *
  * The order down the panel is the order the eye needs it: the SQL, then the
  * error it produced, then the button that produced it. Run sits at the bottom
- * on purpose — it is the one control on this screen a thumb has to reach, and
+ * on purpose: it is the one control on this screen a thumb has to reach, and
  * the bottom edge of a `dvh` layout stays above the on-screen keyboard.
  *
  * A failed query is written into the panel and left there. Not a toast: the
@@ -20,7 +20,7 @@ import { runShortcutLabel } from './run-shortcut'
  * while the query is edited.
  */
 type QueryPanelProps = {
-  /** `null` before a file is loaded — the editor is on screen but has no data. */
+  /** `null` before a file is loaded: the editor is on screen but has no data. */
   dataset: Dataset | null
   value: string
   onChange: (value: string) => void

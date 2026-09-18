@@ -1,8 +1,8 @@
 /**
  * The one module that touches DuckDB (locked decision 5).
  *
- * It owns the worker, the connection, and the query API. Everything above it —
- * hooks, components, tests — talks to DuckDB through these exports and never
+ * It owns the worker, the connection, and the query API. Everything above it
+ * (hooks, components, tests) talks to DuckDB through these exports and never
  * imports the bindings, which is what keeps the engine swappable and the UI
  * mockable at a single seam.
  *
@@ -122,13 +122,13 @@ export async function query(sql: string): Promise<Result> {
  * them (locked decision 3). The file is never read into a string, so a 200MB
  * CSV costs nothing until a query touches it.
  *
- * Returns the name the file is registered under — that is what SQL refers to.
+ * Returns the name the file is registered under: that is what SQL refers to.
  */
 export async function registerFile(file: File): Promise<string> {
   const running = await requireEngine()
 
   try {
-    // One file per session, per the v1 scope table — so whatever was registered
+    // One file per session, per the v1 scope table, so whatever was registered
     // before goes, rather than accumulating handles onto stale File objects.
     if (running.registeredFile !== null) {
       await running.database.dropFile(running.registeredFile)
@@ -145,7 +145,7 @@ export async function registerFile(file: File): Promise<string> {
 }
 
 /**
- * The columns of a table — or of a registered file, which DuckDB resolves by
+ * The columns of a table, or of a registered file, which DuckDB resolves by
  * the same name. `type` is DuckDB's own spelling here, e.g. `VARCHAR`, where a
  * query result carries Arrow's, e.g. `Int64`. Compare two schemas on `name` and
  * `kind`, which mean the same thing on both sides; `type` does not.

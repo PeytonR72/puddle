@@ -2,7 +2,7 @@
 
 Puddle is a browser-local SQL notebook built on DuckDB-WASM. You open a page, drop in
 a CSV, TSV, or Parquet file, and write SQL against it in a single editor that shows its
-results as a table and a chart. Everything — the engine, the data, the query — stays in
+results as a table and a chart. Everything (the engine, the data, the query) stays in
 the browser tab. There is no backend, no accounts, and no API keys.
 
 ## v1 scope
@@ -32,7 +32,7 @@ backlog, listed as planned work in `README.md`:
 - Dark mode toggle
 - Auth of any kind
 
-The table is the boundary. A capability absent from both lists is undecided — ask before
+The table is the boundary. A capability absent from both lists is undecided: ask before
 building it, rather than reading it into a neighbouring row. The scope changes by editing
 this file, not in passing conversation.
 
@@ -46,18 +46,18 @@ file of the reader's own, and the primary path is a desktop browser. A SQL noteb
 keyboard-and-pointer tool with width to spend on layout, so design and test that case
 first.
 
-Phones stay usable — the same path works, nothing overflows, controls take a thumb — but
+Phones stay usable (the same path works, nothing overflows, controls take a thumb) but
 mobile is a width Puddle passes, not the one it is designed against.
 
 ## Architecture decisions (locked)
 
 "Locked" means these are settled and not reopened by an implementation that finds them
-inconvenient. When a decision genuinely blocks the work, stop and say so — the fix is
+inconvenient. When a decision genuinely blocks the work, stop and say so: the fix is
 to change the decision here, with a note in `docs/adr/`, not to route around it in code.
 
 **1. DuckDB loads lazily.** The WASM bundle is several megabytes and does not load with
-the landing page. Initialize it on first user intent — clicking "Try the demo" or dropping
-a file — and show a determinate loading state while it boots. A landing page that hangs
+the landing page. Initialize it on first user intent (clicking "Try the demo" or dropping
+a file) and show a determinate loading state while it boots. A landing page that hangs
 for five seconds before it can show anything reads as broken.
 
 **2. Use the non-COI bundle.** DuckDB-WASM's cross-origin-isolated build needs COOP/COEP
@@ -95,11 +95,11 @@ Strictness is a build setting, not a preference: `strict` is on, plus
 `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, and `noImplicitOverride`.
 `tsconfig.json` is the source of truth; read it rather than assuming this list is current.
 
-- **Types describe reality.** Data entering the tab — a parsed file, a DuckDB result
-  set, anything out of storage — arrives as `unknown` and gets narrowed by a parser at
+- **Types describe reality.** Data entering the tab (a parsed file, a DuckDB result
+  set, anything out of storage) arrives as `unknown` and gets narrowed by a parser at
   the boundary. Past that boundary the types are trusted, because they were earned.
 - **`as` is a claim you cannot back.** Use a narrowing check or a parser instead. In
-  tests, reach for `@total-typescript/shoehorn` to build partial fixtures — there is a
+  tests, reach for `@total-typescript/shoehorn` to build partial fixtures. There is a
   `migrate-to-shoehorn` skill in this repo covering the patterns.
 - **`any` does not ship.** `unknown` where the shape is genuinely open, a real type
   everywhere else.
@@ -112,19 +112,19 @@ Strictness is a build setting, not a preference: `strict` is on, plus
 - `src/` is application code, organised by feature rather than by file kind. A feature
   folder holds its components, logic, and tests together.
 - `src/duckdb/` is the engine. `client.ts` is the one module that touches DuckDB
-  (decision 5) — the exception to feature-first organisation, and the seam every test
+  (decision 5), the exception to feature-first organisation, and the seam every test
   mocks at. Beside it: `bundles.ts` resolves the WASM and worker assets, `result.ts`
   is the pure narrowing that turns an Arrow table into rows, and `use-duckdb.ts` is
   the boot status a component renders.
 - `src/dataset/` is the first feature folder and the shape the rest should follow: pure
-  logic, components, and tests together. The pure modules carry the decisions —
+  logic, components, and tests together. The pure modules carry the decisions:
   `file-kind.ts` accepts or refuses a file, `ingest-sql.ts` builds the `CREATE VIEW`,
-  `ingest-failure.ts` turns a DuckDB error into something worth reading — and
+  `ingest-failure.ts` turns a DuckDB error into something worth reading, and
   `load-dataset.ts` is the only part that talks to the engine.
 - `src/query/` is the SQL editor and its run. Same shape: the decisions sit in pure
-  modules — `column-reference-scan.ts` finds the dataset's columns in a block of SQL,
+  modules: `column-reference-scan.ts` finds the dataset's columns in a block of SQL,
   `run-state.ts` answers whether Run may fire and why not, `query-failure.ts` turns a
-  DuckDB refusal into a headline — and `use-query-run.ts` is the only part that queries.
+  DuckDB refusal into a headline, and `use-query-run.ts` is the only part that queries.
   `duckdb-dialect.ts` and `editor-theme.ts` are what CodeMirror is configured with; no
   completion source is registered anywhere in the folder, because v1 ships no autocomplete.
 - `src/results/` is where the answer lands. The decisions are pure again:
@@ -180,11 +180,11 @@ Single-context layout (`CONTEXT.md` + `docs/adr/` at the repo root). See `docs/a
 ## Installed skills
 
 - **[mattpocock/skills](https://github.com/mattpocock/skills)**: engineering workflow skills (`tdd`, `diagnosing-bugs`, `domain-modeling`, `code-review`, `handoff`, `triage`, etc.), vendored under `.agents/skills/` and symlinked into `.claude/skills/`. Managed with `npx skills@latest`; run `npx skills update` to pull upstream changes.
-- **[impeccable](https://github.com/pbakaus/impeccable)** (`/impeccable`): frontend design skill (shape, audit, critique, polish, etc.), vendored under `.claude/skills/impeccable/`. This checkout ships the skill's instructions and reference docs but **not** the compiled `impeccable` engine binary (needed for automated screenshotting/detection and the edit-time design hook) — that binary is fetched from a signed GitHub release and this environment couldn't verify/run it. The skill degrades gracefully without it (see `reference/degraded/*.md`). To get the full engine + optional pre-commit design hook, run `npx impeccable install --project --providers=claude-code` locally, or `/plugin marketplace add pbakaus/impeccable` inside Claude Code.
+- **[impeccable](https://github.com/pbakaus/impeccable)** (`/impeccable`): frontend design skill (shape, audit, critique, polish, etc.), vendored under `.claude/skills/impeccable/`. This checkout ships the skill's instructions and reference docs but **not** the compiled `impeccable` engine binary (needed for automated screenshotting/detection and the edit-time design hook); that binary is fetched from a signed GitHub release and this environment couldn't verify/run it. The skill degrades gracefully without it (see `reference/degraded/*.md`). To get the full engine + optional pre-commit design hook, run `npx impeccable install --project --providers=claude-code` locally, or `/plugin marketplace add pbakaus/impeccable` inside Claude Code.
 
 ### Project skills
 
-- **`frontend-design`**: design direction for this repo — ground the design in SQL and
+- **`frontend-design`**: design direction for this repo: ground the design in SQL and
   data, plan tokens before building, spend boldness once. Loads when working on UI. The
   token plan it requires is written: `docs/design/tokens.md`, implemented in
   `src/index.css`. Extend it there rather than hand-writing a value in a component.

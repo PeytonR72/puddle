@@ -14,7 +14,7 @@ export const DEFAULT_QUERY = `SELECT * FROM ${DATASET_VIEW} LIMIT 100`
  * What the editor should hold when a dataset arrives.
  *
  * Typed SQL survives a replacement file. The columns may well be wrong for the
- * new dataset and DuckDB will say so on the next run — that is a better outcome
+ * new dataset and DuckDB will say so on the next run: that is a better outcome
  * than silently deleting something a person wrote. Whitespace counts as empty,
  * so a draft that was cleared back to blank still gets seeded.
  */

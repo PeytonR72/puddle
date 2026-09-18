@@ -5,8 +5,8 @@ import type { SharedQuery } from './shared-query'
  * The columns a share link expects, in the place the real schema panel will
  * take once a file is loaded.
  *
- * It is the same ledger — fixed row height, hairline between rows, name and
- * type on one baseline — because it is describing the same kind of thing. The
+ * It is the same ledger (fixed row height, hairline between rows, name and
+ * type on one baseline) because it is describing the same kind of thing. The
  * one difference is that these rows do nothing when clicked: the editor beside
  * them is read-only until there is a dataset, so there is nowhere to insert a
  * name into.
@@ -55,7 +55,7 @@ export function SharedSchemaPanel({ shared }: SharedSchemaPanelProps) {
             // Position, not name: SQL does not promise unique column names.
             <li key={`${position}-${column.name}`} className="border-b border-rule last:border-b-0">
               <div
-                title={`${column.name} — ${column.type}`}
+                title={`${column.name}: ${column.type}`}
                 className="flex h-[var(--row-height)] w-full items-center gap-3 px-4"
               >
                 <span className="min-w-0 flex-1 truncate text-base font-medium text-ink">

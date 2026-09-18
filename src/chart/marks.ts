@@ -5,7 +5,7 @@
  * reasoning lives, and they exist a second time here for the same reason
  * `src/results/metrics.ts` does: the chart is drawn into SVG attributes, and an
  * SVG attribute cannot be given a CSS length that has not been resolved yet.
- * The colours stay as `var(--color-…)` — those SVG *does* resolve — so only the
+ * The colours stay as `var(--color-…)` (those SVG *does* resolve) so only the
  * lengths are copied.
  */
 
@@ -15,7 +15,7 @@
  * The band a category gets is as wide as the plot divided by the number of
  * points, and letting a bar take all of it turns a chart into a solid block.
  * Capped, the leftover becomes the gap, and the gap is what separates one bar
- * from the next — not a stroke drawn around either of them.
+ * from the next, not a stroke drawn around either of them.
  */
 export const BAR_MAX_WIDTH = 24
 

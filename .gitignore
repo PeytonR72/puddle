@@ -61,7 +61,7 @@ Thumbs.db
 # Claude Code local overrides
 .claude/settings.local.json
 
-# Impeccable review captures — regenerated evidence for one build, not history.
+# Impeccable review captures: regenerated evidence for one build, not history.
 # The surface briefs beside them are durable and stay tracked.
 .impeccable/review/
 .impeccable/config.local.json

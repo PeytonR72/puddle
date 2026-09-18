@@ -2,7 +2,7 @@
  * Which of the three formats a dropped file is, decided by extension alone.
  *
  * Extension rather than sniffed content, because the decision has to be made
- * before DuckDB exists — the engine boots on this gesture (locked decision 1),
+ * before DuckDB exists: the engine boots on this gesture (locked decision 1),
  * and refusing a `.docx` should not cost a stranger a several-megabyte download
  * first. A file that lies about its extension is caught later, by the reader
  * that fails on it, and gets a message from `ingest-failure.ts`.
@@ -13,7 +13,7 @@ export type FileKind = 'csv' | 'tsv' | 'parquet'
 /**
  * Why a file was turned away, split the same way an ingest failure is: what
  * happened, then what to do. It is not an `IngestFailure` because DuckDB never
- * saw the file — there is no engine message to carry, by construction.
+ * saw the file: there is no engine message to carry, by construction.
  */
 export type FileRefusal = {
   headline: string
@@ -70,8 +70,8 @@ export function selectSingleFile(files: readonly File[]): { file: File } | { ref
 /**
  * The lower-cased extension, with no dot, or `null` when the name has none.
  *
- * A leading dot does not start an extension — `.gitignore` is a name, not an
- * extension — so the search starts past the first character.
+ * A leading dot does not start an extension: `.gitignore` is a name, not an
+ * extension, so the search starts past the first character.
  */
 export function extensionOf(fileName: string): string | null {
   const lastDot = fileName.lastIndexOf('.')

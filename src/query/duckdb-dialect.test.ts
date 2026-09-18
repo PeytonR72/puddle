@@ -5,7 +5,7 @@ import { DuckDB } from './duckdb-dialect'
 /**
  * The dialect's behaviour is the parser's, and parsing is not what is worth
  * asserting here. What is worth asserting is the handful of settings that are
- * DuckDB rather than Postgres — the ones a future edit could quietly undo.
+ * DuckDB rather than Postgres: the ones a future edit could quietly undo.
  */
 describe('DuckDB dialect', () => {
   it('knows the syntax people come to DuckDB for', () => {

@@ -5,7 +5,7 @@ primary_target: "src/dataset/Workbench.tsx"
 related_targets: ["src/dataset/DropZone.tsx","src/index.css"]
 ---
 
-Scope: Puddle's first viewport and shell — the screen a stranger meets, and the
+Scope: Puddle's first viewport and shell, the screen a stranger meets, and the
 chrome around the workbench. Visitor mode: Persuade. The results grid keeps its
 own system (density, type, behaviour) by the user's pinned instruction.
 
@@ -18,12 +18,12 @@ permitted, wordmark `puddle` lowercase and fixed.
 
 ## Direction contract
 
-THESIS: Puddle's first screen is a herbarium specimen sheet — the dataset arrives
+THESIS: Puddle's first screen is a herbarium specimen sheet; the dataset arrives
 mounted, determined, and labelled. It refuses the developer-tool landing page
 (hero headline, glassy code block, gradient bloom) and the bare drop zone it
 replaces.
 
-OWN-WORLD: A cool archival sheet on a grey mount — never cream, parchment, or
+OWN-WORLD: A cool archival sheet on a grey mount, never cream, parchment, or
 lamplight. Herbarium green for specimen traces and baselines. One aniline-violet
 accession stamp, rotated, spent once per screen. A bordered determination label
 ruled under its heading; pale annotation slips with hairline borders. Square
@@ -37,7 +37,7 @@ that nothing left, and stamps EXAMINE to run the survey without supplying a file
 FIRST VIEWPORT: Sheet inset on a grey mount, filling the viewport. Wordmark at
 46px above a full-width header rule; collection meta right-aligned opposite it.
 Below the rule, four category specimens as weekly-mean traces, each scaled to its
-own range, on hairline baselines — category in condensed caps left, min–max and
+own range, on hairline baselines: category in condensed caps left, min–max and
 mean in mono right. Right column: annotation slips stacking prior queries, then
 the bordered determination label. The accession stamp sits below the label,
 rotated, and is the primary action. A mounted fragment of the first rows anchors
@@ -50,8 +50,8 @@ writes its WHERE clause into the editor, so the landing surface is the query
 builder rather than a picture of one.
 
 MOTION GRAMMAR: the specimen draws itself once, left to right in survey order,
-linear rather than eased — matching the locked decision that boot progress is
-determinate and unembellished — staggered per stalk. Nothing else animates. Under
+linear rather than eased (matching the locked decision that boot progress is
+determinate and unembellished), staggered per stalk. Nothing else animates. Under
 `prefers-reduced-motion: reduce` the traces are present complete.
 
 FORM: Herbarium specimen sheet. Candidate 7 of 7 on the re-rolled grounded list,
@@ -75,7 +75,7 @@ the FIRST VIEWPORT and OWN-WORLD blocks above, kept deliberately.
 
 **Annotation slips are not built.** The contract specifies "annotation slips
 stacking prior queries" in the right column. On the first viewport no query has
-run, so there are no prior determinations to stack — three plausible-looking
+run, so there are no prior determinations to stack: three plausible-looking
 slips would be invented evidence, which PRODUCT.md's Evidence on Hand rules out
 absolutely. The column carries a `Collection` block instead: span, week count,
 specimen count and the reduction applied, every field derived from the specimen
@@ -90,16 +90,16 @@ prints it.
 
 **`--font-mono` stays a system stack.** OWN-WORLD puts mono on every measured
 value, and the review asked for it to be self-hosted like the sans. It is not,
-because the user pinned the results grid's system — "keep the grid's density,
-type and behaviour" — and `--font-mono` is that grid's type. Self-hosting it
+because the user pinned the results grid's system ("keep the grid's density,
+type and behaviour") and `--font-mono` is that grid's type. Self-hosting it
 would restyle the one surface this redesign was scoped out of. Revisit only if
 that pin is lifted.
 
 **The tab icon carries a lighter violet than `--color-stamp`.** The shell had no
 favicon at all, so the browser fell back to a blank page icon and every load
 logged a 404 for `/favicon.ico`. The mark is a specimen trace plotted from the
-demo dataset's own weekly means — eight samples of Coffee across seventy-two
-weeks — with the reading point on it, so the icon is the sheet's signature rather
+demo dataset's own weekly means (eight samples of Coffee across seventy-two
+weeks) with the reading point on it, so the icon is the sheet's signature rather
 than a drawn swoosh. It sits on `--color-specimen` rather than `--color-sheet`
 because a near-white square dissolves into a light tab strip, and `--color-stamp`
 goes muddy on that dark ground. The lighter violet is that token's job done at

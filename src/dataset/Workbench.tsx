@@ -20,10 +20,10 @@ import { useFileDrop } from './use-file-drop'
 
 /**
  * The whole application, for now: a file goes in on the left and a query comes
- * out on the right — as SQL, then as rows, then as shape.
+ * out on the right: as SQL, then as rows, then as shape.
  *
  * The drop target is this element rather than the panel inside it, so a file
- * dropped anywhere lands — including on top of a dataset that is already
+ * dropped anywhere lands: including on top of a dataset that is already
  * loaded, which replaces it (one file per session, per the v1 scope table).
  *
  * The query text lives here rather than inside the editor so that it survives
@@ -35,7 +35,7 @@ import { useFileDrop } from './use-file-drop'
  * for it back.
  *
  * A share link arrives as a third source of query text, and the only one that
- * exists before the first render — so it seeds the editor rather than being
+ * exists before the first render, so it seeds the editor rather than being
  * written into it later.
  */
 export function Workbench() {
@@ -56,7 +56,7 @@ export function Workbench() {
   )
 
   // A dataset arriving fills an empty editor with something that runs. It never
-  // overwrites a query — see seedQuery, which is what keeps a shared one.
+  // overwrites a query: see seedQuery, which is what keeps a shared one.
   useEffect(() => {
     if (dataset !== null) {
       setQuery(seedQuery)
@@ -73,8 +73,8 @@ export function Workbench() {
    * A shared query runs itself once the file it needs is loaded.
    *
    * Somebody who opened this link came for an answer, and asking them to press
-   * Run on a query they did not write — against a file they were just told to
-   * find — is a step with no decision in it. Only on an exact match: a file
+   * Run on a query they did not write (against a file they were just told to
+   * find) is a step with no decision in it. Only on an exact match: a file
    * missing columns might fail, and a failure nobody asked for reads as the
    * link being broken.
    */
@@ -103,7 +103,7 @@ export function Workbench() {
   const autoRanDemo = useRef<Dataset | null>(null)
   /**
    * The query the demo should land on. A reader who activated a reading on the
-   * specimen sheet asked for that week, not for the default — running the
+   * specimen sheet asked for that week, not for the default: running the
    * default instead would answer a question they did not put.
    */
   const demoQuery = useRef<string>(DEFAULT_QUERY)
@@ -150,7 +150,7 @@ export function Workbench() {
   /**
    * The specimen sheet carries the wordmark itself, at the size a sheet prints
    * its collection's name. Running the app header above it would put a second
-   * `puddle` on the same screen — so on the first viewport the sheet is the
+   * `puddle` on the same screen, so on the first viewport the sheet is the
    * page, and the working chrome arrives with the dataset it describes.
    */
   const showingSheet = state.status === 'empty' && shared === null
@@ -184,7 +184,7 @@ export function Workbench() {
             <SchemaPanel dataset={state.dataset} onInsertColumn={insertColumn} onFiles={open} />
 
             {/* The SQL above its answer. The editor keeps a fixed share of the
-                height so that running a query never moves it — the caret stays
+                height so that running a query never moves it: the caret stays
                 where it was left, whatever the result turns out to be. */}
             {/* `min-w-0` is load-bearing: a flex item sizes to its content by
                 default, so a result wider than the window would stretch this

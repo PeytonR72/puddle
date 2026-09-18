@@ -6,7 +6,7 @@
  * virtualizer works in arithmetic: it decides which rows exist and where they
  * sit before any of them is laid out, so it cannot ask the browser what a CSS
  * variable resolved to. The table draws itself from these numbers as well as
- * measuring with them, so the two cannot disagree on screen — but the schema
+ * measuring with them, so the two cannot disagree on screen, but the schema
  * panel still sizes its rows from the token, and that is the pair to keep in
  * step if either changes.
  */

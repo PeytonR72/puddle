@@ -5,8 +5,8 @@
  * failed *load* gets DuckDB's words tucked behind a disclosure, because the
  * sniffer answers a bad CSV with twenty lines about candidate delimiters and
  * SQL the reader never wrote. A failed *query* is the reverse: the reader wrote
- * the SQL, and DuckDB's answer — `Referenced column "amont" not found in FROM
- * clause! Candidate bindings: "amount"` — is the most useful sentence on the
+ * the SQL, and DuckDB's answer (`Referenced column "amont" not found in FROM
+ * clause! Candidate bindings: "amount"`) is the most useful sentence on the
  * screen. So it is shown, verbatim, and the headline above it only says which
  * kind of wrong this is.
  */

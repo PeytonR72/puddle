@@ -2,18 +2,18 @@
  * The y axis: where it starts, where it stops, and which values get a tick.
  *
  * Recharts will size an axis on its own, and what it produces is the exact
- * extent of the data cut into equal parts — ticks at 950, 1,900, 2,850. Those
+ * extent of the data cut into equal parts: ticks at 950, 1,900, 2,850. Those
  * are true numbers and useless landmarks. A reader uses ticks to estimate the
  * values that are not labelled, which only works if the ticks are numbers they
  * can do arithmetic with, so the steps here are the round ones: 1, 2 or 5 times
  * a power of ten.
  *
  * **A bar starts at zero and a line does not.** A bar encodes its value as a
- * length, so a baseline anywhere else overstates every difference on the plot —
+ * length, so a baseline anywhere else overstates every difference on the plot:
  * that one is not a preference. A line encodes value as position, where the
  * zero is not doing any work: a column of temperatures between 18 and 24 drawn
  * against a zero baseline is a flat line with all of its signal squeezed out.
- * Switching between the two rescales the plot, which is the honest outcome —
+ * Switching between the two rescales the plot, which is the honest outcome:
  * the two marks can claim different things, and the axis says so.
  */
 import type { ChartPoint } from './chart-series'
@@ -76,7 +76,7 @@ export function niceScale(
   const ticks: number[] = []
 
   for (let tick = first; tick <= last + step / 2 && ticks.length < MAX_TICKS; tick += step) {
-    // Stepping by a float accumulates drift — 0.1 + 0.2 is famously not 0.3 —
+    // Stepping by a float accumulates drift (0.1 + 0.2 is famously not 0.3)
     // so each tick is rounded back onto the step it was supposed to land on.
     ticks.push(roundToStep(tick, step))
   }

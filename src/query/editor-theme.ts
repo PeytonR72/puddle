@@ -6,7 +6,7 @@
  *
  * **The editor sits on the same ruled grid as everything else.** One line is
  * one `--row-height`, the content has no vertical padding, and the rules run
- * behind the text — so a line of SQL, a schema row, and (later) a result row
+ * behind the text, so a line of SQL, a schema row, and (later) a result row
  * all land on the same baseline. That is the one bold move this interface
  * spends, and the editor is part of it rather than a box parked inside it.
  *
@@ -14,7 +14,7 @@
  * `SELECT` blue and leaves the column names plain. In a notebook the columns
  * are the subject and the keywords are scaffolding, so the weight goes the
  * other way: structure in muted ink, and the identifiers that name a real
- * column of the loaded file in full ink at 500. No second colour is spent —
+ * column of the loaded file in full ink at 500. No second colour is spent:
  * the accent stays reserved for the caret and for the engine working.
  */
 import { HighlightStyle } from '@codemirror/language'
@@ -33,7 +33,7 @@ export const editorTheme = EditorView.theme({
   },
 
   /* iOS zooms the page when a field under 16px takes focus, and the zoom is
-     what makes an editor feel like it is fighting the keyboard — the caret
+     what makes an editor feel like it is fighting the keyboard: the caret
      lands off-screen and the layout has to be pinched back. 13px is the
      notebook's reading size on a pointer device; a touch device gets the size
      that stops the zoom. The row height does not change, so the grid holds. */
@@ -100,7 +100,7 @@ export const editorHighlight = HighlightStyle.define([
 
   /* Literals and identifiers are the content of the query, so they keep full
      ink. `tags.special(tags.string)` is how the SQL parser tags a
-     double-quoted identifier — a column name, not a string. */
+     double-quoted identifier, a column name, not a string. */
   {
     tag: [tags.string, tags.special(tags.string), tags.number, tags.bool],
     color: 'var(--color-ink)',

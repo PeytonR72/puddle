@@ -44,7 +44,7 @@ export type DatasetHandle = {
 
 /**
  * Boot the engine and read a file that has already been chosen, shared by
- * `open` and `openDemo` once each has settled on a `File` and its kind — the
+ * `open` and `openDemo` once each has settled on a `File` and its kind: the
  * only difference between a drop and the demo is how that pair is arrived at.
  */
 async function bootAndRead(
@@ -131,8 +131,8 @@ export function useDataset(): DatasetHandle {
   )
 
   /**
-   * The demo fetch has its own failure mode — Puddle's own bundled file not
-   * coming back — that `open` never sees, so it is checked before the file
+   * The demo fetch has its own failure mode (Puddle's own bundled file not
+   * coming back) that `open` never sees, so it is checked before the file
    * joins the shared boot-and-read path rather than folded into it.
    */
   const openDemo = useCallback((): void => {

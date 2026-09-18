@@ -133,7 +133,7 @@ describe('resolveAxes', () => {
   it('drops a height that stopped being a number', () => {
     const cast = [day, column('revenue', 'VARCHAR', 'string'), orders]
 
-    // `SELECT CAST(revenue AS VARCHAR)` — the name is still there and the
+    // `SELECT CAST(revenue AS VARCHAR)`: the name is still there and the
     // column is not, so the axis falls back rather than plotting text.
     expect(resolveAxes(cast, { x: null, y: { index: 1, name: 'revenue' } })?.y).toEqual({
       index: 2,

@@ -6,7 +6,7 @@ import type { Specimen } from './specimen-series'
  *
  * Each specimen is scaled inside its own range rather than against a shared
  * one. Coffee's weekly mean runs roughly 2.6x Tea's, so one scale flattens Tea
- * onto its baseline and pushes Coffee out of its band — and the sheet's claim
+ * onto its baseline and pushes Coffee out of its band, and the sheet's claim
  * is that every specimen is legible, not that they share an axis. The mean and
  * range are printed beside each trace so the scaling is stated rather than
  * hidden.

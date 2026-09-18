@@ -3,7 +3,7 @@
  * name of the file it came from (locked decision 4).
  *
  * **Never the data.** The payload is a description of a dataset, not a copy of
- * one — which is what makes a link safe to paste into a chat window belonging to
+ * one, which is what makes a link safe to paste into a chat window belonging to
  * somebody who should not see the rows.
  *
  * The schema is narrower than the engine's `Column`: a name and the type name to
@@ -15,7 +15,7 @@ import type { Column } from '../duckdb/client'
 
 export type SharedColumn = {
   name: string
-  /** DuckDB's own spelling — `BIGINT`, `VARCHAR` — as the schema panel shows it. */
+  /** DuckDB's own spelling (`BIGINT`, `VARCHAR`) as the schema panel shows it. */
   type: string
 }
 

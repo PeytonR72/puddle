@@ -61,7 +61,7 @@ export function ResultsPanel({ run }: ResultsPanelProps) {
 
       {notice === null ? null : (
         /* The grid a result would have filled, showing through. The surface is
-           the same ruled sheet either way — the rows are what is missing, not
+           the same ruled sheet either way: the rows are what is missing, not
            the table. */
         <div className="grid-rules min-h-0 flex-1 overflow-auto px-4 py-6">
           <p

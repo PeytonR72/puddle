@@ -9,7 +9,7 @@ import { SPECIMEN_ROW_COUNT, SPECIMEN_SERIES } from './specimen-series'
  * The first screen: the bundled dataset mounted as a herbarium specimen sheet.
  *
  * Four categories are pressed as weekly-mean traces and the determination label
- * states what was examined and what was transmitted — which is the honest form
+ * states what was examined and what was transmitted, which is the honest form
  * for a product whose whole claim is that the engine is in the page. The label
  * is live: moving along a specimen rewrites it to that week's reading, so the
  * sheet is instrumentation a stranger can operate before they have committed to
@@ -28,7 +28,7 @@ type Reading = {
 }
 
 type SpecimenSheetProps = {
-  /** Runs the demo. A query means "run this one" — the reading the reader activated. */
+  /** Runs the demo. A query means "run this one": the reading the reader activated. */
   onTryDemo: (query?: string) => void
   onFiles: (files: readonly File[]) => void
 }
@@ -347,7 +347,7 @@ function Determination({ reading }: { reading: Reading | null }) {
  * than written down beside it, so the block cannot drift from the traces above.
  *
  * This is where the contract's annotation slips were meant to stack. Slips
- * record prior determinations, and on a first load there are none — three
+ * record prior determinations, and on a first load there are none: three
  * invented ones would be exactly the fabricated evidence PRODUCT.md rules out,
  * so the column carries facts it can actually stand behind instead.
  */

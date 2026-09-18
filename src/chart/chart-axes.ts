@@ -4,7 +4,7 @@
  * Axis choice reads `Column.kind` and never the values under it. The kinds were
  * earned once, at the boundary in `src/duckdb/result.ts`, and re-deriving a type
  * by sniffing a column of strings is how a chart ends up plotting `"00123"` as a
- * number — or worse, plotting it as one in a result where the next row is `"n/a"`.
+ * number, or worse, plotting it as one in a result where the next row is `"n/a"`.
  *
  * A column is remembered by index *and* name because neither alone survives the
  * next query. An index outlives a rename into a different column; a name is not
@@ -58,7 +58,7 @@ export function isPlottable(kind: ColumnKind): boolean {
 /**
  * Temporal kinds, which a chart reads in order.
  *
- * `TIME` is in here with the two date kinds: it is the same argument — a column
+ * `TIME` is in here with the two date kinds: it is the same argument; a column
  * of moments is already sorted by the axis it would be drawn on.
  */
 function isTemporal(kind: ColumnKind): boolean {
@@ -73,7 +73,7 @@ function toChoice(column: Column, index: number): AxisChoice {
  * The two column lists the selects are built from.
  *
  * Every column can label a point, so x offers all of them. Only a number can be
- * a height, so y offers the numeric ones — an axis of `VARCHAR` is not a choice
+ * a height, so y offers the numeric ones: an axis of `VARCHAR` is not a choice
  * to leave open and then refuse.
  */
 export function axisOptions(columns: readonly Column[]): AxisOptions {
@@ -87,8 +87,8 @@ export function axisOptions(columns: readonly Column[]): AxisOptions {
  * The chart's opening guess, or `null` when the result holds nothing to plot.
  *
  * y is the first numeric column and x is the first date, then the first string,
- * then whatever is left. The order is the order a result set usually arrives in
- * — `SELECT day, region, revenue` is the shape of almost every query anyone
+ * then whatever is left. The order is the order a result set usually arrives in:
+ * `SELECT day, region, revenue` is the shape of almost every query anyone
  * writes against a CSV, and reading it left to right lands on the right pair.
  */
 export function inferAxes(columns: readonly Column[]): ChartAxes | null {
@@ -130,7 +130,7 @@ function firstIndexOf(
  * A choice is honoured when the column is still where it was, and failing that
  * when a column of the same name is still somewhere. Editing a query and
  * running it again should not quietly move the y axis back off the column
- * somebody picked — but a choice that no longer names anything has to go, or
+ * somebody picked, but a choice that no longer names anything has to go, or
  * the chart draws a column that is not in the result.
  */
 export function resolveAxes(

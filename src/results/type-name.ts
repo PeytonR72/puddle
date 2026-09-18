@@ -4,7 +4,7 @@
  * `Column.type` is whichever name the engine used (`src/duckdb/result.ts`), and
  * for a query result that is Arrow's: `Int64`, `Utf8`, `Timestamp<MICROSECOND>`.
  * The schema panel a few hundred pixels to the left shows DuckDB's own names for
- * the same columns — `BIGINT`, `VARCHAR`, `TIMESTAMP` — because that is what
+ * the same columns (`BIGINT`, `VARCHAR`, `TIMESTAMP`) because that is what
  * `describeTable` returns.
  *
  * Both are true and they cannot both be on screen. A type name here is content

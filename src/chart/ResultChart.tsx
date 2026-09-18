@@ -37,8 +37,8 @@ export type ChartMode = 'bar' | 'line'
  * under the pointer is the only coloured thing on the plot.
  *
  * Every colour is passed as a prop, as `var(--color-…)`. SVG resolves a custom
- * property in a presentation attribute perfectly well — that was measured in
- * Chromium rather than assumed — and passing it beats the alternative of a
+ * property in a presentation attribute perfectly well (that was measured in
+ * Chromium rather than assumed) and passing it beats the alternative of a
  * class on the wrapper, because Recharts gives each mark its own `fill` or
  * `stroke` prop by default (a `Line` is `#3182bd` unless told otherwise) and an
  * attribute on the element wins over a colour inherited from its parent.
@@ -64,7 +64,7 @@ export function ResultChart({ points, mode, xName, yName }: ResultChartProps) {
 
   // A radius marks the end a bar is read from. Once a series crosses the
   // baseline that end is the top of some bars and the bottom of others, and one
-  // radius cannot be both — so it marks neither rather than the wrong one.
+  // radius cannot be both, so it marks neither rather than the wrong one.
   const crossesZero = scale !== null && scale.domain[0] < 0
 
   const xAxis = (
@@ -144,7 +144,7 @@ export function ResultChart({ points, mode, xName, yName }: ResultChartProps) {
                 strokeWidth={LINE_WIDTH}
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                /* No dot per point — at 500 points that is 500 marks nobody
+                /* No dot per point: at 500 points that is 500 marks nobody
                    reads. The one under the pointer is drawn instead. */
                 dot={false}
                 activeDot={{
@@ -171,7 +171,7 @@ export function ResultChart({ points, mode, xName, yName }: ResultChartProps) {
  *
  * The value leads and the column name follows, which is the legend's hierarchy
  * inverted on purpose: by the time somebody is hovering a bar they know what
- * they are looking at and want the number. Nothing here gates a value — the row
+ * they are looking at and want the number. Nothing here gates a value: the row
  * it came from is in the grid directly above, in full precision.
  */
 type ChartTooltipProps = {
@@ -194,7 +194,7 @@ function ChartTooltip({ xName, yName, active, payload }: ChartTooltipProps) {
         {point.value === null ? (
           <span className="text-null italic">NULL</span>
         ) : (
-          /* The row's own digits, grouped — not the axis's rounding. The cell
+          /* The row's own digits, grouped, not the axis's rounding. The cell
              for this value is a few inches up, and the two saying different
              numbers is worse than either of them being long. */
           groupDigits(String(point.value))

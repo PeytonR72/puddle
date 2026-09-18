@@ -4,7 +4,7 @@
  *
  * The answer is never a refusal. A share link carries the *dataset's* schema,
  * not the columns the query happens to name, so a file missing three of them
- * may run the query perfectly well — and the person holding the link is the one
+ * may run the query perfectly well, and the person holding the link is the one
  * who knows whether their export is the same data under different headings.
  * So this reports the difference and gets out of the way.
  *
@@ -42,7 +42,7 @@ export type MatchNotice = {
 /**
  * How many missing names the detail spells out before it starts counting.
  *
- * A file that has nothing in common with the link — the wrong export entirely —
+ * A file that has nothing in common with the link (the wrong export entirely)
  * makes every column missing, and a paragraph of forty names is not a sentence
  * anybody reads. The first few are enough to recognise the mistake.
  */
@@ -56,7 +56,7 @@ export function matchNotice(match: SchemaMatch, fileName: string): MatchNotice |
 
   return {
     headline: `${fileName} is missing ${pluralize(match.missing.length, 'column', 'columns')} this link expects.`,
-    detail: `${listNames(match.missing)}. The query may still run — DuckDB will say so if it needs one of them.`,
+    detail: `${listNames(match.missing)}. The query may still run: DuckDB will say so if it needs one of them.`,
   }
 }
 

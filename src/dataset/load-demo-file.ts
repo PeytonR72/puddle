@@ -1,7 +1,7 @@
 /**
  * Turning Puddle's own bundled asset into the same `File` shape a drop or the
- * picker would hand over, so everything past this point — engine boot, view
- * creation, description — is the one ingest path in `use-dataset.ts` rather
+ * picker would hand over, so everything past this point (engine boot, view
+ * creation, description) is the one ingest path in `use-dataset.ts` rather
  * than a second one grown beside it.
  */
 import { DEMO_FILE_NAME, DEMO_FILE_URL } from './demo-dataset'

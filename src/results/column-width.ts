@@ -2,7 +2,7 @@
  * How wide each column of a result is drawn.
  *
  * The grid is virtualized in both directions, so every column needs a width
- * before anything is laid out — there is no pass where the browser gets to look
+ * before anything is laid out: there is no pass where the browser gets to look
  * at the content and decide. That rules out `table-layout: auto`, and it means
  * these numbers are an estimate by construction.
  *
@@ -35,7 +35,7 @@ export const MIN_COLUMN_WIDTH = 104
 /**
  * A ceiling, not a fit. Past this a cell truncates and offers the full value on
  * hover or tap, because one paragraph-shaped column would otherwise push every
- * other column off the screen — and the columns you cannot see are the ones you
+ * other column off the screen, and the columns you cannot see are the ones you
  * came to compare.
  */
 export const MAX_COLUMN_WIDTH = 380

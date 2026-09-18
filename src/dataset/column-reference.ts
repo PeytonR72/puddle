@@ -2,8 +2,8 @@
  * How a column name is written when the schema panel puts it into the editor.
  *
  * A name is inserted bare when SQL will accept it bare, and double-quoted when
- * it will not. Quoting everything would be safe and unreadable — `"id"` in
- * every query — and quoting nothing breaks on the column names real files
+ * it will not. Quoting everything would be safe and unreadable (`"id"` in
+ * every query) and quoting nothing breaks on the column names real files
  * actually carry: `Total Sales`, `2024`, `order`.
  */
 
@@ -11,7 +11,7 @@
 const BARE_IDENTIFIER = /^[A-Za-z_][A-Za-z0-9_]*$/
 
 /**
- * DuckDB's reserved keywords — the ones it refuses as an unquoted identifier.
+ * DuckDB's reserved keywords: the ones it refuses as an unquoted identifier.
  *
  * Deliberately only the reserved list, not every keyword DuckDB knows. `count`
  * and `value` are keywords and are perfectly legal bare, and quoting them would

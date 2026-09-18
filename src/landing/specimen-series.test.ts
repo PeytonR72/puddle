@@ -46,7 +46,7 @@ describe('specimen series', () => {
   })
 
   // The sheet is a claim about a specific file. If the file is replaced and the
-  // series is not regenerated, the traces become decoration — this is the test
+  // series is not regenerated, the traces become decoration: this is the test
   // that refuses to let that ship.
   it.each(SPECIMEN_SERIES.map((s) => s.category))('matches the file for %s', (category) => {
     const specimen = SPECIMEN_SERIES.find((s) => s.category === category)

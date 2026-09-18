@@ -8,7 +8,7 @@
  * It is not autocomplete and does not grow into it: no completion source is
  * registered anywhere in this feature, because v1 does not ship SQL
  * autocomplete (`CLAUDE.md`). Marking a name someone already typed is the part
- * that pays for itself — it is how a typo in a column name becomes visible
+ * that pays for itself: it is how a typo in a column name becomes visible
  * before the query runs.
  */
 import { RangeSetBuilder, type Extension } from '@codemirror/state'

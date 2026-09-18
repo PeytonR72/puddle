@@ -13,7 +13,7 @@ import { editorHighlight, editorTheme } from './editor-theme'
  * treat it as a controlled input.
  *
  * What the parent cannot express as a prop is the one thing the schema panel
- * needs — putting a column name in at the cursor — so that comes back out as an
+ * needs (putting a column name in at the cursor) so that comes back out as an
  * imperative handle. This is the wire `EditorPlaceholder` was holding open.
  */
 export type QueryEditorHandle = {
@@ -32,7 +32,7 @@ type QueryEditorProps = {
   onChange: (value: string) => void
   /**
    * Cmd+Enter or Ctrl+Enter. It carries the query text because the keymap reads
-   * it straight off the document — a handler that closed over React state could
+   * it straight off the document: a handler that closed over React state could
    * run the query as it was one render ago.
    */
   onRun: (query: string) => void
@@ -136,8 +136,8 @@ export const QueryEditor = forwardRef<QueryEditorHandle, QueryEditorProps>(funct
     // compartment below or read through `handlers`.
   }, [])
 
-  // The parent owns the text, so a change made anywhere else — seeding the
-  // default query, say — has to be pushed in. Compared first, or every
+  // The parent owns the text, so a change made anywhere else (seeding the
+  // default query, say) has to be pushed in. Compared first, or every
   // keystroke would round-trip and reset the cursor.
   useEffect(() => {
     const instance = view.current
@@ -155,8 +155,8 @@ export const QueryEditor = forwardRef<QueryEditorHandle, QueryEditorProps>(funct
     })
   }, [columnNames])
 
-  // Editability and the placeholder both answer the same question — is there a
-  // dataset — so they move together rather than drifting apart.
+  // Editability and the placeholder both answer the same question (is there a
+  // dataset) so they move together rather than drifting apart.
   useEffect(() => {
     view.current?.dispatch({
       effects: withDataset.current.reconfigure(datasetState(editable, placeholderText)),

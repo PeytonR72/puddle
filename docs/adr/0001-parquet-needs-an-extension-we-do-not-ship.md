@@ -10,14 +10,14 @@ this needs a decision, and every option costs something we have already decided 
 
 Verified in Chromium against the `eh` bundle DuckDB selects, not assumed. On a clean
 engine `duckdb_extensions()` reports `parquet` as `NOT_INSTALLED`, `autoinstall_known_extensions`
-is `false`, and `read_parquet` traps in WebAssembly rather than raising a SQL error —
+is `false`, and `read_parquet` traps in WebAssembly rather than raising a SQL error:
 "table index is out of bounds", "memory access out of bounds", or "null function or
 function signature mismatch" depending on what ran before it. `INSTALL parquet` resolves
 to `https://extensions.duckdb.org/v1.5.4/wasm_eh/parquet.duckdb_extension.wasm`, which is
 also how a Parquet file DuckDB itself wrote fails to be read back.
 
 Those trap strings are what `src/dataset/ingest-failure.ts` matches on, and they are
-generic WebAssembly failures rather than anything Parquet-shaped — only the file's
+generic WebAssembly failures rather than anything Parquet-shaped; only the file's
 extension makes them mean "Parquet". If this ADR is resolved by making Parquet work, that
 matching needs revisiting: the message it produces today would then be wrong, and a
 genuinely corrupt Parquet file would deserve the footer message instead.

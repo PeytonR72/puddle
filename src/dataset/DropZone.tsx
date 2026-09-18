@@ -21,7 +21,7 @@ type DropZoneProps = {
   onDismissFailure: () => void
   /**
    * The other way in, alongside a stranger's own file. `undefined` where a
-   * demo would be a wrong answer — a share link is already asking for a
+   * demo would be a wrong answer: a share link is already asking for a
    * specific file, and offering a dataset that will not match it is not a
    * second option, it is a red herring (locked decision 1's second trigger
    * is for a session with nothing else pulling on it).
@@ -100,7 +100,7 @@ function Invitation({
       </div>
 
       <p className="font-sans text-small text-ink-muted">
-        Or drop a CSV, TSV, or Parquet file anywhere on this page. Nothing is uploaded — DuckDB reads it
+        Or drop a CSV, TSV, or Parquet file anywhere on this page. Nothing is uploaded: DuckDB reads it
         off your disk.
       </p>
     </div>

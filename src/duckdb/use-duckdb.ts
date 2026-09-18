@@ -21,14 +21,14 @@ export type DuckDBHandle = {
    * repeatedly; only the first call does work.
    *
    * It resolves with the status rather than `void` because `status` below is a
-   * render behind — a click handler that wants to know whether it may query has
+   * render behind: a click handler that wants to know whether it may query has
    * to read the answer here.
    */
   start: () => Promise<EngineStatus>
 }
 
 /**
- * Status for the engine. Queries do not go through here — they go through
+ * Status for the engine. Queries do not go through here: they go through
  * `client.ts`, which is the module that owns DuckDB (locked decision 5). This
  * hook exists so a component can render the boot, not to wrap the API.
  */

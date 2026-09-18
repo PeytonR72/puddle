@@ -11,7 +11,7 @@ import type { SharedQuery } from './shared-query'
  * `hashchange` would let a back button replace SQL somebody is in the middle of
  * writing, and there is nothing in v1 that changes the hash on its own.
  *
- * A malformed hash reads as no hash at all — that is the specified behaviour,
+ * A malformed hash reads as no hash at all: that is the specified behaviour,
  * and `fromShareHash` is where it is decided.
  */
 export function useSharedQuery(): SharedQuery | null {

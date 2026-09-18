@@ -40,7 +40,7 @@ export type Column = {
  * Verified against DuckDB rather than assumed, because two of these surprise:
  * a `DATE` or `TIMESTAMP` arrives as a `number` of epoch milliseconds, and a
  * `TIME` as a `bigint` of microseconds since midnight. Neither arrives as a
- * `Date`. That is what `Column.kind` is for — the value alone cannot tell you.
+ * `Date`. That is what `Column.kind` is for: the value alone cannot tell you.
  */
 export type ResultValue =
   | string
@@ -143,7 +143,7 @@ const KIND_BY_TYPE_NAME: Record<string, ColumnKind> = {
 /**
  * Classify a type name from either engine.
  *
- * Anything unrecognised is `other` rather than a guess — a column we cannot
+ * Anything unrecognised is `other` rather than a guess: a column we cannot
  * place should render as text, not as a number that happens to parse.
  */
 export function classifyColumnType(typeName: string): ColumnKind {
@@ -167,7 +167,7 @@ export function toColumn(field: ColumnMetadata): Column {
 }
 
 /**
- * Arrow hands back live objects — vectors, struct row proxies — that are valid
+ * Arrow hands back live objects (vectors, struct row proxies) that are valid
  * only while the table is. Unwrapping them here means a result can outlive the
  * table it came from, and that no component ever holds an Arrow type.
  */

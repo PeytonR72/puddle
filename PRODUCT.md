@@ -9,14 +9,14 @@ web
 ## Users
 
 **Primary: a hiring reviewer**, reading Puddle as evidence of how its author works. The
-answer given at init was "hiring reviewer, honestly" — the person querying a CSV is a
+answer given at init was "hiring reviewer, honestly": the person querying a CSV is a
 plausible but secondary reader, and the product is built around the first. The reviewer
 is hiring for **frontend / product engineering**, so what they are reading is interface
 judgement, state handling, and craft under real constraints. The screen is the artifact.
 
 **Secondary: the person with a file.** Someone technical enough to write SQL, with a CSV
-or TSV they want to interrogate. This reader is not fictional — the primary reader is only
-convinced by a tool that genuinely works — but where the two conflict, the reviewer wins.
+or TSV they want to interrogate. This reader is not fictional (the primary reader is only
+convinced by a tool that genuinely works) but where the two conflict, the reviewer wins.
 
 They agree more often than they diverge. A reviewer reads an unhandled empty state or a
 default-styled error faster than they read a good decision, and those are the same things
@@ -39,7 +39,7 @@ the measure.
 ## Positioning
 
 The thing a neighbouring tool cannot truthfully copy: **the query engine is in the page**.
-Not a hosted warehouse with a browser client, not a file upload with a server-side reader —
+Not a hosted warehouse with a browser client, not a file upload with a server-side reader:
 DuckDB itself compiled to WASM, reading a `File` handle the browser already has. That is
 what makes "your data never leaves the tab" a fact about the network panel rather than a
 privacy promise someone has to trust.
@@ -53,8 +53,8 @@ Two consequences the product is built to keep honest:
 ## Operating Context
 
 - **Desktop browser is the designed case.** A SQL notebook is a keyboard-and-pointer tool
-  with width to spend. Phones stay usable — the same path works, nothing overflows,
-  controls take a thumb — but mobile is a width Puddle passes, not the one it is designed
+  with width to spend. Phones stay usable (the same path works, nothing overflows,
+  controls take a thumb) but mobile is a width Puddle passes, not the one it is designed
   against.
 - **One session, one file.** No workspace to return to, no history. Closing the tab ends
   the session, by design rather than by omission.
@@ -70,7 +70,7 @@ Two consequences the product is built to keep honest:
 
 Confirmed and shipped (v1 scope is the table in `CLAUDE.md`, which is the authority):
 
-- One file per session — CSV, TSV, Parquet — by drag-drop or file picker.
+- One file per session (CSV, TSV, Parquet) by drag-drop or file picker.
 - A flat schema panel of columns with inferred types; clicking one inserts it into the
   editor.
 - A single SQL editor. Run button plus Cmd/Ctrl+Enter. Errors inline.
@@ -93,7 +93,7 @@ Deliberately out of scope for v1, listed as planned work in `README.md`: multipl
 joins across files, saved workspaces or history, SQL autocomplete, a nested schema
 browser, CSV export, a dark mode toggle, auth of any kind.
 
-**Open product decision — Parquet.** `docs/adr/0001` is `proposed`, not accepted. The
+**Open product decision: Parquet.** `docs/adr/0001` is `proposed`, not accepted. The
 shipped DuckDB-WASM bundles do not link the Parquet reader, so `read_parquet` fails on
 every file. `.parquet` is accepted today and fails with a message naming the missing
 reader rather than blaming the file. Whether Parquet stays in the v1 scope table is
@@ -104,7 +104,7 @@ undecided; future work must not describe it as working.
 - **The name `puddle` is fixed**, set lowercase as a wordmark.
 - **The line "SQL in the browser tab" is copy, not a commitment.** Later work may rewrite it.
 - **Voice: written, not generated.** The repo carries a `content-humanizer` skill for user-
-  facing text, and `CLAUDE.md` splits the two voices deliberately — machine vocabulary is
+  facing text, and `CLAUDE.md` splits the two voices deliberately: machine vocabulary is
   the interface's default and a human sentence appears where a person is actually speaking
   to the reader.
 - **No third-party requests at runtime**, including webfonts. The central claim is that
@@ -117,11 +117,11 @@ undecided; future work must not describe it as working.
 - **The working product.** A deployed Vercel build and the repo itself are the evidence.
   For the primary reader, the shipped states are the portfolio: boot progress, a refused
   file, a DuckDB error, an empty result, a share link opened without a file.
-- **`public/demo/coffee-shop-sales.csv`** — 2000 rows of `date,category,revenue`. **This
+- **`public/demo/coffee-shop-sales.csv`**: 2000 rows of `date,category,revenue`. **This
   data is synthetic.** No copy may present it as a real business's numbers or as a
   customer's data.
 - **Written decision records**: `CLAUDE.md` (scope and locked decisions), `CONTEXT.md`
-  (domain vocabulary — not yet written), `docs/adr/`, `docs/design/tokens.md`.
+  (domain vocabulary, not yet written), `docs/adr/`, `docs/design/tokens.md`.
 - **There are no users, testimonials, benchmarks, press, usage numbers, or customers.**
   None exist. Future copy must not fabricate any of them, and must not imply adoption,
   team size, or a track record the project does not have.
@@ -134,8 +134,8 @@ undecided; future work must not describe it as working.
 2. **Ship the smaller thing, and say that it is a decision.** The v1 boundary is written
    down and the backlog is public. An absent feature that is named reads as judgement; the
    same feature absent and unmentioned reads as an oversight.
-3. **The privacy claim has to survive the network panel.** Anything that leaves the tab —
-   a font, a telemetry ping, a runtime extension fetch — breaks the one sentence the
+3. **The privacy claim has to survive the network panel.** Anything that leaves the tab
+   (a font, a telemetry ping, a runtime extension fetch) breaks the one sentence the
    product is built on.
 4. **Desktop is the designed case; mobile is a width that passes.** Do not average the two
    into a layout that serves neither.

@@ -7,7 +7,7 @@
  * and reachable, which is not a dependency a browser-local tool should have.
  *
  * Only the `mvp` and `eh` bundles are listed. `coi` is the cross-origin-isolated
- * build and needs COOP/COEP response headers — locked decision 2 rules it out.
+ * build and needs COOP/COEP response headers: locked decision 2 rules it out.
  */
 import ehModule from '@duckdb/duckdb-wasm/dist/duckdb-eh.wasm?url'
 import ehWorker from '@duckdb/duckdb-wasm/dist/duckdb-browser-eh.worker.js?url'

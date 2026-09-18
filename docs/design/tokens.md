@@ -33,7 +33,7 @@ rectangle with a cloud icon**, floating centred inside a card.
 Puddle builds the opposite of both, for a reason that comes from the material:
 
 - **Rules, not cards.** A result set has no cards in it. Structure comes from hairlines
-  and alignment — the same device the data already uses. Cards would be a second,
+  and alignment: the same device the data already uses. Cards would be a second,
   competing structure laid over the first.
 - **No z-axis on the working surface.** A table is flat. Elevation there would imply a
   stacking that does not exist. The specimen sheet is the one exception and it earns it by
@@ -46,7 +46,7 @@ Puddle builds the opposite of both, for a reason that comes from the material:
 ## Boldness: spent once
 
 **The ruled monospace grid is the layout system itself.** Not a table widget living inside
-a normal app — the panels, the schema list, the drop surface, and the editor frame are all
+a normal app: the panels, the schema list, the drop surface, and the editor frame are all
 built from the same hairline rules and the same monospace, on one shared baseline. Puddle
 reads like a terminal that grew up, not a dashboard with a table in it.
 
@@ -58,7 +58,7 @@ human sentence genuinely beats a machine one.
 
 The screen a stranger meets is a herbarium specimen sheet, chosen from a direction round
 and recorded in `.impeccable/surfaces/src-dataset-workbench-tsx.md`. The dataset arrives
-mounted, determined, and labelled — because a determination label is what provenance
+mounted, determined, and labelled, because a determination label is what provenance
 honestly looks like, and provenance is the whole of Puddle's claim. Its tokens extend the
 grid's world rather than replacing it; the results grid keeps the system above unchanged.
 
@@ -67,7 +67,7 @@ grid's world rather than replacing it; the results grid keeps the system above u
 | `--color-mount` | `oklch(0.872 0.003 120)` | The darker ground the sheet rests on. Without it the sheet is a page background, not an object. |
 | `--color-sheet` | `oklch(0.963 0.003 120)` | Archival stock: cool, never cream. This is a working herbarium, not an antique map. |
 | `--color-sheet-inset` | `oklch(0.938 0.004 120)` | The determination label, set a step down from the sheet it is pasted to. |
-| `--color-specimen` | `oklch(0.36 0.036 140)` | Herbarium green. The ink of the subject, spent on every trace — not an accent to be rationed. |
+| `--color-specimen` | `oklch(0.36 0.036 140)` | Herbarium green. The ink of the subject, spent on every trace, not an accent to be rationed. |
 | `--color-specimen-faint` | `oklch(0.52 0.02 140)` | Specimen labels and ranges. Tinted from the same hue rather than greyed, per the craft floor. Lightness set by measurement, not by eye: at `0.63` it read 3.12:1 on the sheet and failed WCAG AA for text. `0.52` measures 4.91:1 on `--color-sheet` and 4.56:1 on `--color-sheet-inset`. |
 | `--color-stamp` | `oklch(0.44 0.204 305)` | Aniline violet, the ink a collection actually stamps an accession with. The one saturated mark on the sheet. |
 | `--color-stamp-soft` | `oklch(0.95 0.03 305)` | Its wash: the drag-over state and the stamp's own hover. |
@@ -77,7 +77,7 @@ grid's world rather than replacing it; the results grid keeps the system above u
 above the fold and the only rotated thing on the page. Everything else on the sheet is
 ink, hairline, and space. A second violet element would halve it.
 
-**Why violet and not the accent blue.** The accent belongs to the working surface — focus,
+**Why violet and not the accent blue.** The accent belongs to the working surface: focus,
 the running query, the mark under the pointer. The stamp belongs to the sheet. Giving them
 one colour would say they are the same kind of thing, and a reader would learn nothing from
 either.
@@ -87,7 +87,7 @@ either.
 `--font-display` / `--font-sans` are **Archivo Variable**, self-hosted from npm and served
 same-origin. A webfont from a CDN would contradict the one sentence the product is built
 on, and the craft floor is explicit that the closest installed font is a failure rather
-than a fallback — so the face ships with the app (~35 kB, latin subset).
+than a fallback, so the face ships with the app (~35 kB, latin subset).
 
 Archivo is a grotesque cut for print and forms, which is the register a determination label
 is actually set in. It is deliberately none of the faces that turn up by default in
@@ -107,14 +107,14 @@ admired, and sustained reading wants high contrast and quiet surroundings.
 | Token | Value | For |
 | --- | --- | --- |
 | `--color-paper` | `oklch(0.994 0.001 95)` | The page. Barely-warm white, not a tinted grey. |
-| `--color-surface` | `oklch(0.978 0.002 95)` | Recessed areas — the schema panel, the editor frame. |
+| `--color-surface` | `oklch(0.978 0.002 95)` | Recessed areas: the schema panel, the editor frame. |
 | `--color-ink` | `oklch(0.22 0.008 265)` | Primary text. Near-black, faintly cool. |
 | `--color-ink-muted` | `oklch(0.52 0.008 265)` | Type names, counts, secondary voice. AA on paper. |
 | `--color-ink-faint` | `oklch(0.66 0.008 265)` | Non-essential labels only; never load-bearing text. |
 | `--color-rule` | `oklch(0.90 0.004 265)` | **The structural device.** Row rules, panel edges. |
 | `--color-rule-strong` | `oklch(0.80 0.004 265)` | Where a boundary has to win over a row rule. |
 | `--color-accent` | `oklch(0.54 0.19 245)` | One saturated azure. Deliberately not indigo. |
-| `--color-accent-soft` | `oklch(0.95 0.04 245)` | Accent washes — the drag-over surface. |
+| `--color-accent-soft` | `oklch(0.95 0.04 245)` | Accent washes: the drag-over surface. |
 | `--color-running` | `--color-accent` | The engine is working. The accent's main job. |
 | `--color-failed` | `oklch(0.52 0.20 27)` | A refused file, a DuckDB error. AA on paper. |
 | `--color-failed-soft` | `oklch(0.96 0.03 27)` | The wash behind a failure message. |
@@ -128,22 +128,22 @@ add a second accent.
 
 The chart is where that rule was tested, because a chart is the one place every other
 tool spends its accent. Puddle does not: **the marks are ink, and the accent marks what
-the pointer is on.** The reasoning is the same one that makes the grid a grid — a chart
+the pointer is on.** The reasoning is the same one that makes the grid a grid: a chart
 is the result set drawn as shape rather than as digits, so it is the same data in the
 same ink, and colouring it would make it read as a second subject sitting under the
 first. It also leaves the accent free to do the job it already had, which is what turns
 hovering a bar into an answer rather than a highlight.
 
 Measured, ink marks sit at 16.9:1 against paper and the accent at 4.8:1, so a hovered
-mark separates from its neighbours by 3.6:1 — comfortably past the 3:1 a mark needs.
+mark separates from its neighbours by 3.6:1, comfortably past the 3:1 a mark needs.
 Axis ticks are `--color-ink-muted` rather than `--color-ink-faint`: they are how the
 plot is read, which makes them load-bearing text, and faint clears AA only for labels
 that are not.
 
 ### Syntax highlighting spends no colour at all
 
-The query editor is the obvious place a second palette would arrive — every SQL editor
-paints `SELECT` blue — so it is written down here rather than left to the component.
+The query editor is the obvious place a second palette would arrive: every SQL editor
+paints `SELECT` blue, so it is written down here rather than left to the component.
 
 Highlighting is drawn entirely from the ramp above: keywords, type names and function
 names in `--color-ink-muted`, operators and punctuation in `--color-ink-faint`, comments
@@ -153,7 +153,7 @@ set at weight 500.
 
 The effect is an inversion worth keeping: the scaffolding recedes and the columns come
 forward, which is the right way round for a notebook, where the columns are the subject.
-It is also what makes a mistyped column name visible before the query runs — `amont` stays
+It is also what makes a mistyped column name visible before the query runs: `amont` stays
 plain while `amount` does not. The caret is the only accent in the editor.
 
 ## Type
@@ -169,7 +169,7 @@ browser" would be a lie in the network panel.
 | `--font-sans` | `ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif` |
 
 Mono is the interface voice and carries the majority of the text: column names, types,
-SQL, counts, timings, file names, buttons. Sans is for prose only — an explanation, an
+SQL, counts, timings, file names, buttons. Sans is for prose only: an explanation, an
 error's human half, the landing copy. The split is not decorative: mono means *this
 string came from or goes to the engine*, sans means *a person wrote this to you*.
 
@@ -195,7 +195,7 @@ right for the editor on a pointer device, so the size changes under
 the ruled grid holds at both sizes.
 
 Weights: 400 for everything, 500 where a column name has to separate from what surrounds
-it — its type in the schema panel, the SQL around it in the editor — and 600 reserved for
+it (its type in the schema panel, the SQL around it in the editor) and 600 reserved for
 the wordmark. Uppercase section labels take `0.08em` tracking at `--text-micro`; nothing
 else is uppercased.
 
@@ -207,32 +207,32 @@ the small ones.
 `--space-1: 4px` · `--space-2: 8px` · `--space-3: 12px` · `--space-4: 16px` ·
 `--space-6: 24px` · `--space-8: 32px` · `--space-12: 48px` · `--space-16: 64px`
 
-`--row-height: 28px` — one schema row, and one result row. A fixed row height is what
+`--row-height: 28px`, for one schema row and one result row. A fixed row height is what
 makes the grid a grid and what makes virtualization honest. The results table needs this
 one as a number rather than as a length, because a virtualizer places rows by arithmetic
 before anything is laid out; `src/results/metrics.ts` is that copy, and the two move
 together.
 
-`--head-height: 44px` — the results grid's sticky header. Taller than a row because it
+`--head-height: 44px`, for the results grid's sticky header. Taller than a row because it
 carries two lines, a column's name over its type, and because the edge between the header
 and the data is the one boundary in the grid worth feeling.
 
-`--editor-height-split: 34%` — how much of the working column the SQL keeps once its
+`--editor-height-split: 34%` sets how much of the working column the SQL keeps once its
 answer is under it. Fixed rather than fitted: a panel that resizes itself around each
 result moves the caret every time a query runs.
 
-`--panel-width: 260px` — the schema panel beside the editor. Wide enough for a real column
+`--panel-width: 260px`, for the schema panel beside the editor. Wide enough for a real column
 name at 13px mono, narrow enough that the editor keeps the width it needs.
 
-`--panel-height-stacked: 40dvh` — what that panel collapses to below `md`, where it sits
+`--panel-height-stacked: 40dvh` is what that panel collapses to below `md`, where it sits
 above the editor instead of beside it. A cap rather than a height, so a two-column file
 does not reserve space it has no use for. `dvh` rather than `vh` so an on-screen keyboard
 takes its space out of the schema list and not out of the SQL being typed.
 
-`--chart-height: 200px`, and `272px` from `md` up — the band the chart takes at the foot
+`--chart-height: 200px`, and `272px` from `md` up, is the band the chart takes at the foot
 of the working column. **Its plot is measured in result rows**: five of them on a phone
 and eight once there is width, plus the row of controls above. Measuring a chart in rows
-is the same move as everything else here — it keeps the plot on the grid's rhythm instead
+is the same move as everything else here: it keeps the plot on the grid's rhythm instead
 of introducing a second one. Fixed rather than fitted, for the reason the editor's split
 is: a panel that resizes itself around each result moves everything above it every time a
 query runs. What the chart takes comes out of the grid above it, which is why the phone
@@ -240,14 +240,14 @@ gets the smaller number.
 
 ## Radius, border, elevation
 
-- `--radius-none: 0` — **the default.** Panels, rows, the drop surface, the editor frame.
+- `--radius-none: 0` is **the default.** Panels, rows, the drop surface, the editor frame.
   Grid surfaces have square corners because cells do.
-- `--radius-control: 2px` — interactive controls only. Just enough to read as pressable.
+- `--radius-control: 2px` is for interactive controls only. Just enough to read as pressable.
   Nothing in Puddle gets 8px.
-- `--border-hairline: 1px` — the single structural weight, drawn in `--color-rule`. This
+- `--border-hairline: 1px` is the single structural weight, drawn in `--color-rule`. This
   is the table rule doing the work borders and shadows usually do.
 - **Elevation: one lift, and only on the sheet.** No `box-shadow` token exists, so none
-  can be spent by reflex on a panel or a row — the working surface stays flat. The
+  can be spent by reflex on a panel or a row: the working surface stays flat. The
   specimen sheet carries the single exception, written inline where it is used:
   `0 1px 0 var(--color-rule), 0 14px 34px -12px rgb(0 0 0 / 0.22)`. The contact line and
   the wide, offset blur are what make it read as a sheet on a mount rather than a page
@@ -257,7 +257,7 @@ gets the smaller number.
 ## Chart marks
 
 The chart is drawn into SVG, and an SVG attribute cannot take a CSS length that has not
-been resolved, so these lengths exist twice — here, and as numbers in `src/chart/marks.ts`.
+been resolved, so these lengths exist twice: here, and as numbers in `src/chart/marks.ts`.
 The pair moves together, the way `--row-height` and `src/results/metrics.ts` do. Colours
 are not copied: SVG resolves `var(--color-mark)` perfectly well.
 
@@ -275,14 +275,14 @@ itself. The rule from Motion below holds here without an exception: layout does 
 animate, and a chart that replays its entrance every time a query runs is decoration
 charged to the reader's attention.
 
-A single series takes **no legend** — there is one colour on the plot, and the two selects
+A single series takes **no legend**: there is one colour on the plot, and the two selects
 above it already name both axes. A box with one swatch in it would restate them.
 
 ## Motion
 
-- `--ease-out: cubic-bezier(0.2, 0, 0, 1)` — the only easing curve.
-- `--duration-fast: 120ms` — hover, focus, control state.
-- `--duration-surface: 240ms` — the drop surface answering a drag.
+- `--ease-out: cubic-bezier(0.2, 0, 0, 1)` is the only easing curve.
+- `--duration-fast: 120ms`, for hover, focus, control state.
+- `--duration-surface: 240ms`, for the drop surface answering a drag.
 - Determinate progress moves **linearly**, not eased. An eased progress bar misreports the
   download rate, and the DuckDB boot is the one place a stranger is watching a number they
   cannot verify. Honesty beats polish here.
@@ -296,5 +296,5 @@ All of it collapses under `prefers-reduced-motion: reduce`.
 
 Not a token, but checked against the same plan: every text colour above meets WCAG AA on
 the surface it is used on, focus rings are visible on every interactive element and never
-removed, and the keyboard path works without a pointer — the schema list is reachable and
+removed, and the keyboard path works without a pointer: the schema list is reachable and
 each column inserts on `Enter` or `Space`.

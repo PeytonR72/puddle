@@ -1,7 +1,7 @@
 /**
  * Turning a failed load into something worth reading.
  *
- * DuckDB's own text is accurate and long — the CSV sniffer alone answers with
+ * DuckDB's own text is accurate and long: the CSV sniffer alone answers with
  * twenty lines of candidate delimiters and a caret pointing at SQL the user
  * never wrote. So every failure gets a sentence saying what happened and a
  * sentence saying what to try, and DuckDB's words are kept beside them rather

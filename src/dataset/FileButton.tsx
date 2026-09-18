@@ -7,8 +7,8 @@ import { ACCEPT_ATTRIBUTE } from './file-kind'
  *
  * A bare `<input type="file">` cannot be styled and renders as "No file chosen"
  * beside a grey button; a `<div>` wired to `.click()` loses the keyboard. The
- * input stays as the thing the browser and assistive tech operate — `sr-only`
- * rather than `display: none`, so it is still focusable — and the label carries
+ * input stays as the thing the browser and assistive tech operate (`sr-only`
+ * rather than `display: none`, so it is still focusable) and the label carries
  * the styling, including the focus ring the input would otherwise take
  * invisibly.
  */
@@ -36,7 +36,7 @@ export function FileButton({ onFiles, children, variant = 'primary' }: FileButto
         onChange={(event) => {
           onFiles(Array.from(event.target.files ?? []))
           // Cleared so choosing the same file twice in a row still fires a
-          // change event — otherwise retrying after a failure does nothing.
+          // change event: otherwise retrying after a failure does nothing.
           event.target.value = ''
         }}
       />

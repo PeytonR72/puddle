@@ -4,7 +4,7 @@ import { shareLinkFor } from './share-link'
 import type { SharedQuery } from './shared-query'
 
 /**
- * Puts the query — and only the query — on the clipboard.
+ * Puts the query (and only the query) on the clipboard.
  *
  * The label is the feedback. A toast for a thing this small would arrive after
  * the eye has already left the button, and the button is the element that was

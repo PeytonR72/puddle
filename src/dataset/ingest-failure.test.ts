@@ -65,7 +65,7 @@ describe('engineStartFailure', () => {
   })
 })
 
-describe('classifyIngestFailure — CSV and TSV', () => {
+describe('classifyIngestFailure: CSV and TSV', () => {
   it('explains a sniffer failure without reprinting twenty lines of candidates', () => {
     const failure = classifyIngestFailure(new Error(SNIFFER_FAILURE), {
       fileName: 'garbage.csv',
@@ -75,7 +75,7 @@ describe('classifyIngestFailure — CSV and TSV', () => {
     expect(failure.headline).toContain('garbage.csv')
     expect(failure.headline).toContain('could not work out how')
     expect(failure.detail).toContain('separator')
-    // DuckDB's own text survives, for the disclosure — it is genuinely useful.
+    // DuckDB's own text survives, for the disclosure: it is genuinely useful.
     expect(failure.engineMessage).toBe(SNIFFER_FAILURE)
   })
 
@@ -113,7 +113,7 @@ describe('classifyIngestFailure — CSV and TSV', () => {
 
   it('does not read a WebAssembly trap as a Parquet problem on a CSV', () => {
     // The traps are how a missing Parquet extension surfaces, but they are not
-    // Parquet-specific — only the file kind makes them mean that.
+    // Parquet-specific: only the file kind makes them mean that.
     const failure = classifyIngestFailure(new Error('memory access out of bounds'), {
       fileName: 'sales.csv',
       kind: 'csv',
@@ -123,7 +123,7 @@ describe('classifyIngestFailure — CSV and TSV', () => {
   })
 })
 
-describe('classifyIngestFailure — Parquet', () => {
+describe('classifyIngestFailure: Parquet', () => {
   it.each(PARQUET_TRAPS)('reads the trap %o as the missing extension it is', (trap) => {
     const failure = classifyIngestFailure(new Error(trap), {
       fileName: 'sales.parquet',

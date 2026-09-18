@@ -2,7 +2,7 @@
  * What a run of the editor's query is doing, and when Run is allowed to work.
  *
  * The state lives here rather than inside the panel so that the one question
- * the interface keeps asking — *may this run, and if not, why not* — has a
+ * the interface keeps asking (*may this run, and if not, why not*) has a
  * single answer that can be read in a test.
  */
 import type { Result } from '../duckdb/client'
@@ -25,7 +25,7 @@ export type RunConditions = {
  * Why Run is disabled, or `null` when it is not.
  *
  * A disabled control that does not say why is a dead end, and the first of
- * these is somebody's first minute with Puddle — the editor is on screen and
+ * these is somebody's first minute with Puddle: the editor is on screen and
  * there is nothing to query yet.
  */
 export function runBlockedReason({ hasDataset, isRunning, query }: RunConditions): string | null {

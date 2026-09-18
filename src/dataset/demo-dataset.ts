@@ -1,5 +1,5 @@
 /**
- * The bundled dataset behind "Try the demo" — a stranger's way into the app
+ * The bundled dataset behind "Try the demo", a stranger's way into the app
  * with no file of their own (locked decision 1, second trigger).
  *
  * The file lives under `public/` rather than being fetched from anywhere
@@ -14,7 +14,7 @@ export const DEMO_FILE_URL = `/demo/${DEMO_FILE_NAME}`
 /**
  * The one way loading the demo fails that ordinary ingest never sees: the
  * fetch for Puddle's own bundled file did not come back. `ingest-failure.ts`
- * classifies what DuckDB says about a file it has already read — this never
+ * classifies what DuckDB says about a file it has already read: this never
  * reaches DuckDB, so it gets its own headline instead of a misleading one
  * borrowed from there.
  */

@@ -42,7 +42,7 @@ export function truncateLabel(text: string, max: number = MAX_TICK_CHARS): strin
 /**
  * A number, as a y tick.
  *
- * Grouped like every other number in Puddle, and rounded — which the cells in
+ * Grouped like every other number in Puddle, and rounded, which the cells in
  * the grid above are emphatically not. An axis is a scale rather than a record:
  * `0.30000000000000004` is a true value and a useless tick, and the exact one
  * is a glance away in the row it came from.
@@ -102,7 +102,7 @@ export const MIN_Y_AXIS_WIDTH = 44
  *
  * A ceiling on the gutter rather than on the label, because the failure it
  * prevents is the plot being squeezed by its own scale. Twelve characters is
- * `-1,234,567.8` — past that the exact digits stop being worth their room.
+ * `-1,234,567.8`: past that the exact digits stop being worth their room.
  */
 export const MAX_Y_TICK_CHARS = 12
 
@@ -116,7 +116,7 @@ export type YAxisLabels = {
  * The y axis, measured from the ticks it will actually draw.
  *
  * The chart chooses its ticks before it is laid out (`axis-scale.ts`), so this
- * is an exact measurement rather than an estimate of one — the only guess left
+ * is an exact measurement rather than an estimate of one: the only guess left
  * is the character advance, which is the same guess the results grid makes
  * about its columns.
  *
@@ -146,7 +146,7 @@ function gutterFor(characters: number): number {
 /**
  * A few pixels over the arithmetic.
  *
- * The advance above is measured — 6.60px in Chromium's mono at 11px — but the
+ * The advance above is measured (6.60px in Chromium's mono at 11px) but the
  * face varies by system, and the two outcomes are not symmetric: a gutter a few
  * pixels too wide is invisible, and one a few pixels too narrow shears the
  * first digit off every tick.

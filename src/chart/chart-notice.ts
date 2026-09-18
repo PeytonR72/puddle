@@ -5,7 +5,7 @@
  * panel sits directly under that grid: **the chart only explains itself when it
  * knows something the grid above does not.** A failed query and an empty result
  * are already described a few inches up, in more detail than a second copy
- * would add, so those get a headline and nothing else — repeating the
+ * would add, so those get a headline and nothing else: repeating the
  * explanation makes one outcome look like two.
  *
  * Two cases are the chart's own, and both carry a detail:
@@ -56,7 +56,7 @@ export function chartNotice(run: QueryRun): ChartNotice | null {
  * The chart's one runtime refusal: a column that is all absence.
  *
  * Kept apart from `chartNotice` because it depends on the column the reader
- * chose rather than on the run, and it names that column — a reader looking at
+ * chose rather than on the run, and it names that column: a reader looking at
  * an empty plot needs to know which of the two selects to move.
  */
 export function nullColumnNotice(columnName: string): ChartNotice {

@@ -122,21 +122,21 @@ Puddle's first screen is a sheet of cool archival stock resting on a darker grey
 The bundled dataset arrives already mounted, determined, and labelled: four categories
 pressed as weekly-mean traces on hairline baselines, a bordered determination label
 naming what was examined and what was transmitted, and one aniline-violet accession
-stamp reading `EXAMINE` — which is both the collection's mark and the only button on
+stamp reading `EXAMINE`, which is both the collection's mark and the only button on
 the page. The world exists to make a claim checkable rather than asserted: a herbarium
 is the one document type whose whole job is provenance, and provenance is Puddle's
 entire pitch.
 
 The system is flat, ruled, and close-set. Structure comes from hairlines and alignment
 because that is the only structure a result set actually has; nothing is a card, nothing
-is a gradient, and the one shadow in the build is the lift of the sheet off its mount —
+is a gradient, and the one shadow in the build is the lift of the sheet off its mount,
 the world's own material, not an elevation vocabulary. Density is tight (4px base) and
 type is small: 11–13px carries almost everything, with the wordmark at 44px as the single
 large thing on the page. Every label is condensed caps; every measured value is mono with
 tabular figures.
 
-The world is deliberately not the developer-tool landing page it replaces — no hero
-headline, no glassy code block, no gradient bloom — and deliberately not cream, parchment
+The world is deliberately not the developer-tool landing page it replaces: no hero
+headline, no glassy code block, no gradient bloom, and deliberately not cream, parchment
 or lamplight. This is a working herbarium, not an antique. The rest of the app (schema
 panel, editor, results grid, chart) keeps the incumbent ink-on-paper grid system, whose
 density, type and behaviour are pinned; the sheet's tokens extend that vocabulary rather
@@ -145,7 +145,7 @@ contrast ratios; this file is the applied system.
 
 **Key Characteristics:**
 - Cool archival sheet on a darker mount; never cream, parchment, or lamplight
-- Hairlines and alignment as the only structural device — no cards, no panels-as-boxes
+- Hairlines and alignment as the only structural device: no cards, no panels-as-boxes
 - Herbarium green for the subject, one aniline violet spent exactly once
 - Condensed caps for every label, monospace with tabular figures for every measured value
 - Square corners everywhere except 2px on controls; one rotated element per screen
@@ -158,7 +158,7 @@ incumbent cool ink-on-paper world for the working surface it hands off to.
 
 ### Primary
 - **Aniline Violet** (`stamp`): the ink a collection actually stamps an accession with.
-  It appears on exactly one element — the `EXAMINE` stamp — plus the reading hairline
+  It appears on exactly one element (the `EXAMINE` stamp) plus the reading hairline
   that follows the pointer down a specimen, the sheet's drag-over border, and the browser
   surfaces (`accent-color`, `caret-color`). It is the only saturated thing on the first
   viewport.
@@ -166,25 +166,25 @@ incumbent cool ink-on-paper world for the working surface it hands off to.
   document's `::selection` background. Never a text colour.
 
 ### Secondary
-- **Azure** (`accent`): the working surface's one saturated colour — focus rings, the
+- **Azure** (`accent`): the working surface's one saturated colour: focus rings, the
   boot progress bar, the running query, the mark under the pointer in the chart. It never
   appears on the specimen sheet, and the stamp never appears on the working surface.
 - **Azure Wash** (`accent-soft`): the drop-to-replace overlay over a loaded dataset.
 
 ### Tertiary
 - **Herbarium Green** (`specimen`): the ink of the subject. Every specimen trace, the
-  mounted fragment of first rows, and each specimen's printed mean. Spent freely — it is
+  mounted fragment of first rows, and each specimen's printed mean. Spent freely: it is
   the material's colour, not an accent to be rationed.
 - **Green-Grey Label** (`specimen-faint`): specimen names, ranges, section labels, the
   sheet's subtitle and footer. Tinted from the specimen's own hue rather than greyed, and
   held to the body-text contrast floor because it carries 11–12px text (4.91:1 on the
-  sheet, 4.56:1 on the inset — measured; see `docs/design/tokens.md`).
+  sheet, 4.56:1 on the inset, measured; see `docs/design/tokens.md`).
 
 ### Neutral
 - **Mount Grey** (`mount`): the ground behind the sheet. It is what makes the sheet read
   as an object rather than a page background, and it is the only place it is used.
 - **Archival Stock** (`sheet`): the sheet itself, and the collection block pasted to it.
-- **Inset Stock** (`sheet-inset`): one step down from the sheet — the determination label
+- **Inset Stock** (`sheet-inset`): one step down from the sheet: the determination label
   only, so the label reads as pasted on rather than printed in.
 - **Paper** (`paper`) / **Surface** (`surface`): the working application's page and its
   recessed areas (schema panel, editor frame).
@@ -218,7 +218,7 @@ neutral grey dropped in. `specimen-faint` is green; `ink-faint` is cool.
 Consolas), carrying every measured value
 
 **Character:** Archivo is a grotesque cut for print and forms, which is the register a
-determination label is actually set in — and it ships with the app rather than arriving
+determination label is actually set in, and it ships with the app rather than arriving
 from a CDN, because the product's one claim is a fact about the network panel. The
 monospace is the data's own voice: SQL, type names, row counts, timings, dollar figures.
 The pairing is a printed form beside a machine readout.
@@ -231,7 +231,7 @@ The pairing is a printed form beside a machine readout.
 - **Title / stamp** (700, 1.125rem, line-height 1, tracking 0.14em, condensed caps):
   the `EXAMINE` stamp face. The one place a label is set large.
 - **Body** (1.125rem lead / 0.9375rem body / 0.8125rem base, monospace, tabular figures):
-  the working surface's running voice — invitations, prose, button faces, and every
+  the working surface's running voice: invitations, prose, button faces, and every
   number the reader is meant to compare.
 - **Label** (0.6875–0.75rem, condensed caps at `'wdth' 84`, tracking 0.06em–0.2em): every
   named field on the sheet. Tracking rises with importance: 0.06em on a field name inside
@@ -245,8 +245,8 @@ The pairing is a printed form beside a machine readout.
 determination has to fit a small printed slip, and that proportion is most of what makes
 the lettering read as a collection's rather than an app's.
 
-**The Measured Value Rule.** Anything measured — a date, a mean, a range, a row count, a
-millisecond timing — is monospace with tabular figures, which is set on `body` so figures
+**The Measured Value Rule.** Anything measured (a date, a mean, a range, a row count, a
+millisecond timing) is monospace with tabular figures, which is set on `body` so figures
 align by default rather than per component. A number in the sans face is a mistake.
 
 **The One Wordmark Rule.** `puddle` appears once per screen, lowercase, never restyled.
@@ -267,7 +267,7 @@ remaining width and a 19rem aside holds the determination label, the collection 
 and the stamp. Column gap is 28px stacked, 40px side by side.
 
 Reading order is reversed against source order on purpose. The aside is `order-first`
-when stacked so the stamp — the one action — leads on a phone, and moves to the right at
+when stacked so the stamp, the one action, leads on a phone, and moves to the right at
 `lg` where the sheet's data-first reading order can hold. The specimen rows do the same
 thing at `sm` (640px): the category name and range sit above and below the trace on a
 phone, and flank it once there is width, because 80px of label on each side would leave
@@ -287,7 +287,7 @@ the bar the product is measured against.
 ## Elevation & Depth
 
 The system is flat and uses tonal layering: mount, sheet, inset. There is exactly one
-shadow in the build, and it is the sheet's own lift off its mount — an offset hairline
+shadow in the build, and it is the sheet's own lift off its mount: an offset hairline
 plus a wide soft blur, so the sheet reads as an object resting on a darker ground rather
 than a div with a border. Nothing else in the build casts one: not the determination
 label, not the stamp, not a button, not the working surface's panels. Focus is a ring,
@@ -312,7 +312,7 @@ read as a machined edge rather than a softened one.
 
 Borders are 1px hairlines and carry all the structure: ink for the sheet's header rule and
 the determination label's frame, `rule-strong` for the collection block, `rule` for a
-specimen baseline, and a single left hairline for the mounted fragment — a mounting strip,
+specimen baseline, and a single left hairline for the mounted fragment, a mounting strip,
 not a thick coloured bar. The accession stamp is the exception at 2px, because a stamp is
 pressed harder than a label is ruled.
 
@@ -350,7 +350,7 @@ transmitted: `nothing`); under the pointer it describes one week (week of, categ
 reading *n* of 72). It is one block that changes, never a block plus a tooltip.
 - **Border:** 1px ink, on `sheet-inset`
 - **Internal padding:** 12px 16px; 12px 6px grid gaps
-- **Accessibility:** the block is not itself a live region — a visually hidden polite
+- **Accessibility:** the block is not itself a live region; a visually hidden polite
   region announces only the settled reading, 350ms after the reader stops moving.
 
 ### Collection Block
@@ -412,7 +412,7 @@ pair instead, because that surface belongs to the working world.
 - **Do** let the mount show on all four edges of the sheet at every width.
 - **Do** ship the display face from the same origin as the app, and check that a new
   surface adds no third-party request.
-- **Do** make the keyboard path complete on any surface that responds to a pointer —
+- **Do** make the keyboard path complete on any surface that responds to a pointer:
   stepping, jumping to the ends, and activating.
 
 ### Don't:
