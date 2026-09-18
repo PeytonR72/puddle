@@ -1,5 +1,7 @@
 # puddle
 
+**Runs a real SQL engine in the browser, with no server, verifiable in the network tab.**
+
 A SQL notebook that runs entirely in a browser tab.
 
 **[puddle-neon.vercel.app](https://puddle-neon.vercel.app)**
