@@ -1,13 +1,17 @@
+import { DATASET_VIEW } from '../dataset/ingest-sql'
 import { weekStartDate } from './specimen-geometry'
 
 /**
  * The SQL a specimen reading stands for.
  *
  * Activating a point on the sheet is meant to hand the reader the query that
- * produced it, which is what makes the landing surface the query builder rather
- * than a picture of one. The week is a half-open range: `>= start` and
- * `< start + 7 days`, so consecutive weeks tile without double-counting the
- * boundary day.
+ * produced it, which is what makes the landing surface the query builder
+ * rather than a picture of one. It selects from `DATASET_VIEW` rather than
+ * spelling the view's name here, because a reading that does not run is a
+ * picture of one after all.
+ *
+ * The week is a half-open range: `>= start` and `< start + 7 days`, so
+ * consecutive weeks tile without double-counting the boundary day.
  */
 const DAYS_IN_WEEK = 7
 
@@ -17,7 +21,7 @@ export function specimenQuery(category: string, weekIndex: number, firstDate: st
 
   return [
     'SELECT date, category, revenue',
-    'FROM dataset',
+    `FROM ${DATASET_VIEW}`,
     `WHERE category = ${quote(category)}`,
     `  AND date >= ${quote(start)}`,
     `  AND date < ${quote(end)}`,
